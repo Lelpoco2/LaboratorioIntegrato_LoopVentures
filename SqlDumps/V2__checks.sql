@@ -41,27 +41,27 @@ INSERT INTO users (email, pw, username) VALUES
 ('tina@example.com', 'hash_pw20', 'tinat');
 
 
-INSERT INTO customers (email, phone, created_at) VALUES
-('customer1@mail.com', '3456789012', NOW()),
-('customer2@mail.com', '3356789012', NOW()),
-('customer3@mail.com', '3256789012', NOW()),
-('customer4@mail.com', '3156789012', NOW()),
-('customer5@mail.com', '3056789012', NOW()),
-('customer6@mail.com', '3756789012', NOW()),
-('customer7@mail.com', '3856789012', NOW()),
-('customer8@mail.com', '3956789012', NOW()),
-('customer9@mail.com', '3556789012', NOW()),
-('customer10@mail.com', '3656789012', NOW()),
-('customer11@mail.com', '3123456789', NOW()),
-('customer12@mail.com', '3223456789', NOW()),
-('customer13@mail.com', '3323456789', NOW()),
-('customer14@mail.com', '3423456789', NOW()),
-('customer15@mail.com', '3523456789', NOW()),
-('customer16@mail.com', '3623456789', NOW()),
-('customer17@mail.com', '3723456789', NOW()),
-('customer18@mail.com', '3823456789', NOW()),
-('customer19@mail.com', '3923456789', NOW()),
-('customer20@mail.com', '3023456789', NOW());
+INSERT INTO customers (nome, cognome, email, phone, created_at) VALUES
+('Alice', 'Brown', 'customer1@mail.com', '3456789012', NOW()),
+('Bob', 'Smith', 'customer2@mail.com', '3356789012', NOW()),
+('Carol', 'Johnson', 'customer3@mail.com', '3256789012', NOW()),
+('Daniel', 'Miller', 'customer4@mail.com', '3156789012', NOW()),
+('Eve', 'Davis', 'customer5@mail.com', '3056789012', NOW()),
+('Frank', 'Wilson', 'customer6@mail.com', '3756789012', NOW()),
+('Grace', 'Taylor', 'customer7@mail.com', '3856789012', NOW()),
+('Henry', 'Anderson', 'customer8@mail.com', '3956789012', NOW()),
+('Irene', 'Thomas', 'customer9@mail.com', '3556789012', NOW()),
+('Jack', 'Moore', 'customer10@mail.com', '3656789012', NOW()),
+('Kate', 'Martin', 'customer11@mail.com', '3123456789', NOW()),
+('Liam', 'Clark', 'customer12@mail.com', '3223456789', NOW()),
+('Mia', 'Lewis', 'customer13@mail.com', '3323456789', NOW()),
+('Noah', 'Walker', 'customer14@mail.com', '3423456789', NOW()),
+('Olivia', 'Hall', 'customer15@mail.com', '3523456789', NOW()),
+('Paul', 'Allen', 'customer16@mail.com', '3623456789', NOW()),
+('Quinn', 'Young', 'customer17@mail.com', '3723456789', NOW()),
+('Rachel', 'King', 'customer18@mail.com', '3823456789', NOW()),
+('Sam', 'Wright', 'customer19@mail.com', '3923456789', NOW()),
+('Tina', 'Scott', 'customer20@mail.com', '3023456789', NOW());
 
 
 INSERT INTO houses (address, city, province, postal_code, property_type, surface_mq, rooms, bathrooms, floor, year_built, house_condition, estimated_value, evaluation_date, id_customers)

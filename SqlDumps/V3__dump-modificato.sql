@@ -10,6 +10,8 @@ CREATE TABLE if not exists users (
 
 CREATE TABLE if not exists customers(
 id int not null auto_increment PRIMARY KEY,
+nome varchar(100) not null,
+cognome varchar(100) not null,      -- aggiunto come e cognome come dati obligatori
 email varchar(200) not null,
 phone varchar(20),
 created_at timestamp -- eventualmente lo si cambia in varchar x problemi di compatibilità
