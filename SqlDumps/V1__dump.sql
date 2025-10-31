@@ -19,7 +19,7 @@ first_name varchar(100)not null,
 last_name varchar (100) not null,
 email varchar(200) not null,
 phone varchar(20) not null,
-cod_fiscale char(18) not null,
+cod_fiscale varchar(18) not null,
 created_at timestamp, -- eventualmente lo si cambia in varchar x problemi di compatibilità
 updated_at timestamp
 );
@@ -28,10 +28,60 @@ updated_at timestamp
 CREATE TABLE houses(
 id int not null auto_increment primary key,
 address varchar(255) not null,
+city varchar(100) not null,
+province varchar(2)not null,
+postal_code varchar(5)not null,
+property_type varchar(50)not null,
+surface_mq decimal not null,
+rooms int not null,
+bathrooms int not null,
+floor int not null,
+year_built int not null,
+house_condition varchar(200) not null,
+estimated_value decimal not null,
+evaluation_date timestamp -- eventualmente da cambiare in varchar se va in conflitto con il codice
 
+);
 
+-- tabella contracts
+CREATE TABLE contracts(
+id int auto_increment primary key not null,
+contract_type varchar(50),
+start_date date,
+end_date date,
+commission_percentage decimal,
+contract_status enum("bozza", "attesa firma", "attivo", "scaduto", "terminato", "rinnovato"),
+signed_at timestamp -- \\
 
+);
 
+-- tabella House_photo
 
+CREATE TABLE house_photo(
+id int primary key auto_increment not null,
+file_path varchar(600) not null,
+file_name varchar(255),
+is_primary bool,
+upload_oder int
 
+);
+
+-- tabella leads
+CREATE TABLE leads(
+id int auto_increment not null,
+first_name varchar(30) not null,
+last_name varchar(30) not null,
+email varchar(100) not null,
+phone varchar(20) not null
+);
+
+-- tabella form submission
+
+CREATE TABLE form_submission(
+id int auto_increment not null,
+session_id varchar(200) not null,
+currnent_step int(30) not null,
+form_data json not null,
+completed bool not null,
+abandoned_at timestamp
 );
