@@ -14,5 +14,8 @@ export default defineConfig({
       host: 'localhost', // Host per Hot Module Replacement
       clientPort: 5173, // Porta per il client HMR
     },
+    proxy: {
+      '/api':'http://backend:8080', // Proxy delle richieste API al backend Spring Boot
+    }
   },
 })

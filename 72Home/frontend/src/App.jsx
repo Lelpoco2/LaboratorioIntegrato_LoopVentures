@@ -18,8 +18,17 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={async () => {
+          try {
+            const response = await fetch('/api/user');
+            if (!response.ok) throw new Error('Errore nella richiesta');
+            const users = await response.json();
+            alert('Utenti: ' + JSON.stringify(users));
+          } catch (err) {
+            alert('Errore: ' + err.message);
+          }
+        }}>
+          Fetch Users from Backend
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR

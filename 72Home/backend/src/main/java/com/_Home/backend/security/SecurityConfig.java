@@ -1,4 +1,4 @@
-package com._Home.backend;
+package com._Home.backend.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-public class SecurityConfigDev {
+public class SecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChainDev(HttpSecurity http) throws Exception {
@@ -20,5 +20,3 @@ public class SecurityConfigDev {
         return http.build();           
     }
 }
-
-
