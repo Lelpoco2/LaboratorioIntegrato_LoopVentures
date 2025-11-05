@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com._Home.backend.repos.UserRepo;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @RestController
 @RequestMapping("/api")
@@ -32,5 +35,17 @@ public class TestController {
             ))
             .orElse(Map.of("message", "No users found"));
     }
+
+    @PostMapping("/userpost")
+    public Map<String, String> insertUser(@RequestBody com._Home.backend.models.User user) {
+        com._Home.backend.models.User saved = userRepo.save(user);
+        return Map.of(
+            "id", saved.getId() != null ? saved.getId().toString() : "",
+            "user_name", saved.getUsername(),
+            "email", saved.getEmail(),
+            "message", "User inserted successfully"
+        );
+    }
+    
 }
 

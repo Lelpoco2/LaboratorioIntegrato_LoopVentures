@@ -28,8 +28,29 @@ function App() {
             alert('Errore: ' + err.message);
           }
         }}>
-          Fetch Users from Backend
+          Fetch Fake Users from Backend and Database
         </button>
+        <button onClick={async () => {
+  try {
+    const response = await fetch('/api/userpost', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: 'newuser',
+        password: 'password123',
+        email: 'newuser@example.com',
+        createdAt: new Date().toISOString()
+      })
+    });
+    if (!response.ok) throw new Error('Errore nella richiesta');
+    const result = await response.json();
+    alert('Risposta: ' + JSON.stringify(result));
+  } catch (err) {
+    alert('Errore: ' + err.message);
+  }
+}}>
+  Insert Fake User to Database
+</button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
