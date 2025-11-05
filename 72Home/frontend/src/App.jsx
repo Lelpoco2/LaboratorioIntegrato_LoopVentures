@@ -36,9 +36,9 @@ function App() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: 'newuser',
-        password: 'password123',
-        email: 'newuser@example.com',
+        username: 'newnewuser',
+        password: 'password12',
+        email: 'newnewuser@example.com',
         createdAt: new Date().toISOString()
       })
     });
