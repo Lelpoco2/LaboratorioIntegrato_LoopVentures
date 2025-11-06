@@ -17,9 +17,11 @@
 
 ## 1. Introduzione
 
-> **Attenzione:** Il profilo di produzione (`prod`) è pensato esclusivamente per test di funzionalità (ad esempio test end-to-end o verifica del deploy). Non utilizzarlo per sviluppo quotidiano o test ripetuti: ogni avvio può impattare dati persistenti e configurazioni reali. Montare il profilo prod solo quando necessario e limitare il numero di avvii.
 
 Questa guida descrive come avviare e gestire l'ambiente di produzione per l'applicativo Dockerizzato basato su React (frontend), Nginx (reverse proxy), Spring Boot (backend) e MySQL (database).
+
+> **Attenzione:** Il profilo di produzione (`prod`) è pensato esclusivamente per test di funzionalità (ad esempio test end-to-end o verifica del deploy). Non utilizzarlo per sviluppo quotidiano o test ripetuti: ogni avvio può impattare dati persistenti e configurazioni reali. Montare il profilo prod solo quando necessario e limitare il numero di avvii.\
+**UTILIZZARE IL PROFILO DEV PER LO SVILUPPO**.
 
 ## 2. Requisiti
 
