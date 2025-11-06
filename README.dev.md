@@ -2,7 +2,19 @@
 
 ## Indice
 
-
+1. [Avvio generale dell'ambiente di sviluppo](#1-avvio-generale-dellambiente-di-sviluppo)
+2. [Utilizzo Servizio Frontend](#2-utilizzo-servizio-frontend)
+    - [Informazioni base](#21-informazioni-base)
+    - [Vedere i log del frontend](#22-vedere-i-log-del-frontend)
+    - [Cosa fare se si aggiungono nuovi pacchetti con NPM](#23-cosa-fare-se-si-aggiungono-nuovi-pacchetti-con-npm)
+    - [Fermare l'ambiene e rimuovere i container](#33-fermare-lambiene-e-rimuovere-i-container)
+    - [Troubleshooting frontend](#34-troubleshooting-frontend)
+3. [Utilizzo backend + Database(MySQL)](#3-utilizzo-backend--databasemysql)
+    - [Informazioni base](#31-informazioni-base)
+    - [Vedere i log di backend](#32-vedere-i-log-di-backend)
+    - [Cosa fare se si aggiungono nuove dipendenza al pom.xml](#33-cosa-fare-se-si-aggiungono-nuove-dipendenza-al-pomxml)
+    - [Fermare l'ambiente e rimuovere i container](#34-fermare-lambiente-e-rimuovere-i-container)
+    - [Connessione al database tramite MySQL Workbench](#35-connessione-al-database-tramite-mysql-workbench)
 
 Ambiente di sviluppo basato su Docker Compose con **hot reload** per:
 - Backend: Spring Boot
@@ -75,7 +87,7 @@ docker-compose -f docker-compose.dev.yml up -d --build frontend
 
 In questo modo verrà ricostruita solo l'immagine del servizio frontend, mantenendo in esecuzione gli altri servizi (backend e database) senza interruzioni e riducendo le tempistiche di avvio.
 
-### 3.3 Fermare l'ambiene e rimuovere i container
+### 3.3 Fermare l'ambiente e rimuovere i container
 
 Quando si ha finito di sviluppare e si vuole interrompere l'ambiente DEV, eseguire il comando:
 
@@ -124,9 +136,35 @@ Se si nota, ogni volta che verrà modificato e salvato un file sorgente del back
 
 ### 3.3 Cosa fare se si aggiungono nuove dipendenza al pom.xml
 
+Come nel caso del frontend, se si aggiungono nuove dipendenze al file `pom.xml` del backend Spring Boot, è necessario ricostruire l'immagine Docker del servizio backend per includere le nuove dipendenze.
 
+**ANCHE QUI NON E' NECESSARIO RIAVVIARE L'INTERO AMBIENTE**
+
+Per riavviare solo il servizio backend, eseguire:
+
+```bash
+# Avvio in background
+docker-compose -f docker-compose.dev.yml up -d --build backend
+```
 
 ### 3.4 Fermare l'ambiente e rimuovere i container
 
-### 3.5 Connessione al database tramite MySQL Workbench
+Quando si ha finito di sviluppare e si vuole interrompere l'intero ambiente DEV, eseguire il comando:
 
+```bash
+# Fermare l'ambiente
+docker-compose -f docker-compose.dev.yml down
+```
+
+## 4 Connessione al database tramite MySQL Workbench
+
+Per facilitare la gestione e visualizzazione del Database Dev in MySQL in esecuzione nel container `app_database_MySQL_dev`, si consiglia di utilizzare un client MySQL come MySQL Workbench.
+
+Per potersi connettere al Database MySQL in esecuzione nel container, utilizzare le seguenti credenziali:
+
+- Nome connessione: Facoltativa (Es. App Database DEV Container)
+- Hostname: `localhost`
+- Port: `3307` <- Nota: la porta 3306 è mappata internamente al container, esponendo esternamente la 3307 per evitare conflitti con eventuali istanze MySQL locali
+- Per questioni di sicurezza, i restanti dati saranno forniti privatamente al team di sviluppo backend (root password, DB namer, user, user password)
+
+Tali dati dovranno essere immessi nel file `.env.example`, per poi essere rinominato in `.env`, in modo che il backend Spring Boot possa connettersi correttamente al database MySQL in esecuzione nel container.
