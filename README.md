@@ -131,6 +131,9 @@ Per quanto riguarda le pull request, la struttura dovrà essere la seguente:
 
 <Altre informazioni rilevanti sulla PR>
 ```
+
+> Le pull requests indirizzate nel main branch saranno revisionate dal team leader (@Lelpoco2) o da un membro del team di backend designato per la revisione del codice, prima di essere mergiate nel branch principale.
+
 ## 6. Come utilizzare il progetto e ambienti
 
 ### 6.1 Ambiente di sviluppo (DEV)
