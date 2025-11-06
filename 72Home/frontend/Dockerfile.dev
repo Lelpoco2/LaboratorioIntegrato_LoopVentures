@@ -1,0 +1,20 @@
+# Dockerfile ultra-ottimizzato per ambiente di sviluppo con hot reload
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copia solo i file di dipendenze per massimizzare il cache
+COPY package.json package-lock.json* ./
+
+# Usa npm ci con cache ottimizzata e rimuovi cache npm dopo installazione
+RUN npm ci --prefer-offline --no-audit && \
+    npm cache clean --force
+
+# Copia il resto del codice (verrà sovrascritto dai volumi)
+COPY . .
+
+# Espone la porta di Vite
+EXPOSE 5173
+
+# Avvia il server di sviluppo Vite
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

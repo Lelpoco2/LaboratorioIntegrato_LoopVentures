@@ -1,0 +1,38 @@
+# Dockerfile ultra-ottimizzato per ambiente di sviluppo con hot reload
+# Usa un'immagine JDK più leggera e installa solo Maven
+FROM eclipse-temurin:21-jdk-alpine
+
+WORKDIR /app
+
+# Installa Maven, inotify-tools e bash in un solo layer
+ENV MAVEN_VERSION=3.9.9
+ENV MAVEN_HOME=/usr/share/maven
+
+RUN apk add --no-cache bash inotify-tools curl tar && \
+    curl -fsSL https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz | tar xzf - -C /usr/share && \
+    mv /usr/share/apache-maven-${MAVEN_VERSION} ${MAVEN_HOME} && \
+    ln -s ${MAVEN_HOME}/bin/mvn /usr/bin/mvn && \
+    apk del curl tar
+
+# Copia il pom.xml e scarica le dipendenze (layer cachato)
+COPY pom.xml .
+RUN mvn -q dependency:go-offline
+
+# Copia il codice sorgente
+COPY src ./src
+
+# Espone le porte
+EXPOSE 8080 35729 5005
+
+# Script ottimizzato per avviare l'app con hot reload
+RUN printf '#!/bin/bash\n\
+mvn spring-boot:run \\\n\
+  -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005" \\\n\
+  -Dspring-boot.run.fork=false &\n\
+sleep 10\n\
+while inotifywait -r -e modify,create,delete /app/src 2>/dev/null; do\n\
+  echo "File changed, recompiling..." && mvn compile -q\n\
+done\n\
+' > /app/start.sh && chmod +x /app/start.sh
+
+CMD ["/app/start.sh"]
