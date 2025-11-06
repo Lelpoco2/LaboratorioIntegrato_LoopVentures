@@ -57,16 +57,21 @@ Una volta avviato l'ambiente di sviluppo con tutti i suoi componenti, il fronten
 L'applicativo React supporta il **hot reload**, quindi ogni modifica al codice sorgente (nella cartella `frontend/`) verrà automaticamente riflessa nell'app in esecuzione senza necessità di riavviare il container.
 
 
-**!Nota bene:!**\
+>**!Nota bene:!**\
 Il frontend comunica con il `app_backend_Spring_dev` tramite l'URL:\
  `http://localhost:8080` (configurato in `frontend/src/config.js`).\
  Questo permette al frontend di interagire con le API REST fornite dal backend Spring Boot, se necessario.
+
+Tutte le chiamate API fatte dal frontend verso il backend saranno indirizzate normalmente a questo URL:
+
+`http://localhost:8080/api/<NomeAPI>`
 
 ### 2.2 Vedere i log del frontend
 
 Per avere un riscontro immediato se il servizio funziona regolarmente, si possono attivare i log in tempo reale del frontend, eseguire il comando:
 
 ```bash
+# Vedere i log in tempo reale del FE
 docker-compose -f docker-compose.dev.yml logs -f frontend
 ```
 
@@ -130,6 +135,7 @@ Tali risposte saranno codificate in **formato JSON**
 Per avere un riscontro immediato se il servizio funziona regolarmente, si possono attivare i log in tempo reale del backend, eseguire il comando:
 
 ```bash
+# Vedere i log in tempo reale del BE
 docker-compose -f docker-compose.dev.yml logs -f backend
 ```
 Se si nota, ogni volta che verrà modificato e salvato un file sorgente del backend, l'app Spring si riavvierà, indicando che il file è stato rigenerato e la modifica applicata correttamente.
@@ -165,6 +171,6 @@ Per potersi connettere al Database MySQL in esecuzione nel container, utilizzare
 - Nome connessione: Facoltativa (Es. App Database DEV Container)
 - Hostname: `localhost`
 - Port: `3307` <- Nota: la porta 3306 è mappata internamente al container, esponendo esternamente la 3307 per evitare conflitti con eventuali istanze MySQL locali
-- Per questioni di sicurezza, i restanti dati saranno forniti privatamente al team di sviluppo backend (root password, DB namer, user, user password)
+- Per questioni di sicurezza, i restanti dati saranno forniti privatamente al team di sviluppo backend del team leader (root password, DB name, user, user password)
 
 Tali dati dovranno essere immessi nel file `.env.example`, per poi essere rinominato in `.env`, in modo che il backend Spring Boot possa connettersi correttamente al database MySQL in esecuzione nel container.
