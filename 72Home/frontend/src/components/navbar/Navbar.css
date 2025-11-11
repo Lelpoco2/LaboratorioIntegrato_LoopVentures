@@ -1,0 +1,269 @@
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  border: 1px solid #0c3c7c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  gap: 2rem;
+}
+
+/* LOGO */
+.navbar-logo {
+  margin-left: 3rem;
+  color: #0c3c7c;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  font-size: 0.2rem;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+.logo{
+  position: relative;
+  top: -5px;
+  height: 60px;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.05);
+}
+
+/* LINK PRINCIPALI */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: absolute;
+  left: 40%;
+  
+}
+
+
+
+.navbar-links a,
+.navbar-button {
+  position: relative;
+  color: #0c3c7c;
+  text-decoration: none;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem; 
+  padding: 0.4rem;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Hover link */
+.navbar-links a:hover,
+.navbar-button:hover {
+  color: #009fcb;
+}
+
+/* Linea sotto link */
+.navbar-links a::after,
+.navbar-button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #009fcb;
+  transition: width 0.3s ease;
+}
+
+.navbar-links a:hover::after,
+.navbar-button:hover::after {
+  width: 100%;
+}
+
+/* ELEMENTI CON SOTTOMENU */
+.navbar-item {
+  position: relative;
+}
+
+/* ICONA CARET */
+.navbar-icon {
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.navbar-item:hover .navbar-icon {
+  transform: rotate(180deg);
+}
+.navbar-icon:hover {
+  color: #009fcb;
+  top: 1.5px;
+}
+
+/* SOTTOMENU */
+.submenu {
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  background: white;
+  color: #0c3c7c;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease;
+  min-width: 150px;
+  transition: all 0.5s ease;
+}
+
+.submenu a {
+  padding: 0.6rem 1rem;
+  color: #0c3c7c;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.submenu a:hover {
+  background: #ffffff;
+  text-decoration: none;
+}
+
+/* ANIMAZIONE */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HAMBURGER ICON */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  width: 25px;
+  height: 20px;
+  gap: 4px;
+  margin-right: 30px;
+}
+
+.hamburger span {
+  height: 3px;
+  background: #0c3c7c;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* RIGHT BUTTON */
+.navbar-right-button {
+  margin-right: 5rem;
+  padding: 0.5rem 1rem;
+  background-color: #0c3c7c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+}
+
+.navbar-right-button:hover {
+  background-color: #009fcb;  
+}
+.right-arrow {
+  margin-left: 0.5rem;
+  position: relative;
+  
+  
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    height: 70px;
+    padding: 1rem;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    background: white;
+    padding: 1rem 0;
+    display: none;
+  }
+
+  .navbar-links.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .navbar-links a,
+  .navbar-button {
+    color: #0c3c7c;
+    justify-content: center;
+    padding: 0.8rem;
+    align-items: center;
+    
+  }
+
+  .navbar-item {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .submenu {
+    width: 90%;
+    position: static;
+    margin: 0.5rem auto;
+    box-shadow: none;
+    background: white;
+    color: #0c3c7c;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
+  .submenu a {
+    color: #0c3c7c;
+    padding: 0.8rem 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar-right-button {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
