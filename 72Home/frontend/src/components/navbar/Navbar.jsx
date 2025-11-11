@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CaretDown, ArrowRight } from "@phosphor-icons/react";
+import { CaretDownIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -42,7 +42,7 @@ export default function Navbar() {
         >
           <button className="navbar-button">
             Servizi{" "}
-            <CaretDown size={16} weight="bold" className="navbar-icon" />
+            <CaretDownIcon size={16} weight="bold" className="navbar-icon" />
           </button>
           {activeMenu === "servizi" && (
             <div className="submenu">
@@ -61,7 +61,7 @@ export default function Navbar() {
         >
           <button className="navbar-button">
             Progetti{" "}
-            <CaretDown size={16} weight="bold" className="navbar-icon" />
+            <CaretDownIcon size={16} weight="bold" className="navbar-icon" />
           </button>
           {activeMenu === "progetti" && (
             <div className="submenu">
@@ -76,7 +76,7 @@ export default function Navbar() {
       </nav>
 
       <button className="navbar-right-button">
-        Get in touch <ArrowRight size={20} weight="bold" className="right-arrow" />
+        Get in touch <ArrowRightIcon size={20} weight="bold" className="right-arrow" />
       </button>
     </header>
   );
