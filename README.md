@@ -1,21 +1,24 @@
 # LaboratorioIntegrato - Loop Ventures 
 ## Nome Progetto: Da decidere
 
-## Table of Contents
+## Indice
 1. [Introduzione](#1-introduzione)
-2. [Obbiettivi del progetto](#2-obbiettivi-del-progetto)
-3. [Struttura del repository (work in progress)](#3-struttura-del-repository-work-in-progress)
+2. [Obiettivi del progetto](#2-obbiettivi-del-progetto)
+3. [Struttura del repository](#3-struttura-del-repository-work-in-progress)
 4. [Best Practices](#4-best-practices)
-    - [4.1 Seguire le convenzioni di codifica](#41-seguire-le-convenzioni-di-codifica)
-    - [4.2 Utilizzare il controllo di versione (Git)](#42-utilizzare-il-controllo-di-versione-git)
-    - [4.3 Documentare il codice e le decisioni progettuali in modo esaustivo](#43-documentare-il-codice-e-le-decisioni-progettuali-in-modo-esaustivo)
-    - [4.4 Collaborazione e comunicazione](#44-collaborazione-e-comunicazione)
-5. [Struttura commits e PR](#5-struttura-commits-e-pr)
-    - [5.1 Struttura dei messaggi di commit](#51-struttura-dei-messaggi-di-commit)
-    - [5.1.1 Tipi di commit](#511-tipi-di-commit)
-    - [5.2 Struttura delle Pull Request](#52-struttura-delle-pull-request)
-6. [Contribuzione alla documentazione](#6-contribuzione-alla-documentazione)
-7. [Disclaimer](#7-disclaimer)
+    - [Seguire le convenzioni di codifica](#41-seguire-le-convenzioni-di-codifica)
+    - [Utilizzare il controllo di versione (Git)](#42-utilizzare-il-controllo-di-versione-git)
+    - [Documentare il codice e le decisioni progettuali](#43-documentare-il-codice-e-le-decisioni-progettuali-in-modo-esaustivo)
+    - [Collaborazione e comunicazione](#44-collaborazione-e-comunicazione)
+5. [Struttura dei commit e delle Pull Request](#5-struttura-commits-e-pr)
+    - [Struttura dei messaggi di commit](#51-struttura-dei-messaggi-di-commit)
+    - [Tipi di commit](#511-tipi-di-commit)
+    - [Struttura delle Pull Request](#52-struttura-delle-pull-request)
+6. [Come utilizzare il progetto e ambienti](#6-come-utilizzare-il-progetto-e-ambienti)
+    - [Ambiente di sviluppo (DEV)](#61-ambiente-di-sviluppo-dev)
+    - [Ambiente di produzione (PROD)](#62-ambiente-di-produzione-prod)
+7. [Contribuzione alla documentazione](#7-contribuzione-alla-documentazione)
+8. [Disclaimer](#8-disclaimer)
 
 ## 1. Introduzione
 
@@ -129,11 +132,25 @@ Per quanto riguarda le pull request, la struttura dovrà essere la seguente:
 <Altre informazioni rilevanti sulla PR>
 ```
 
-## 6. Contribuzione alla documentazione
+> Le pull requests indirizzate nel main branch saranno revisionate dal team leader (@Lelpoco2) o da un membro del team di backend designato per la revisione del codice, prima di essere mergiate nel branch principale.
+
+## 6. Come utilizzare il progetto e ambienti
+
+### 6.1 Ambiente di sviluppo (DEV)
+
+Per non rendere il README principale troppo lungo, le istruzioni su come utilizzare l'ambiente di sviluppo (DEV) sono state spostate in un file linkato di seguito, chiamato [README.dev.md](README.dev.md).
+
+### 6.2 Ambiente di produzione (PROD)
+
+Anche qui le istruzioni su come utilizzare l'ambiente di produzione (PROD) sono state specificate nel file linkato di seguito, chiamato [README.prod.md](README.prod.md).
+> Nota: Il `README.prod.md` è ancora in fase di revisione.
+
+
+## 7. Contribuzione alla documentazione
 
 Ogniuno dei membri del team è incoraggiato a contribuire alla documentazione del progetto, ogni contributo, grande o piccolo, è benvenuto e apprezzato.
 
-## 7. Disclaimer
+## 8. Disclaimer
 
 L'utilizzo in toto di tale documentazione sarà applicato una volta che tutti i membri del team avranno concordato su di esse, e potranno essere modificate in base alle esigenze del progetto e del team stesso. Per ora si tratta di una bozza iniziale.
 
