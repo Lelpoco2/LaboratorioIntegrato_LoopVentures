@@ -1,3 +1,15 @@
-body{
-  background-color: rgb(253, 223, 124);
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; 
+  font-family: 'Segoe UI', sans-serif; 
+}
+
+#root {
+  min-height: 100vh;
 }
