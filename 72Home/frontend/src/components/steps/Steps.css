@@ -1,0 +1,65 @@
+/* Steps.css */
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+
+.steps-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #777;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 30%; /* 3 cards affiancate su desktop */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Responsività */
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column; /* Le card si dispongono verticalmente */
+    align-items: center;
+  }
+
+  .card {
+    width: 80%; /* Le card occupano il 80% della larghezza sul mobile */
+    margin-bottom: 20px;
+  }
+}
