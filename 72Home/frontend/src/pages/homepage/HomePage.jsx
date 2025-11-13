@@ -2,6 +2,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/footer";
 import BottoneCTA from "../../components/cta-button/BottoneCTA";
 import "./HomePage.css"
+import Steps from "../../components/steps/Steps";
 
 export default function Homepage() {
     return (
@@ -28,6 +29,7 @@ export default function Homepage() {
                     </div>
                 </div>
             </div>
+            <Steps />
             <Footer />
         </>
     );
