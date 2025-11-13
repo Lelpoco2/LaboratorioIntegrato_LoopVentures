@@ -1,0 +1,26 @@
+.button {
+    margin-right: 5rem;
+    padding: 0.5rem 1rem;
+    background-color: #0c3c7c;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  
+  }
+  
+  .button:hover {
+    background-color: #009fcb;
+  }
+  
+  .right-arrow {
+    margin-left: 0.5rem;
+    position: relative;
+  
+  
+  }
