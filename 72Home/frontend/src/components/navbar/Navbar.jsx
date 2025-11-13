@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CaretDownIcon, ArrowRightIcon } from "@phosphor-icons/react";
+import BottoneCTA from "../cta-button/BottoneCTA";
+import { CaretDownIcon } from "@phosphor-icons/react";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -72,12 +73,12 @@ export default function Navbar() {
         </div>
 
         <a href="#contatti" onClick={() => setMenuOpen(false)}>Contatti</a>
-        
       </nav>
 
-      <button className="navbar-right-button">
-        Get in touch <ArrowRightIcon size={20} weight="bold" className="right-arrow" />
-      </button>
+      {/* Bottone CTA spostato fuori dal nav links */}
+      <div className="navbar-cta">
+        <BottoneCTA />
+      </div>
     </header>
   );
 }
