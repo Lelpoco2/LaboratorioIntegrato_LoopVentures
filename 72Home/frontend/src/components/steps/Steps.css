@@ -1,5 +1,5 @@
 /* Steps.css */
-section {
+.steps-section-container section {
   width: 100%;
   max-width: 100vw; /* Ensures no overflow even with scrollbars */
   padding: 10vh 15vw;
@@ -106,7 +106,7 @@ section {
 }
 
 @media (max-width: 992px) {
-  section {
+.steps-section-container section {
     /* Squiggly Line */
     background-image: url("../../assets/squigglyLineVertical.svg");
     background-position-y: 400px;
@@ -125,7 +125,7 @@ section {
 }
 
 @media (max-width: 660px) {
-  section {
+.steps-section-container section {
     /* Squiggly Line */
     background-image: url("../../assets/squigglyLineVertical.svg");
     background-position-y: 400px;

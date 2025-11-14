@@ -1,0 +1,120 @@
+/* GENERAL STRUCTURE SECTION --------------------- */
+.why-us-section-container section {
+  width: 100%;
+  max-width: 100vw; /* Ensures no overflow even with scrollbars */
+  padding: 10vh 15vw;
+  background-color: #f4f4f4;
+
+  /* Squiggly Line */
+  background-image: url("../../assets/BrownLineVertical.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position-x: 60vw;
+}
+
+.why-us-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+/* REASONS SECTION ------------------ */
+.why-us-reasons-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 25px;
+}
+
+.why-us-header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.why-us-header h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0;
+  color: #333;
+}
+
+.single-reason-container {
+  /* background-color: rgb(73, 96, 175); */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-start;
+  padding: 5px;
+  /* border-radius: 8px; */
+}
+
+.reason-icon {
+  flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.reason-text {
+  /* background-color: white; */
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  padding: 5px;
+  border-radius: 8px;
+  flex: 1; /* Ensures the text container takes the remaining space */
+  min-width: 200px; /* Optionally set a minimum width to prevent squishing */
+}
+
+.reason-text h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 0px 0px 10px;
+}
+
+.reason-text p {
+  margin: 0px;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* IMAGES SECTION ----------------------- */
+.why-us-images-container {
+  /* background-color: rgb(73, 175, 149); */
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  gap: 20px;
+  height: 80vh;
+}
+
+.image-container {
+  /* background-color: white; */
+  width: 15vw;
+  /* max-width: 15vw; */
+  /* min-width: 10vw; */
+}
+
+.flex-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.why-us-image {
+  border-radius: 80px 10px;
+  height: 60%;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: 0px 2px 3px rgb(94, 94, 94);
+}
+
+.border-radius-inverted {
+  border-radius: 10px 80px;
+}
