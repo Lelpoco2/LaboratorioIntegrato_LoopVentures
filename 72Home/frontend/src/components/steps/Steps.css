@@ -63,6 +63,7 @@ section {
   margin-left: -15px;
   align-items: center;
   color: #612916;
+  text-shadow: 0.5px 0.5px 2px #55241465;
 }
 
 .timer-icon {

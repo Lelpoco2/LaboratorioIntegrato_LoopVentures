@@ -33,46 +33,27 @@ export default function Navbar() {
       {/* nav links */}
       <nav className={`navbar-links ${menuOpen ? "active" : ""}`}>
         <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="#chi-siamo" onClick={() => setMenuOpen(false)}>Chi siamo</a>
+        <a href="#come-funziona" onClick={() => setMenuOpen(false)}>Come funziona</a>
 
         <div
           className="navbar-item"
-          onMouseEnter={() => window.innerWidth > 768 && toggleSubmenu("servizi")}
+          onMouseEnter={() => window.innerWidth > 768 && toggleSubmenu("chi-siamo")}
           onMouseLeave={() => window.innerWidth > 768 && toggleSubmenu(null)}
-          onClick={() => window.innerWidth <= 768 && toggleSubmenu("servizi")}
+          onClick={() => window.innerWidth <= 768 && toggleSubmenu("chi-siamo")}
         >
           <button className="navbar-button">
-            Servizi{" "}
+            Chi siamo{" "}
             <CaretDownIcon size={16} weight="bold" className="navbar-icon" />
           </button>
-          {activeMenu === "servizi" && (
+          {activeMenu === "chi-siamo" && (
             <div className="submenu">
-              <a href="#web" onClick={() => setMenuOpen(false)}>Blog</a>
-              <a href="#grafica" onClick={() => setMenuOpen(false)}>Grafica</a>
-              <a href="#seo" onClick={() => setMenuOpen(false)}>SEO</a>
+              <a href="#perche-sceglierci" onClick={() => setMenuOpen(false)}>Perché sceglierci</a>
+              <a href="#contatti" onClick={() => setMenuOpen(false)}>Contatti</a>
             </div>
           )}
         </div>
 
-        <div
-          className="navbar-item"
-          onMouseEnter={() => window.innerWidth > 768 && toggleSubmenu("progetti")}
-          onMouseLeave={() => window.innerWidth > 768 && toggleSubmenu(null)}
-          onClick={() => window.innerWidth <= 768 && toggleSubmenu("progetti")}
-        >
-          <button className="navbar-button">
-            Progetti{" "}
-            <CaretDownIcon size={16} weight="bold" className="navbar-icon" />
-          </button>
-          {activeMenu === "progetti" && (
-            <div className="submenu">
-              <a href="#aziendali" onClick={() => setMenuOpen(false)}>Aziendali</a>
-              <a href="#personali" onClick={() => setMenuOpen(false)}>Personali</a>
-            </div>
-          )}
-        </div>
-
-        <a href="#contatti" onClick={() => setMenuOpen(false)}>Contatti</a>
+        <a href="#agenti" onClick={() => setMenuOpen(false)}>Agenti</a>
       </nav>
 
       {/* Bottone CTA spostato fuori dal nav links */}

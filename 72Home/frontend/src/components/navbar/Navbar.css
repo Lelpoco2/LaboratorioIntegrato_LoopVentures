@@ -49,7 +49,7 @@
 .navbar-links a,
 .navbar-button {
   position: relative;
-  color: #0c3c7c;
+  color: #612916;
   text-decoration: none;
   font-weight: bold;
   background: none;
@@ -66,7 +66,7 @@
 /* Hover link */
 .navbar-links a:hover,
 .navbar-button:hover {
-  color: #009fcb;
+  color: #9d8062;
 }
 
 /* Linea sotto link */
@@ -78,8 +78,8 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: #009fcb;
-  transition: width 0.3s ease;
+  background-color: #9d8062;
+  transition: width 0..3s ease;
 }
 
 .navbar-links a:hover::after,
@@ -103,7 +103,7 @@
 }
 
 .navbar-icon:hover {
-  color: #009fcb;
+  color: #9d8062;
   top: 1.5px;
 }
 
@@ -113,7 +113,7 @@
   top: 2.5rem;
   left: 0;
   background: white;
-  color: #0c3c7c;
+  color: #9d8062;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -125,7 +125,7 @@
 
 .submenu a {
   padding: 0.6rem 1rem;
-  color: #0c3c7c;
+  color: #9d8062;
   border-radius: 10px;
   text-decoration: none;
   transition: background 0.2s ease;
@@ -200,7 +200,7 @@
 
   .navbar-links a,
   .navbar-button {
-    color: #0c3c7c;
+    color: #9d8062;
     justify-content: center;
     padding: 0.8rem;
     align-items: center;
@@ -219,7 +219,7 @@
     margin: 0.5rem auto;
     box-shadow: none;
     background: white;
-    color: #0c3c7c;
+    color: #9d8062;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -227,7 +227,7 @@
   }
 
   .submenu a {
-    color: #0c3c7c;
+    color: #9d8062;
     padding: 0.8rem 0;
     width: 100%;
     text-align: center;
