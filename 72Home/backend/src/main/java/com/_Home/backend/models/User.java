@@ -19,7 +19,12 @@ public class User {
     private Integer id;
     private String username;
     private String password;
+    private String phone;
     private String email;
+    // Set up relationship with Property
+    
+    @Column(name = "property_id")
+    private Integer property_id;
 
     @Column(name = "created_at")
     private java.sql.Timestamp createdAt;
