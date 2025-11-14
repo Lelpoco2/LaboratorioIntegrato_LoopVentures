@@ -24,7 +24,7 @@ public class User {
     // Set up relationship with Property
     
     @Column(name = "property_id")
-    private Integer property_id;
+    private Integer propertyId;
 
     @Column(name = "created_at")
     private java.sql.Timestamp createdAt;
