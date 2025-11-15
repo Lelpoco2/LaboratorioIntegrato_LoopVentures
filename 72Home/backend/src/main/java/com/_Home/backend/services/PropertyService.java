@@ -12,4 +12,6 @@ public interface PropertyService {
     Property updateProperty(Property property);
     void deleteProperty(Integer id);
 
+    
+
 }

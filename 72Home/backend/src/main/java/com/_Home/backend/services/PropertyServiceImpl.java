@@ -3,12 +3,13 @@ package com._Home.backend.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com._Home.backend.models.Property;
 import com._Home.backend.repos.PropertyRepo;
 
 
-
+@Service
 public class PropertyServiceImpl implements PropertyService {
 
     @Autowired

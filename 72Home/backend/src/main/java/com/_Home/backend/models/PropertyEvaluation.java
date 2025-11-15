@@ -12,7 +12,7 @@ import lombok.Data;
 @Entity
 @Table(name = "property_valuations")
 @Data
-public class PropertyValuation {
+public class PropertyEvaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
