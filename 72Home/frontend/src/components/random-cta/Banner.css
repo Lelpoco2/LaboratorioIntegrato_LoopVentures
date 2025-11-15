@@ -1,0 +1,75 @@
+.banner-container {
+    width: 100%;
+    height: 500px; 
+    
+    /* Percorso per l'immagine dell'edificio giallo */
+    background-image: url('../../assets/banner.png'); 
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    position: relative; 
+}
+
+.banner-container section {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 0;
+    
+    background-color: transparent; 
+    background-image: none; 
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.5); 
+    background-image: none;
+}
+.banner-content-wrapper {
+    text-align: center;
+    color: white; 
+    z-index: 10;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px; 
+}
+
+.title-banner{
+    font-size: 2.5em; 
+    line-height: 1.2;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.banner-btn{
+    display: flex;
+    gap: 15px; 
+    justify-content: center;
+}
+
+
+@media (max-width: 768px) {
+    .banner-container {
+        height: 400px;
+    }
+    .title-banner {
+        font-size: 1.8em;
+    }
+    .banner-btn {
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn-white, .btn-transparent {
+        width: 80%;
+    }
+}
