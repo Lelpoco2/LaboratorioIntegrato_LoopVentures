@@ -18,11 +18,11 @@ public class PropertyValuation {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "propertyId", referencedColumnName = "id")
+    @JoinColumn(name = "property_id", referencedColumnName = "id")
     private Property property;
 
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     private Double propertyValue;

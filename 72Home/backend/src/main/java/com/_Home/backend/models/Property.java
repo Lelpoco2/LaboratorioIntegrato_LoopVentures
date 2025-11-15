@@ -19,9 +19,10 @@ public class Property {
     private Double surfaceArea;
     private Integer rooms;
     private Integer floor; 
-    private EnergeticClass energeticClass; //
-    private Condition condition; //
+    private EnergeticClass energeticClass; 
+    private Condition condition; 
     private Boolean hasBox; 
+    private Double boxSurfaceArea; // Not mandatory
     private Boolean hasElevator; 
     private Boolean hasBalcony;
     private Boolean hasGarden;

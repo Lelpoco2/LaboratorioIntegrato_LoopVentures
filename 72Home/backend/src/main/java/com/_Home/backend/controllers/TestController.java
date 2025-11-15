@@ -13,7 +13,6 @@ import com._Home.backend.services.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
 @RequestMapping("/api")
 public class TestController {
@@ -27,12 +26,12 @@ public class TestController {
     }
 
     @GetMapping("/user")
-    public List<Map<String, String>> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @PostMapping("/userpost")
-    public Map<String, String> insertUser(@RequestBody com._Home.backend.models.User user) {
+    public User insertUser(@RequestBody User user) {
         return userService.insertUser(user);
     }
     
