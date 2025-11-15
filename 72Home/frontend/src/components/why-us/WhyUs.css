@@ -6,7 +6,7 @@
   background-color: #f4f4f4;
 
   /* Squiggly Line */
-  background-image: url("../../assets/BrownLineVertical.svg");
+  background-image: url("../../assets/brownLineVertical.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-position-x: 60vw;
@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 25px;
+  gap: 45px;
 }
 
 /* REASONS SECTION ------------------ */
@@ -41,14 +41,15 @@
 }
 
 .single-reason-container {
-  /* background-color: rgb(73, 96, 175); */
+  background-color: #f4f4f4e8;
+  backdrop-filter: blur(1px);
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 20px;
   justify-content: flex-start;
   padding: 5px;
-  /* border-radius: 8px; */
+  border-radius: 15px;
 }
 
 .reason-icon {
@@ -85,7 +86,7 @@
   flex-direction: row;
   /* justify-content: space-between; */
   gap: 20px;
-  height: 80vh;
+  /* height: 80vh; */
 }
 
 .image-container {
@@ -117,4 +118,95 @@
 
 .border-radius-inverted {
   border-radius: 10px 80px;
+}
+
+/* Responsiveness ---------------------- */
+@media (min-width: 2000px) {
+  .why-us-section-container h2 {
+    font-size: 2.4rem;
+  }
+
+  .why-us-section-container h3 {
+    font-size: 1.7rem;
+  }
+
+  .why-us-section-container p {
+    font-size: 1.3rem;
+  }
+
+  .why-us-reasons-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 992px) {
+  .why-us-section-container section {
+    /* Squiggly Line */
+    background-image: url("../../assets/lineDiagonalBrown.svg");
+    background-position-y: 200px;
+    background-position-x: -20px;
+  }
+
+  .why-us-container {
+    flex-direction: column;
+    align-content: center;
+    gap: 45px;
+  }
+
+  .why-us-images-container {
+    /* background-color: rgb(73, 175, 149); */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .image-container {
+    /* background-color: white; */
+    width: auto;
+  }
+
+  .flex-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .flex-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .why-us-image {
+    width: 80%;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0px 2px 3px rgb(94, 94, 94);
+  }
+}
+
+@media (max-width: 660px) {
+  .why-us-section-container section {
+    background-image: url("../../assets/lineDiagonalBrown.svg");
+    background-position-y: 70vh;
+    background-position-x: -30vw;
+    background-size: 150%;
+  }
+
+  .single-reason-container {
+    backdrop-filter: blur(1px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .reason-icon {
+    width: 50px;
+    aspect-ratio: 1 / 1;
+  }
 }
