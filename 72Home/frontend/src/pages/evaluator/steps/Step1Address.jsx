@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { CaretDownIcon } from "@phosphor-icons/react";
-import "../styles/Step1.css";
+import "../styles/Step1Address.css";
 import "../styles/evaluator.css";
 
 export default function Step1Address({ formData, updateField, setStepErrors }) {

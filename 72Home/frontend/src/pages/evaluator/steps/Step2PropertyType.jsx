@@ -1,21 +1,67 @@
 import "../styles/evaluator.css";
+import "../styles/Step2PropertyType.css";
 
-export default function Step2PropertyType({ formData, updateField }) {
-  return (
+import { useEffect, useState } from "react";
+import Step3Features from "./Step3Features";
+import { HouseIcon, BuildingIcon } from "@phosphor-icons/react";
+
+export default function Step2PropertyType({ formData, updateField, setStepErrors }) {
+  const [selected, setSelected] = useState(formData.propertyType || "");
+
+  // ---- VALIDATION ----
+  useEffect(() => {
+    const errors = {};
+
+    if (!selected) {
+      errors.propertyType = "Seleziona una tipologia di immobile";
+    }
+
+    setStepErrors(errors);
+  }, [selected, setStepErrors]);
+
+  const handleSelect = (type) => {
+    setSelected(type);
+    updateField("propertyType", type);
+  };
+ return (
     <div className="step-card">
-      <h2>L'immobile da valutare è:</h2>
+      <h2>Tipologia di Immobile</h2>
 
-      <button onClick={() => updateField("propertyType", "Apartment")}>
-        Appartamento
-      </button>
+      <div className="property-type-cards">
 
-      <button onClick={() => updateField("propertyType", "Villa")}>
-        Casa
-      </button>
+        <div
+          className={`property-card ${selected === "casa" ? "selected" : ""}`}
+          onClick={() => handleSelect("casa")}
+        >
+          <HouseIcon size={42} />
+          <p>Casa</p>
+        </div>
 
-      <button onClick={() => updateField("propertyType", "Penthouse")}>
-        Villa
-      </button>
+        <div
+          className={`property-card ${selected === "appartamento" ? "selected" : ""}`}
+          onClick={() => handleSelect("appartamento")}
+        >
+          <BuildingIcon size={42} />
+          <p>Appartamento</p>
+        </div>
+
+      </div>
+
+      {/* error message */}
+      {!selected && (
+        <p className="error-text" style={{ marginTop: "10px" }}>
+          Seleziona un'opzione per continuare
+        </p>
+      )}
+
+      {selected && (
+        <Step3Features
+          propertyType={selected}
+          formData={formData}
+          updateField={updateField}
+          setStepErrors={setStepErrors}
+        />
+      )}
     </div>
   );
 }

@@ -1,0 +1,33 @@
+.property-type-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.property-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  padding: 20px 25px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  width: 180px;
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+  background: white;
+}
+
+.property-card:hover {
+  border-color: #b9a37c;
+  transform: translateY(-3px);
+}
+
+.property-card.selected {
+  border-color: #b38a57;
+  background-color: #f1e7d8;
+  color: #5a4328;
+}
