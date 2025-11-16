@@ -1,5 +1,7 @@
 // Evaluator.jsx handles the flow.
 // Manages currentStep, form validation, and the collected data.
+import "./styles/evaluator.css";
+import FormNavigationButtons from "./components/FormNavigationButtons";
 
 import { useState } from "react";
 import {
@@ -11,6 +13,7 @@ import {
 } from "./steps";
 
 export default function Evaluator() {
+  const [stepErrors, setStepErrors] = useState({});
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState({
     address: "",
@@ -35,22 +38,25 @@ export default function Evaluator() {
   const StepComponent = steps[currentStep];
 
   return (
-    <div className="evaluator-container">
-      <StepComponent formData={formData} updateField={updateField} />
+    <div className="evaluator-section-container">
+      <section>
+        <div className="evaluator-container">
+          <StepComponent
+            formData={formData}
+            updateField={updateField}
+            setStepErrors={setStepErrors}
+          />
 
-      <div className="navigation-buttons">
-        {currentStep > 0 && (
-          <button onClick={() => setCurrentStep((s) => s - 1)}>Back</button>
-        )}
-
-        {currentStep < steps.length - 1 ? (
-          <button onClick={() => setCurrentStep((s) => s + 1)}>Next</button>
-        ) : (
-          <button onClick={() => console.log("Submit", formData)}>
-            Submit
-          </button>
-        )}
-      </div>
+          <FormNavigationButtons
+            currentStep={currentStep}
+            stepsLength={steps.length}
+            onBack={() => setCurrentStep((s) => s - 1)}
+            onNext={() => setCurrentStep((s) => s + 1)}
+            onSubmit={() => console.log("Submit", formData)}
+            hasErrors={Object.keys(stepErrors).length > 0}
+          />
+        </div>
+      </section>
     </div>
   );
 }

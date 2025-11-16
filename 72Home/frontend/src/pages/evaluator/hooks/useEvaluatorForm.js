@@ -1,19 +1,19 @@
-// useEvaluatorForm() stores all the logic. 
+// useEvaluatorForm() stores all the logic.
 // Keeps components clean and makes the form scalable.
 
 import { useState } from "react";
 
 export default function useEvaluatorForm() {
   const [formData, setFormData] = useState({
-    propertyType: "",
     address: "",
+    propertyType: "",
     features: {},
-    photos: [],
-    contact: {}
+    addOns: [],
+    contact: {},
   });
 
   const updateField = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   return { formData, updateField };

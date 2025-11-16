@@ -1,0 +1,53 @@
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 10px;
+  align-self: center;
+  /* margin: 0 auto; */
+}
+
+.btn {
+  padding: 15px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.btn.back {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.btn.back:hover {
+  background-color: #e0e0e0;
+}
+
+.btn.next {
+  background-color: #612916;
+  color: white;
+}
+
+.btn.next:hover:enabled {
+  background-color: #9d8062;
+}
+
+/* Disabled state styling */
+.navigation-buttons button:disabled {
+  background-color: #612916; /* light gray */
+  color: white; /* darker gray for text */
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn.submit {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn.submit:hover {
+  background-color: #218838;
+}
