@@ -6,6 +6,7 @@ import com._Home.backend.enums.EnergeticClass;
 import com._Home.backend.enums.HeatingType;
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +28,8 @@ public class Property {
     private Double surfaceArea;
     private Integer rooms;
     private Integer floor; 
-    private EnergeticClass energeticClass; 
+    private EnergeticClass energeticClass;
+    @Column(name = "property_condition")
     private Condition condition; 
     private Boolean hasBox; 
     private Double boxSurfaceArea; // Not mandatory

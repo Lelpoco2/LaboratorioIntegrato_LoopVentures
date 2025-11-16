@@ -41,15 +41,15 @@ public class TestController {
         return userService.insertUser(user);
     }
 
-    @GetMapping("/geocode")
-    public ResponseEntity<Double[]> geocodeProperty() {
-        Double[] coords = propeval.getLocationByAddress("Via Sant'Ottavio 30, Torino, TO");
-        if (coords != null) {
-            return ResponseEntity.ok(coords);
-        } else {
-            return ResponseEntity.ok(new Double[] {0.0, 0.0});
-        }
-    }
+    // @GetMapping("/geocode")
+    // public ResponseEntity<Double[]> geocodeProperty() {
+    //     Double[] coords = propeval.getLocationByAddress("Via Sant'Ottavio 30, Torino, TO");
+    //     if (coords != null) {
+    //         return ResponseEntity.ok(coords);
+    //     } else {
+    //         return ResponseEntity.ok(new Double[] {0.0, 0.0});
+    //     }
+    // }
     
 }
 

@@ -22,6 +22,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
     @Override
     public Double evaluateProperty(Property property) {
+        Double[] coords = getLocationByAddress(property.getAddress());
         
 
         
@@ -51,7 +52,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
     // Private methods for evaluation calculations
 
-    public Double[] getLocationByAddress(String address) {
+    private Double[] getLocationByAddress(String address) {
 
         Double DELTA_LAT = 0.0011245;
         Double DELTA_LON = 0.0012913;
