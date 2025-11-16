@@ -3,13 +3,18 @@
 import "./styles/evaluator.css";
 import FormNavigationButtons from "./components/FormNavigationButtons";
 
+import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/footer";
+
 import { useState } from "react";
+
 import {
   Step1Address,
   Step2PropertyType,
   Step3Features,
   Step4AddOns,
   Step5Contact,
+  Feedback,
 } from "./steps";
 
 export default function Evaluator() {
@@ -33,30 +38,52 @@ export default function Evaluator() {
     Step3Features,
     Step4AddOns,
     Step5Contact,
+    Feedback,
   ];
 
   const StepComponent = steps[currentStep];
 
   return (
-    <div className="evaluator-section-container">
-      <section>
-        <div className="evaluator-container">
-          <StepComponent
-            formData={formData}
-            updateField={updateField}
-            setStepErrors={setStepErrors}
-          />
+    <>
+      <Navbar />
+      <div className="evaluator-section-container">
+        <section>
+          <div className="evaluator-container">
+            <StepComponent
+              formData={formData}
+              updateField={updateField}
+              setStepErrors={setStepErrors}
+            />
 
-          <FormNavigationButtons
-            currentStep={currentStep}
-            stepsLength={steps.length}
-            onBack={() => setCurrentStep((s) => s - 1)}
-            onNext={() => setCurrentStep((s) => s + 1)}
-            onSubmit={() => console.log("Submit", formData)}
-            hasErrors={Object.keys(stepErrors).length > 0}
-          />
-        </div>
-      </section>
-    </div>
+            <FormNavigationButtons
+              currentStep={currentStep}
+              stepsLength={steps.length}
+              onNext={() => {
+                // If user is on Step2 (index 1), skips Step3
+                if (currentStep === 1) {
+                  setCurrentStep(3); // goes to Step4 (index 3)
+                } else {
+                  setCurrentStep((s) => s + 1);
+                }
+              }}
+              onBack={() => {
+                // If user is on Step4 (index 3), skips Step3
+                if (currentStep === 3) {
+                  setCurrentStep(1); // goes to Step2 (index 1)
+                } else {
+                  setCurrentStep((s) => s - 1);
+                }
+              }}
+              onSubmit={() => {
+                console.log("Submit", formData); // send data to backend
+                setCurrentStep((s) => s + 1); // move to Feedback page
+              }}
+              hasErrors={Object.keys(stepErrors).length > 0}
+            />
+          </div>
+        </section>
+      </div>
+      <Footer />
+    </>
   );
 }

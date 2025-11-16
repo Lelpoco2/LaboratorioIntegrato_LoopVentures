@@ -5,8 +5,13 @@ import { useEffect, useState } from "react";
 import Step3Features from "./Step3Features";
 import { HouseIcon, BuildingIcon } from "@phosphor-icons/react";
 
-export default function Step2PropertyType({ formData, updateField, setStepErrors }) {
+export default function Step2PropertyType({
+  formData,
+  updateField,
+  setStepErrors,
+}) {
   const [selected, setSelected] = useState(formData.propertyType || "");
+  const [touched, setTouched] = useState(false);
 
   // ---- VALIDATION ----
   useEffect(() => {
@@ -22,13 +27,13 @@ export default function Step2PropertyType({ formData, updateField, setStepErrors
   const handleSelect = (type) => {
     setSelected(type);
     updateField("propertyType", type);
+    setTouched(true);
   };
- return (
+  return (
     <div className="step-card">
       <h2>Tipologia di Immobile</h2>
 
       <div className="property-type-cards">
-
         <div
           className={`property-card ${selected === "casa" ? "selected" : ""}`}
           onClick={() => handleSelect("casa")}
@@ -38,20 +43,19 @@ export default function Step2PropertyType({ formData, updateField, setStepErrors
         </div>
 
         <div
-          className={`property-card ${selected === "appartamento" ? "selected" : ""}`}
+          className={`property-card ${
+            selected === "appartamento" ? "selected" : ""
+          }`}
           onClick={() => handleSelect("appartamento")}
         >
           <BuildingIcon size={42} />
           <p>Appartamento</p>
         </div>
-
       </div>
 
       {/* error message */}
-      {!selected && (
-        <p className="error-text" style={{ marginTop: "10px" }}>
-          Seleziona un'opzione per continuare
-        </p>
+      {touched && !selected && (
+        <p className="error-message">Seleziona un'opzione per continuare</p>
       )}
 
       {selected && (

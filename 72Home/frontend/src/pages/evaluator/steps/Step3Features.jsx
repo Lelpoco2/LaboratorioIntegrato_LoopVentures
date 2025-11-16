@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Step3Features.css";
 
 export default function Step3Features({
@@ -7,6 +7,11 @@ export default function Step3Features({
   updateField,
   setStepErrors
 }) {
+  const [touched, setTouched] = useState({});
+
+  const markTouched = (field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
 
   // ---- VALIDATION ----
   useEffect(() => {
@@ -34,49 +39,52 @@ export default function Step3Features({
     setStepErrors(errors);
   }, [formData, propertyType, setStepErrors]);
 
-  // helper
   const isEmpty = (field) => !formData[field];
 
+  const showError = (field) => touched[field] && isEmpty(field);
+
   return (
-    <div className="step-card" style={{ marginTop: "40px" }}>
+    <div className="step-card evaluator-card" style={{ marginTop: "40px" }}>
       <h3>Caratteristiche dell’immobile</h3>
 
       <div className="form-column">
-
         {/* CASA */}
         {propertyType === "casa" && (
-          <div className={`form-group ${isEmpty("houseFloors") ? "error" : ""}`}>
+          <div className={`form-group ${showError("houseFloors") ? "error" : ""}`}>
             <label>Numero di piani della casa</label>
             <input
               type="number"
               value={formData.houseFloors || ""}
               onChange={(e) => updateField("houseFloors", e.target.value)}
+              onBlur={() => markTouched("houseFloors")}
             />
-            {isEmpty("houseFloors") && <span className="error-message">Campo obbligatorio</span>}
+            {showError("houseFloors") && <span className="error-message">Campo obbligatorio</span>}
           </div>
         )}
 
         {/* APPARTAMENTO */}
         {propertyType === "appartamento" && (
           <>
-            <div className={`form-group ${isEmpty("buildingFloors") ? "error" : ""}`}>
+            <div className={`form-group ${showError("buildingFloors") ? "error" : ""}`}>
               <label>Piani dell'edificio</label>
               <input
                 type="number"
                 value={formData.buildingFloors || ""}
                 onChange={(e) => updateField("buildingFloors", e.target.value)}
+                onBlur={() => markTouched("buildingFloors")}
               />
-              {isEmpty("buildingFloors") && <span className="error-message">Campo obbligatorio</span>}
+              {showError("buildingFloors") && <span className="error-message">Campo obbligatorio</span>}
             </div>
 
-            <div className={`form-group ${isEmpty("apartmentFloor") ? "error" : ""}`}>
+            <div className={`form-group ${showError("apartmentFloor") ? "error" : ""}`}>
               <label>Piano dell'appartamento</label>
               <input
                 type="number"
                 value={formData.apartmentFloor || ""}
                 onChange={(e) => updateField("apartmentFloor", e.target.value)}
+                onBlur={() => markTouched("apartmentFloor")}
               />
-              {isEmpty("apartmentFloor") && <span className="error-message">Campo obbligatorio</span>}
+              {showError("apartmentFloor") && <span className="error-message">Campo obbligatorio</span>}
             </div>
           </>
         )}
@@ -88,25 +96,25 @@ export default function Step3Features({
           ["rooms", "Numero di locali"],
           ["year", "Anno di costruzione"],
         ].map(([field, label]) => (
-          <div key={field} className={`form-group ${isEmpty(field) ? "error" : ""}`}>
+          <div key={field} className={`form-group ${showError(field) ? "error" : ""}`}>
             <label>{label}</label>
             <input
               type="number"
               value={formData[field] || ""}
               onChange={(e) => updateField(field, e.target.value)}
+              onBlur={() => markTouched(field)}
             />
-            {isEmpty(field) && <span className="error-message">Campo obbligatorio</span>}
+            {showError(field) && <span className="error-message">Campo obbligatorio</span>}
           </div>
         ))}
 
-        {/* SELECTS */}
-
-        {/* Condition */}
-        <div className={`form-group ${isEmpty("condition") ? "error" : ""}`}>
+        {/* SELECT */}
+        <div className={`form-group ${showError("condition") ? "error" : ""}`}>
           <label>Condizioni</label>
           <select
             value={formData.condition || ""}
             onChange={(e) => updateField("condition", e.target.value)}
+            onBlur={() => markTouched("condition")}
           >
             <option value="" disabled>Seleziona…</option>
             <option value="unknown">Non lo so</option>
@@ -115,15 +123,15 @@ export default function Step3Features({
             <option value="good">Abitabile / Buono</option>
             <option value="toberenovated">Da ristrutturare</option>
           </select>
-          {isEmpty("condition") && <span className="error-message">Campo obbligatorio</span>}
+          {showError("condition") && <span className="error-message">Campo obbligatorio</span>}
         </div>
 
-        {/* Energy class */}
-        <div className={`form-group ${isEmpty("energyClass") ? "error" : ""}`}>
+        <div className={`form-group ${showError("energyClass") ? "error" : ""}`}>
           <label>Classe energetica</label>
           <select
             value={formData.energyClass || ""}
             onChange={(e) => updateField("energyClass", e.target.value)}
+            onBlur={() => markTouched("energyClass")}
           >
             <option value="" disabled>Seleziona…</option>
             {["A+", "A", "B", "C", "D", "E", "F", "G"].map((cls) => (
@@ -131,15 +139,15 @@ export default function Step3Features({
             ))}
             <option value="unknown">Non lo so</option>
           </select>
-          {isEmpty("energyClass") && <span className="error-message">Campo obbligatorio</span>}
+          {showError("energyClass") && <span className="error-message">Campo obbligatorio</span>}
         </div>
 
-        {/* Heating */}
-        <div className={`form-group ${isEmpty("heating") ? "error" : ""}`}>
+        <div className={`form-group ${showError("heating") ? "error" : ""}`}>
           <label>Riscaldamento</label>
           <select
             value={formData.heating || ""}
             onChange={(e) => updateField("heating", e.target.value)}
+            onBlur={() => markTouched("heating")}
           >
             <option value="" disabled>Seleziona…</option>
             <option value="unknown">Non lo so</option>
@@ -147,8 +155,9 @@ export default function Step3Features({
             <option value="centralizzato">Centralizzato</option>
             <option value="none">Inesistente</option>
           </select>
-          {isEmpty("heating") && <span className="error-message">Campo obbligatorio</span>}
+          {showError("heating") && <span className="error-message">Campo obbligatorio</span>}
         </div>
+
       </div>
     </div>
   );
