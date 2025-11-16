@@ -11,7 +11,7 @@ import {
 const WhyUs = () => {
   return (
     <div className="why-us-section-container">
-      <section>
+      <section id="why-choose-us">
         <div className="why-us-container">
           <div className="why-us-reasons-container">
             <div className="why-us-header">

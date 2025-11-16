@@ -4,7 +4,7 @@ import { PencilIcon, MailboxIcon, ChatsCircleIcon, ClockIcon } from "@phosphor-i
 const Steps = () => {
     return (
         <div className="steps-section-container">
-            <section>
+            <section id="steps">
                 <div className="steps-container">
                     <div className="steps-header">
                         <h1 className="title">Tre semplici passi</h1>

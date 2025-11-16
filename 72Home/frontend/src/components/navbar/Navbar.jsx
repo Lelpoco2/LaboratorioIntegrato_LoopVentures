@@ -33,27 +33,27 @@ export default function Navbar() {
       {/* nav links */}
       <nav className={`navbar-links ${menuOpen ? "active" : ""}`}>
         <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="#come-funziona" onClick={() => setMenuOpen(false)}>Come funziona</a>
+        <a href="#steps" onClick={() => setMenuOpen(false)}>Come funziona</a>
 
         <div
           className="navbar-item"
-          onMouseEnter={() => window.innerWidth > 768 && toggleSubmenu("chi-siamo")}
+          onMouseEnter={() => window.innerWidth > 768 && toggleSubmenu("about-us")}
           onMouseLeave={() => window.innerWidth > 768 && toggleSubmenu(null)}
-          onClick={() => window.innerWidth <= 768 && toggleSubmenu("chi-siamo")}
+          onClick={() => window.innerWidth <= 768 && toggleSubmenu("about-us")}
         >
           <button className="navbar-button">
             Chi siamo{" "}
             <CaretDownIcon size={16} weight="bold" className="navbar-icon" />
           </button>
-          {activeMenu === "chi-siamo" && (
+          {activeMenu === "about-us" && (
             <div className="submenu">
-              <a href="#perche-sceglierci" onClick={() => setMenuOpen(false)}>Perché sceglierci</a>
-              <a href="#contatti" onClick={() => setMenuOpen(false)}>Contatti</a>
+              <a href="#why-choose-us" onClick={() => setMenuOpen(false)}>Perché sceglierci</a>
+              <a href="#contacts" onClick={() => setMenuOpen(false)}>Contatti</a>
             </div>
           )}
         </div>
 
-        <a href="#agenti" onClick={() => setMenuOpen(false)}>Agenti</a>
+        <a href="#agents" onClick={() => setMenuOpen(false)}>Agenti</a>
       </nav>
 
       {/* Bottone CTA spostato fuori dal nav links */}
