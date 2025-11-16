@@ -1,5 +1,5 @@
 import './Stats.css';
-import { HouseLine, Confetti, Detective, CalendarCheck } from "@phosphor-icons/react";
+import { HouseLineIcon, ConfettiIcon, DetectiveIcon, CalendarCheckIcon } from "@phosphor-icons/react";
 
 const StatsCard = ({ icon, value, symbol, description }) => {
     return (
@@ -24,28 +24,28 @@ return (
                 
                 <StatsCard 
                     // Sostituisci l'emoji con la vera icona
-                    icon={<HouseLine />} 
+                    icon={<HouseLineIcon />} 
                     value="250"
                     symbol="+"
                     description="Immobili venduti"
                 />
                 
                 <StatsCard 
-                    icon={<Confetti />} 
+                    icon={<ConfettiIcon />} 
                     value="98"
                     symbol="%"
                     description="Clienti soddisfatti"
                 />
                 
                 <StatsCard 
-                    icon={<Detective />} 
+                    icon={<DetectiveIcon />} 
                     value="53"
                     symbol=""
                     description="Agenti sul territorio"
                 />
                 
                 <StatsCard 
-                    icon={<CalendarCheck />} 
+                    icon={<CalendarCheckIcon />} 
                     value="36"
                     symbol="gg"
                     description="Tempi medi di vendita"
