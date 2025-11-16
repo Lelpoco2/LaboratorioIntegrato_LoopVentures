@@ -9,26 +9,30 @@ import java.net.URLEncoder;
 import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com._Home.backend.models.OmiZone;
 import com._Home.backend.models.Property;
 import com._Home.backend.models.PropertyEvaluation;
+import com._Home.backend.repos.OmiZoneRepo;
 
 @Service
 public class PropertyEvaluationServiceImpl implements PropertyEvaluationService {
 
+    @Autowired
+    private OmiZoneRepo omiZoneRepository;
+
+
     @Override
     public Double evaluateProperty(Property property) {
+        
         Double[] coords = getLocationByAddress(property.getAddress());
+
+        Double basePrice = calculateBaseSquareMeterSurfacePrice(coords, property.getSurfaceArea());
+
+        return basePrice;
         
-
-        
-
-
-        throw new UnsupportedOperationException("Unimplemented method 'evaluateProperty'");
     }
 
     @Override
@@ -49,8 +53,12 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         throw new UnsupportedOperationException("Unimplemented method 'getPropertyEvaluationById'");
     }
 
+    public OmiZone getOmiZoneByWktPoint(String wktPoint) {
+        return omiZoneRepository.findZoneContainingPoint(wktPoint);
+    }
 
-    // Private methods for evaluation calculations
+
+    //! Private methods for evaluation calculations
 
     private Double[] getLocationByAddress(String address) {
 
@@ -95,9 +103,16 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         return null;
     }
 
-    private Double calculateBaseSquareMeterSurfacePrice(String address, Double surfaceArea) {
+    private Double calculateBaseSquareMeterSurfacePrice(Double[] coords, Double surfaceArea) {
         
-         
+         String wktPoint = String.format("POINT(%f %f)", coords[1], coords[0]);
+         OmiZone omiZone = omiZoneRepository.findZoneContainingPoint(wktPoint);
+         if (omiZone != null) {
+            Double avarageSquareMeterPrice = (omiZone.getMaxSelling()+omiZone.getMinSelling()) / 2;
+            Double basePrice = avarageSquareMeterPrice * surfaceArea;
+            
+            return basePrice;
+         } 
 
         return null;
     }
