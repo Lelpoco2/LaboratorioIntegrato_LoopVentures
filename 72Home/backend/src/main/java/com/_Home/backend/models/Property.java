@@ -5,7 +5,6 @@ import com._Home.backend.enums.Condition;
 import com._Home.backend.enums.EnergeticClass;
 import com._Home.backend.enums.HeatingType;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
