@@ -64,6 +64,12 @@ public class TestController {
         String wktPoint = String.format("POINT(%f %f)", lon, lat);
         return propeval.getOmiZoneByWktPoint(wktPoint);
     }
+
+    @PostMapping("/evaluate")
+    public Double evaluateFullProperty(@RequestBody Property property) {
+        return propeval.evaluateProperty(property);
+    }
+    
     
     //* Change to public the private method getLocationByAddress in PropertyEvaluationServiceImpl to use this test endpoint 
 

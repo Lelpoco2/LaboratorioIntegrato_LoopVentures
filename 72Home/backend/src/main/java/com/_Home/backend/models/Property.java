@@ -24,22 +24,21 @@ public class Property {
     private String address;
     private String city;
     private String zipCode;
-    private Double surfaceArea;
-    private Integer rooms;
-    private Integer floor; 
+    private Double surfaceArea; //
+    private Integer rooms; //
+    private Integer floor; //
     private EnergeticClass energeticClass;
     @Column(name = "property_condition")
-    private Condition condition; 
-    private Boolean hasBox; 
+    private Condition condition; // 
+    private Boolean hasBox; //
     private Double boxSurfaceArea; // Not mandatory
-    private Boolean hasElevator; 
-    private Boolean hasBalcony;
-    private Boolean hasGarden;
-    private Boolean hasTerrace;
-
-    private Integer bathrooms;
-    private HeatingType heatingType;
-    private BuildingType buildingType;
+    private Boolean hasElevator; //
+    private Boolean hasBalcony; //
+    private Boolean hasGarden; //
+    private Boolean hasTerrace; //
+    private Integer bathrooms; //
+    private HeatingType heatingType; //
+    private BuildingType buildingType; //
 
 
 }
