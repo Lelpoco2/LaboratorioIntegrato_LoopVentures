@@ -1,4 +1,4 @@
-import "../styles/evaluator.css";
+import "../styles/Evaluator.css";
 
 import { useState, useEffect } from "react";
 import "../styles/Step5Contact.css";

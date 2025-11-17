@@ -1,6 +1,6 @@
 import "./WhyUs.css";
-import AtticImg from "../../assets/attic-glimpse.png";
-import LivingRoomImg from "../../assets/living-room-glimpse.png";
+import AtticImg from "../../assets/background/attic-glimpse.png";
+import LivingRoomImg from "../../assets/background/living-room-glimpse.png";
 import {
   QuotesIcon,
   NumberCircleOneIcon,
@@ -25,10 +25,11 @@ const WhyUs = () => {
                 weight="thin"
               />
               <div className="reason-text">
-                <h3>MOTIVO 1</h3>
+                <h3>PRECISIONE E RAPIDITÀ</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-                  ipsum dolor sit amet, consectetur adipiscing elit.
+                  Estimora combina dati immobiliari aggiornati con la conoscenza
+                  del territorio dei nostri esperti, per offrirti una stima
+                  accurata e affidabile in sole 72 ore.
                 </p>
               </div>
             </div>
@@ -40,10 +41,11 @@ const WhyUs = () => {
                 weight="thin"
               />
               <div className="reason-text">
-                <h3>MOTIVO 2</h3>
+                <h3>SEMPLICE E TRASPARENTE</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-                  ipsum dolor sit.
+                  Un percorso guidato, semplice e veloce, senza documenti
+                  complicati né tecnicismi. Un form intuitivo e informazioni
+                  chiare, trasparenti, dall’inizio alla fine.
                 </p>
               </div>
             </div>
@@ -55,11 +57,11 @@ const WhyUs = () => {
                 weight="thin"
               />
               <div className="reason-text">
-                <h3>MOTIVO 3</h3>
+                <h3>PERSONE REALI, SEMPRE AL TUO FIANCO</h3>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
-                  ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
-                  dolor sit.
+                  Anche online, non sei mai solo. Dopo la valutazione, il tuo
+                  agente dedicato ti contatterà personalmente, pronto a
+                  rispondere alle tue domande e a guidarti in ogni fase.
                 </p>
               </div>
             </div>
@@ -68,7 +70,6 @@ const WhyUs = () => {
           {/* Images section */}
           <div className="why-us-images-container">
             <div className="image-container flex-start">
-              {/* CIAO1 */}
               <img
                 className="why-us-image "
                 src={AtticImg}
@@ -76,7 +77,6 @@ const WhyUs = () => {
               />
             </div>
             <div className="image-container flex-end">
-              {/* CIAO2 */}
               <img
                 className="why-us-image border-radius-inverted"
                 src={LivingRoomImg}

@@ -4,7 +4,7 @@ import BottoneCTA from "../../components/cta-button/BottoneCTA";
 export default function HeroSection() {
   return (
     <>
-      <section id="home">
+      <section id="home" className="hero-section-container">
         <div className="homepage">
           <div className="overlay">
             <div className="content-box">

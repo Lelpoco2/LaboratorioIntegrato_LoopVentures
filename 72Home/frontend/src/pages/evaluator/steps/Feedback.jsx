@@ -1,5 +1,5 @@
 import "../styles/Feedback.css";
-import "../styles/evaluator.css";
+import "../styles/Evaluator.css";
 
 import { Link } from "react-router-dom";
 

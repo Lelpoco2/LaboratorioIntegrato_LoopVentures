@@ -17,17 +17,17 @@ export default function FormNavigationButtons({
     <div className="navigation-buttons">
       {currentStep > 0 && (
         <button className="btn back" onClick={onBack}>
-          Indietro
+          INDIETRO
         </button>
       )}
 
       {currentStep < stepsLength - 2 ? (
         <button className="btn next" onClick={onNext} disabled={hasErrors}>
-          Continua
+          CONTINUA
         </button>
       ) : (
         <button className="btn submit" onClick={onSubmit} disabled={hasErrors}>
-          Invia
+          INVIA
         </button>
       )}
     </div>

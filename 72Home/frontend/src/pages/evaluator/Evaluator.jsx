@@ -1,11 +1,10 @@
 // Evaluator.jsx handles the flow.
 // Manages currentStep, form validation, and the collected data.
-import "./styles/evaluator.css";
+import "./styles/Evaluator.css";
 import FormNavigationButtons from "./components/FormNavigationButtons";
 
 import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/footer";
-
+import Footer from "../../components/footer/Footer";
 import { useState } from "react";
 
 import {

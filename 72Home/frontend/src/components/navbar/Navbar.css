@@ -19,8 +19,7 @@
   color: #0c3c7c;
   cursor: pointer;
   transition: transform 0.2s ease;
-  font-size: 1.5rem;
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -28,8 +27,7 @@
 
 .logo {
   position: relative;
-  top: -5px;
-  height: 60px;
+  height: 50px;
 }
 
 .navbar-logo:hover {
@@ -166,7 +164,7 @@
 
 .hamburger span {
   height: 3px;
-  background: #0c3c7c;
+  background: #612916;
   border-radius: 2px;
   transition: all 0.3s ease;
 }

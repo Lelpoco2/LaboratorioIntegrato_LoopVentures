@@ -1,4 +1,4 @@
-import "../styles/evaluator.css";
+import "../styles/Evaluator.css";
 import "../styles/Step2PropertyType.css";
 
 import { useEffect, useState } from "react";

@@ -6,7 +6,7 @@
   background-color: #dbd0c2;
 
   /* Squiggly Line */
-  background-image: url("../../assets/squigglyLineHorizontal.svg");
+  background-image: url("../../assets/background/squigglyLineHorizontal.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-position-y: 270px;
@@ -108,7 +108,7 @@
 @media (max-width: 992px) {
 .steps-section-container section {
     /* Squiggly Line */
-    background-image: url("../../assets/squigglyLineVertical.svg");
+    background-image: url("../../assets/background/squigglyLineVertical.svg");
     background-position-y: 400px;
     background-position-x: 270px;
   }
@@ -127,7 +127,7 @@
 @media (max-width: 660px) {
 .steps-section-container section {
     /* Squiggly Line */
-    background-image: url("../../assets/squigglyLineVertical.svg");
+    background-image: url("../../assets/background/squigglyLineVertical.svg");
     background-position-y: 400px;
     background-position-x: 50px;
   }

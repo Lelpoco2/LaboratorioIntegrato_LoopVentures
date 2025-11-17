@@ -23,7 +23,7 @@
 .evaluator-container {
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  gap: 50px;
   align-content: space-between;
 }
 
@@ -33,11 +33,4 @@
   background: #ffffff;
   border: 1px solid #d4c8b8;
   box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.06);
-}
-
-/* Pushes buttons to the bottom */
-@media (max-width: 768px) {
-  .evaluator-section-container section {
-    height: 100vh;
-  }
 }
