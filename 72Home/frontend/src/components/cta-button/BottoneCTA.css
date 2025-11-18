@@ -20,3 +20,7 @@
   margin-left: 0.5rem;
   position: relative;
 }
+
+a{
+  text-decoration: none;
+}

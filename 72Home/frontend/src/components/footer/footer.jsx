@@ -1,6 +1,7 @@
 import "./Footer.css";
 import BottoneCTA from "../cta-button/BottoneCTA";
 import EstimoraLogo from "../../assets/logo/estimora-logo.svg";
+import { InstagramLogoIcon, FacebookLogoIcon, TiktokLogoIcon, EnvelopeSimpleIcon, WhatsappLogoIcon } from "@phosphor-icons/react";
 
 const Footer = () => {
   return (
@@ -8,13 +9,13 @@ const Footer = () => {
       <div className="footer-up">
         <div className="footer-logo-section">
           <a href="#home">
-            <img src={EstimoraLogo} alt="Logo di Estimora" className="footer-logo"/>
+            <img src={EstimoraLogo} alt="Logo di Estimora" className="footer-logo" />
           </a>
           {/* <p>
             Trasparenza, rapidità e esperienza: la stima immobiliare che ti
             guida.
           </p> */}
-          <BottoneCTA className="footer-btn" />
+          <BottoneCTA />
         </div>
 
         <nav className="footer-links-container" aria-label="Footer navigation">
@@ -43,14 +44,16 @@ const Footer = () => {
           </div>
         </nav>
 
-        <div className="footer-links">
+        <div className="footer-links contact-links ">
           <h4>Contatti</h4>
           <ul>
             <li>
-              <a href="mailto:contact@us.com">contact@us.com</a>
+              <div className="cont-icons"> <EnvelopeSimpleIcon size={32} /></div>
+              <a href="mailto:contact@us.com">  contact@us.com</a>
             </li>
             <li>
-              <a href="tel:+14146875892">+41 468 758 92</a>
+              <div className="cont-icons"> <WhatsappLogoIcon size={32} /> </div>
+              <a href="tel:+14146875892">  +41 468 758 92</a>
             </li>
           </ul>
         </div>
@@ -59,28 +62,28 @@ const Footer = () => {
           <h4>Seguici</h4>
           <div className="social-icons" aria-label="Social media">
             <a
-              href="https://www.facebook.com/?locale=it_IT"
+              href="#"
               target="_blank"
               rel="noreferrer"
               aria-label="Facebook"
             >
-              f
+              <FacebookLogoIcon size={32} />
             </a>
             <a
-              href="https://www.instagram.com/?hl=it"
+              href="#"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
             >
-              ig
+              <InstagramLogoIcon size={32} />
             </a>
             <a
-              href="https://twitter.com/?lang=it"
+              href="#"
               target="_blank"
               rel="noreferrer"
               aria-label="Twitter"
             >
-              t
+              <TiktokLogoIcon size={32} />
             </a>
           </div>
         </div>
