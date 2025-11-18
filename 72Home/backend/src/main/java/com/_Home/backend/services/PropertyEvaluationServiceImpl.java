@@ -41,8 +41,14 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         
         Double bathroomCoeff = bathroomCoefficient(property.getBathrooms());
         
-        Double floorCoeff = floorCoefficient(property.getFloor(), property.getHasElevator(), property.getHasGarden());
-        
+        Double floorCoeff = 0.0;
+
+        if (property.getBuildingType() == BuildingType.VILLA || property.getBuildingType() == BuildingType.INDEPENDENT_HOUSE) {
+            floorCoeff = 1.0; 
+        } else { 
+            floorCoeff = floorCoefficient(property.getFloor(), property.getHasElevator(), property.getHasGarden());
+        }
+
         Double boxCoeff = boxCoefficient(property.getHasBox());
         
         Double balconyCoeff = balconyCoefficient(property.getHasBalcony());
@@ -92,7 +98,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
     //! Private methods for evaluation calculations
 
-    private Double[] getLocationByAddress(String address) {
+    private Double[]  getLocationByAddress(String address) {
 
         Double DELTA_LAT = 0.0011245;
         Double DELTA_LON = 0.0012913;
@@ -219,7 +225,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         switch (condition) {
             case NEW: return 1.2;
             case GOOD: return 1.1;
-            case OLD: return 1.0;
+            case BAD: return 0.9;
             case NEEDS_RENOVATION: return 0.8;
             default: return 1.0;
         }
