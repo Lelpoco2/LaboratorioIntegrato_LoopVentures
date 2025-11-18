@@ -1,5 +1,12 @@
+.news-section-container section {
+  width: 100%;
+  max-width: 100vw;
+  /* Ensures no overflow even with scrollbars */
+  padding: 10vh 15vw;
+  background-color: #dbd0c2;
+}
+
 .news-container {
-  background-color: #9D8062;
   padding: 50px 0;
   position: relative;
   overflow: hidden;
@@ -13,23 +20,23 @@
 }
 
 .envelope-icon.left {
-  top: 50%;
-  left: 5%;
-  transform: translateY(-50%) rotate(-10deg);
+  top: 40%;
+  left: 3%;
+  transform: translateY(-50%) rotate(-25deg);
 }
 
 .envelope-icon.right {
-  top: 50%;
-  right: 5%;
-  transform: translateY(-50%) rotate(10deg);
+  top: 70%;
+  right: 11%;
+  transform: translateY(-50%) rotate(20deg);
 }
 
 .new-box {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 40px;
-  background-color: rgba(150, 125, 100, 0.2);
-  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 30px;
@@ -40,7 +47,7 @@
 }
 
 .news-title {
-  color: #ffffff;
+  color: #612916;
   font-size: 2.2rem;
   font-weight: 700;
   line-height: 1.2;
@@ -48,7 +55,7 @@
 }
 
 .news-subtitle {
-  color: #ffffff;
+  color: #612916;
   font-size: 1.1rem;
   font-weight: 400;
   margin-bottom: 30px;
@@ -78,7 +85,7 @@
 }
 
 .news-button {
-  background-color: #5c3e2f;
+  background-color: #724c3a;
   color: #ffffff;
   padding: 12px 25px;
   border: none;
@@ -90,14 +97,14 @@
 }
 
 .news-button:hover {
-  background-color: #724c3a;
+  background-color: #612916;
 }
 
 @media (max-width: 768px) {
   .new-box {
     padding: 30px 20px;
   }
-  
+
   .news-title {
     font-size: 1.8rem;
   }
