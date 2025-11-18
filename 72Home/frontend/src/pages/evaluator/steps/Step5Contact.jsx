@@ -126,32 +126,6 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
         </div>
       </div>
 
-      {/* Role */}
-      <div
-        className={`more-margin form-group ${
-          touched.role && !formData.role ? "error" : ""
-        }`}
-      >
-        <label>Qual è il tuo ruolo in relazione all’immobile?</label>
-        <select
-          value={formData.role || ""}
-          onChange={(e) => updateField("role", e.target.value)}
-          onBlur={() => handleBlur("role")}
-        >
-          <option value="" disabled>
-            Seleziona…
-          </option>
-          <option value="owner">Proprietario</option>
-          <option value="tenant">Inquilino</option>
-          <option value="buyer">Acquirente</option>
-          <option value="agent">Agente immobiliare</option>
-          <option value="other">Altro</option>
-        </select>
-        {touched.role && !formData.role && (
-          <span className="error-message">Campo obbligatorio</span>
-        )}
-      </div>
-
       {/* Purpose */}
       <div
         className={`more-margin form-group ${
@@ -167,10 +141,8 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
           <option value="" disabled>
             Seleziona…
           </option>
-          <option value="rent_out">Voglio darlo in affitto</option>
           <option value="sell">Voglio venderlo</option>
-          <option value="buy">Voglio comprarlo</option>
-          <option value="rent">Voglio prenderlo in affitto</option>
+          <option value="rent_out">Voglio darlo in affitto</option>
           <option value="info">Mi sto solo informando</option>
         </select>
         {touched.purpose && !formData.purpose && (

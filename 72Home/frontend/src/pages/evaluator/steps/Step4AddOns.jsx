@@ -26,14 +26,14 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
       </p>
 
       <div className="addons-grid">
-        {/* Swimming pool */}
+        {/* Basement */}
         <label className="checkbox-row">
           <input
             type="checkbox"
-            checked={formData.pool || false}
-            onChange={() => toggleCheckbox("pool")}
+            checked={formData.basement || false}
+            onChange={() => toggleCheckbox("basement")}
           />
-          Piscina
+          Cantina
         </label>
 
         {/* Balcony */}
