@@ -20,9 +20,9 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
 
   return (
     <div className="step-card evaluator-card">
-      <h2>Caratteristiche Aggiuntive</h2>
+      <h2>Dotazioni Aggiuntive</h2>
       <p className="step-subtitle">
-        Seleziona i plus che valorizzano al meglio il tuo immobile
+        Seleziona le dotazioni che valorizzano il tuo immobile
       </p>
 
       <div className="addons-grid">
@@ -66,16 +66,6 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
           Ascensore
         </label>
 
-        {/* Garage */}
-        <label className="checkbox-row">
-          <input
-            type="checkbox"
-            checked={formData.garage || false}
-            onChange={() => toggleCheckbox("garage")}
-          />
-          Box auto
-        </label>
-
         {/* Garden */}
         <label className="checkbox-row">
           <input
@@ -87,17 +77,54 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
         </label>
       </div>
 
+      {/* Garage */}
+      <label className="checkbox-row">
+        <input
+          type="checkbox"
+          checked={formData.garage || false}
+          onChange={() => toggleCheckbox("garage")}
+        />
+        Box auto
+      </label>
+
       {/* MQ of car garage */}
       {formData.garage && (
         <div className="form-group garage-size-group">
-          <label>Dimensione box auto (mq)</label>
+          <label>Dimensione box auto (m²)</label>
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             placeholder="Es. 18"
             value={formData.garageSize || ""}
-            onChange={(e) => updateField("garageSize", e.target.value)}
+            onChange={(e) => {
+              const v = e.target.value;
+
+              //  Accetta solo cifre o stringa vuota (campo opzionale).
+              if (!/^\d*$/.test(v)) return;
+
+              if (v === "") {
+                updateField("garageSize", "");
+                return;
+              }
+
+              // Deve essere >= 1
+              if (Number(v) < 1) return;
+
+              updateField("garageSize", v);
+            }}
+            onKeyDown={(e) => {
+              if (["e", ".", ",", "+", "-", "E"].includes(e.key)) {
+                e.preventDefault();
+              }
+            }}
             onBlur={() => handleBlur("garageSize")}
           />
+          {touched.garageSize && formData.garageSize === "" && (
+            <span className="error-message">
+              Inserisci un numero maggiore di zero o lascia il campo vuoto.
+            </span>
+          )}
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
 .property-type-cards {
   display: flex;
-  gap: 20px;
+  gap: 25px;
   justify-content: center;
   margin-top: 20px;
 }
@@ -8,17 +8,24 @@
 .property-card {
   display: flex;
   flex-direction: column;
+  gap: 13px;
   align-items: center;
-  gap: 10px;
 
-  padding: 20px 25px;
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  width: 180px;
+  padding: 30px;
+  border: 2.5px solid #bba283;
+  border-radius: 22px;
+  width: 210px;
   cursor: pointer;
+
+  font-size: 1.2rem;
+  font-weight: 600;
 
   transition: all 0.25s ease;
   background: white;
+}
+
+.property-card p {
+  margin: 0;
 }
 
 .property-card:hover {

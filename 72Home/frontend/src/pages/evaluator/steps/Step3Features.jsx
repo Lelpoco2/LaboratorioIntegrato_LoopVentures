@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
 import "../styles/Step3Features.css";
+import Field from "../components/Field";
+import { useFormValidation } from "../hooks/useFormValidation";
+import { useEffect } from "react";
 
 export default function Step3Features({
   propertyType,
@@ -7,196 +9,164 @@ export default function Step3Features({
   updateField,
   setStepErrors,
 }) {
-  const [touched, setTouched] = useState({});
+  const { markTouched, isTouched, hasError, errors } =
+    useFormValidation(formData, propertyType);
 
-  const markTouched = (field) => {
-    setTouched((prev) => ({ ...prev, [field]: true }));
-  };
-
-  // ---- VALIDATION ----
-  useEffect(() => {
-    const errors = {};
-
-    // Conditional fields
-    if (propertyType === "appartamento") {
-      if (!formData.apartmentFloor)
-        errors.apartmentFloor = "Campo obbligatorio";
-    }
-
-    // Generic fields
-    if (!formData.surface) errors.surface = "Campo obbligatorio";
-    if (!formData.bathrooms) errors.bathrooms = "Campo obbligatorio";
-    if (!formData.rooms) errors.rooms = "Campo obbligatorio";
-    if (!formData.condition) errors.condition = "Campo obbligatorio";
-    if (!formData.energyClass) errors.energyClass = "Campo obbligatorio";
-    if (!formData.heating) errors.heating = "Campo obbligatorio";
-
-    setStepErrors(errors);
-  }, [formData, propertyType, setStepErrors]);
-
-  const isEmpty = (field) => !formData[field];
-
-  const showError = (field) => touched[field] && isEmpty(field);
+  // Passa errori allo step padre
+  useEffect(() => setStepErrors(errors), [errors, setStepErrors]);
 
   return (
     <div className="step-card evaluator-card" style={{ marginTop: "40px" }}>
       <h3>Caratteristiche dell’immobile</h3>
 
       <div className="form-column">
-        {/* INPUT FIELDS JUST FOR "CASA": fow not it's empty*/}
 
-        {/* INPUT FIELDS JUST FOR "APPARTAMENTO" */}
+        {/* APPARTAMENTO → campo condizionale */}
         {propertyType === "appartamento" && (
-          <>
-            <div
-              className={`form-group ${
-                showError("apartmentFloor") ? "error" : ""
-              }`}
+          <Field
+            label="Piano dell'appartamento"
+            touched={isTouched("apartmentFloor")}
+            error={hasError("apartmentFloor") && errors.apartmentFloor}
+          >
+            <select
+              value={formData.apartmentFloor || ""}
+              onChange={(e) => updateField("apartmentFloor", e.target.value)}
+              onBlur={() => markTouched("apartmentFloor")}
             >
-              <label>Piano dell'appartamento</label>
-              <select
-                value={formData.apartmentFloor || ""}
-                onChange={(e) => updateField("apartmentFloor", e.target.value)}
-                onBlur={() => markTouched("apartmentFloor")}
-              >
-                <option value="" disabled>
-                  Seleziona…
-                </option>
-                <option value="Terra">Terra</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4-or-more">4 o più</option>
-              </select>
-              {showError("apartmentFloor") && (
-                <span className="error-message">Campo obbligatorio</span>
-              )}
-            </div>
-          </>
+              <option value="" disabled>Seleziona…</option>
+              <option value="Terra">Terra</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4-or-more">4 o più</option>
+            </select>
+          </Field>
         )}
 
         {/* Numero di locali */}
-        <div className={`form-group ${showError("rooms") ? "error" : ""}`}>
-          <label>Numero di locali</label>
+        <Field
+          label="Numero di locali"
+          touched={isTouched("rooms")}
+          error={hasError("rooms") && errors.rooms}
+        >
           <select
             value={formData.rooms || ""}
             onChange={(e) => updateField("rooms", e.target.value)}
             onBlur={() => markTouched("rooms")}
           >
-            <option value="" disabled>
-              Seleziona…
-            </option>
+            <option value="" disabled>Seleziona…</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
             <option value="5-or-more">5 o più</option>
           </select>
-          {showError("rooms") && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
 
         {/* Numero di bagni */}
-        <div className={`form-group ${showError("bathrooms") ? "error" : ""}`}>
-          <label>Numero di bagni</label>
+        <Field
+          label="Numero di bagni"
+          touched={isTouched("bathrooms")}
+          error={hasError("bathrooms") && errors.bathrooms}
+        >
           <select
             value={formData.bathrooms || ""}
             onChange={(e) => updateField("bathrooms", e.target.value)}
             onBlur={() => markTouched("bathrooms")}
           >
-            <option value="" disabled>
-              Seleziona…
-            </option>
+            <option value="" disabled>Seleziona…</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3-or-more">3 o più</option>
           </select>
-          {showError("bathrooms") && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
 
         {/* Superficie abitabile */}
-        <div className={`form-group ${showError("surface") ? "error" : ""}`}>
-          <label>Superficie abitabile (mq)</label>
+        <Field
+          label="Superficie abitabile (m²)"
+          touched={isTouched("surface")}
+          error={hasError("surface") && errors.surface}
+        >
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            placeholder="Es. 70"
             value={formData.surface || ""}
-            onChange={(e) => updateField("surface", e.target.value)}
+            onChange={(e) => {
+              const v = e.target.value;
+              if (!/^\d*$/.test(v)) return;
+              if (v !== "" && Number(v) < 1) return;
+              updateField("surface", v);
+            }}
+            onKeyDown={(e) => {
+              if (["e", ".", ",", "+", "-", "E"].includes(e.key)) {
+                e.preventDefault();
+              }
+            }}
             onBlur={() => markTouched("surface")}
           />
-          {showError("surface") && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
 
-        {/* SELECT */}
-        <div className={`form-group ${showError("condition") ? "error" : ""}`}>
-          <label>Condizioni</label>
+        {/* Condizioni */}
+        <Field
+          label="Condizioni"
+          touched={isTouched("condition")}
+          error={hasError("condition") && errors.condition}
+        >
           <select
             value={formData.condition || ""}
             onChange={(e) => updateField("condition", e.target.value)}
             onBlur={() => markTouched("condition")}
           >
-            <option value="" disabled>
-              Seleziona…
-            </option>
-            <option value="unknown">Non lo so</option>
+            <option value="" disabled>Seleziona…</option>
             <option value="new">Nuovo o Ristrutturato</option>
             <option value="excellent">Ottime condizioni</option>
             <option value="decent">Discreto</option>
             <option value="toberenovated">Da ristrutturare</option>
+            <option value="unknown">Non lo so</option>
           </select>
-          {showError("condition") && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
 
-        <div
-          className={`form-group ${showError("energyClass") ? "error" : ""}`}
+        {/* Classe energetica */}
+        <Field
+          label="Classe energetica"
+          touched={isTouched("energyClass")}
+          error={hasError("energyClass") && errors.energyClass}
         >
-          <label>Classe energetica</label>
           <select
             value={formData.energyClass || ""}
             onChange={(e) => updateField("energyClass", e.target.value)}
             onBlur={() => markTouched("energyClass")}
           >
-            <option value="" disabled>
-              Seleziona…
-            </option>
+            <option value="" disabled>Seleziona…</option>
             {["A4", "A3", "A2", "A1", "A", "B", "C", "D", "E", "F", "G"].map(
               (cls) => (
-                <option key={cls} value={cls}>
-                  {cls}
-                </option>
+                <option key={cls} value={cls}>{cls}</option>
               )
             )}
             <option value="unknown">Non lo so</option>
           </select>
-          {showError("energyClass") && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
 
-        <div className={`form-group ${showError("heating") ? "error" : ""}`}>
-          <label>Riscaldamento</label>
+        {/* Riscaldamento */}
+        <Field
+          label="Riscaldamento"
+          touched={isTouched("heating")}
+          error={hasError("heating") && errors.heating}
+        >
           <select
             value={formData.heating || ""}
             onChange={(e) => updateField("heating", e.target.value)}
             onBlur={() => markTouched("heating")}
           >
-            <option value="" disabled>
-              Seleziona…
-            </option>
-            <option value="unknown">Non lo so</option>
+            <option value="" disabled>Seleziona…</option>
             <option value="autonomo">Autonomo</option>
             <option value="centralizzato">Centralizzato</option>
+            <option value="unknown">Non lo so</option>
           </select>
-          {showError("heating") && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
+
       </div>
     </div>
   );

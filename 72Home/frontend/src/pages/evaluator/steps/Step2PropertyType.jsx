@@ -38,7 +38,7 @@ export default function Step2PropertyType({
           className={`property-card ${selected === "casa" ? "selected" : ""}`}
           onClick={() => handleSelect("casa")}
         >
-          <HouseIcon size={42} />
+          <HouseIcon size={62} />
           <p>Casa</p>
         </div>
 
@@ -48,7 +48,7 @@ export default function Step2PropertyType({
           }`}
           onClick={() => handleSelect("appartamento")}
         >
-          <BuildingIcon size={42} />
+          <BuildingIcon size={62} />
           <p>Appartamento</p>
         </div>
       </div>

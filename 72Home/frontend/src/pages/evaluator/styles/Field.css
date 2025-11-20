@@ -1,0 +1,76 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.field-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-input-wrapper input,
+.field-input-wrapper select {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  padding: 8px 35px 8px 10px; /* spazio per l'icona */
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.field-input-wrapper select option {
+  padding: 10px;
+  font-size: 15px;
+}
+
+/* ICONA ✓ */
+.valid-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  color: #1e6e53;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* untouched */
+.form-group.untouched input,
+.form-group.untouched select {
+  border-color: #cfcfcf;
+}
+
+/* touched */
+.form-group.touched input,
+.form-group.touched select {
+  border-color: #6aa3e8;
+}
+
+/* errore */
+.form-group.error input,
+.form-group.error select {
+  border-color: #c40000;
+  background: #ffe9e9;
+}
+
+/* valid */
+.form-group.valid input,
+.form-group.valid select {
+  border-color: #1e6e53;
+}
+
+.error-message {
+  color: #c40000;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  line-height: 20px;
+}
+
+.garage-size-group .error-message {
+  color: #666666;
+  margin-top: 6px;
+  font-size: 13.5px;
+  line-height: 20px;
+}

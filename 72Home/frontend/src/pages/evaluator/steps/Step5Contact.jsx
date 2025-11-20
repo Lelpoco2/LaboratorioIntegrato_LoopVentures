@@ -3,6 +3,12 @@ import "../styles/Evaluator.css";
 import { useState, useEffect } from "react";
 import "../styles/Step5Contact.css";
 
+const isValidEmail = (email) => {
+  // regex per validazione email
+  const regexEmail = /^[a-z0-9!#$%&'*+\=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/mgi
+  return regexEmail.test(email);
+};
+
 export default function Step5Contact({ formData, updateField, setStepErrors }) {
   const [touched, setTouched] = useState({});
 
@@ -17,8 +23,12 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
     if (!formData.firstName) errors.firstName = true;
     if (!formData.lastName) errors.lastName = true;
 
-    // Email must be filled
-    if (!formData.email) errors.email = true;
+    // Email must be filled and valid
+    if (!formData.email) {
+      errors.email = true; // oppure un messaggio se vuoi
+    } else if (!isValidEmail(formData.email)) {
+      errors.email = true; // o messaggio
+    }
 
     // Phone required
     if (!formData.phone) errors.phone = true;
@@ -99,11 +109,16 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
             type="email"
             placeholder="esempio@mail.com"
             value={formData.email || ""}
-            onChange={(e) => updateField("email", e.target.value)}
+            onChange={(e) => updateField("email", e.target.value.trim())}
             onBlur={() => handleBlur("email")}
           />
           {touched.email && !formData.email && (
             <span className="error-message">Campo obbligatorio</span>
+          )}
+          {touched.email && formData.email && !isValidEmail(formData.email) && (
+            <span className="error-message">
+              Formato email non valido. L'email non può contenere spazi e lettere accentate. Sono ammessi i seguenti caratteri speciali: "-", "+", "_", "%", "$", "&", "=", "!", "~", "*", "`", "?", "." (non come primo o ultimo carattere).
+            </span>
           )}
         </div>
 
@@ -188,7 +203,28 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
           onChange={() => updateField("acceptPrivacy", !formData.acceptPrivacy)}
           onBlur={() => handleBlur("acceptPrivacy")}
         />
-        Accetto la politica sulla privacy e i termini di utilizzo
+        <div>
+          Autorizzo al trattamento dei miei dati secondo la normativa GDPR e
+          accetto la{" "}
+          <a
+            href="/privacy-policy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-link"
+          >
+            privacy policy
+          </a>{" "}
+          e le{" "}
+          <a
+            href="/termini-condizioni"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-link"
+          >
+            condizioni di utilizzo
+          </a>
+          .
+        </div>
       </label>
       {touched.acceptPrivacy && !formData.acceptPrivacy && (
         <span className="less-margin error-message">Campo obbligatorio</span>
