@@ -33,7 +33,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         
         Double totalCoefficient = 0.0;
         
-        Double[] coords = getLocationByAddress(property.getAddress() + "," + property.getCity());
+        Double[] coords = getLocationByAddress(property.getAddress() + "," + property.getZipCode() + property.getCity());
 
         Double basePrice = calculateBaseSquareMeterSurfacePrice(coords, property.getSurfaceArea());
 
@@ -152,7 +152,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
             return basePrice;
          } 
 
-        return null;
+        throw new IllegalArgumentException("Nessuna zona OMI trovata per le coordinate fornite.");
     }
 
     private Double roomCoefficent(Integer room)
