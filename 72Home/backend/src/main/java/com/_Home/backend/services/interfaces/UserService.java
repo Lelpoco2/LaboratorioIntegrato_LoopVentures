@@ -1,4 +1,4 @@
-package com._Home.backend.services;
+package com._Home.backend.services.interfaces;
 
 import com._Home.backend.models.User;
 import java.util.List;

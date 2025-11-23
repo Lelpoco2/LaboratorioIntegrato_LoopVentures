@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com._Home.backend.models.User;
-import com._Home.backend.services.UserService;
+import com._Home.backend.services.interfaces.UserService;
 
 @RestController
 @RequestMapping("/api")

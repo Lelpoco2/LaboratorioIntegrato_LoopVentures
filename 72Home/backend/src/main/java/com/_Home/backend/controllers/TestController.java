@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com._Home.backend.models.OmiZone;
 import com._Home.backend.models.Property;
 import com._Home.backend.models.User;
-import com._Home.backend.services.OmiZoneService;
-import com._Home.backend.services.PropertyEvaluationServiceImpl;
-import com._Home.backend.services.UserService;
+import com._Home.backend.services.implementations.PropertyEvaluationServiceImpl;
+import com._Home.backend.services.interfaces.OmiZoneService;
+import com._Home.backend.services.interfaces.UserService;
 
 import io.swagger.v3.oas.annotations.Hidden;
 

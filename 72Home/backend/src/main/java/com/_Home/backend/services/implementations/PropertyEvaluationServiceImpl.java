@@ -1,4 +1,4 @@
-package com._Home.backend.services;
+package com._Home.backend.services.implementations;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,6 +20,7 @@ import com._Home.backend.models.OmiZone;
 import com._Home.backend.models.Property;
 import com._Home.backend.models.PropertyEvaluation;
 import com._Home.backend.repos.OmiZoneRepo;
+import com._Home.backend.services.interfaces.PropertyEvaluationService;
 
 @Service
 public class PropertyEvaluationServiceImpl implements PropertyEvaluationService {
