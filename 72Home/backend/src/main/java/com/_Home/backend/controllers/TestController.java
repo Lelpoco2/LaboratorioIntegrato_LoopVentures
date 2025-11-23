@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 // Controller for testing various services. It is not show in in the Swagger API documentation.
 
-@Hidden
 @RestController
 @RequestMapping("/test")
 public class TestController {
