@@ -145,13 +145,16 @@ Per non rendere il README principale troppo lungo, le istruzioni su come utilizz
 Anche qui le istruzioni su come utilizzare l'ambiente di produzione (PROD) sono state specificate nel file linkato di seguito, chiamato [README.prod.md](README.prod.md).
 > Nota: Il `README.prod.md` è ancora in fase di revisione.
 
+## 7. Utilizzo di Swagger
 
-## 7. Contribuzione alla documentazione
+Nel recente update della repo è stato aggiunto il supporto a Swagger, consultabile tramite l'url: `localhost:8080/swagger-ui.html` una volta avviata l'applicazione su docker.
+
+## 8. Contribuzione alla documentazione
 
 Ogniuno dei membri del team è incoraggiato a contribuire alla documentazione del progetto, ogni contributo, grande o piccolo, è benvenuto e apprezzato.
 
-## 8. Disclaimer
+## 9. Disclaimer
 
-L'utilizzo in toto di tale documentazione sarà applicato una volta che tutti i membri del team avranno concordato su di esse, e potranno essere modificate in base alle esigenze del progetto e del team stesso. Per ora si tratta di una bozza iniziale.
+L'utilizzo in toto di tale documentazione sarà applicato una volta che tutti i membri del team avranno concordato su di esse, e potranno essere modificate in base alle esigenze del progetto e del team stesso.
 
 ## Grazie dal Team Leader e buon coding a tutti !

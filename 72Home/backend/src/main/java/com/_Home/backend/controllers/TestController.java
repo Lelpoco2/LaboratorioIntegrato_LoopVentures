@@ -14,12 +14,15 @@ import com._Home.backend.models.User;
 import com._Home.backend.services.OmiZoneService;
 import com._Home.backend.services.PropertyEvaluationServiceImpl;
 import com._Home.backend.services.UserService;
+
+import io.swagger.v3.oas.annotations.Hidden;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-// Controller for testing various services
+// Controller for testing various services. It is not show in in the Swagger API documentation.
 
 @RestController
 @RequestMapping("/test")
