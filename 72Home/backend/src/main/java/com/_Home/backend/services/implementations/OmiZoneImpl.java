@@ -20,5 +20,25 @@ public class OmiZoneImpl implements OmiZoneService {
         return omiZoneRepo.findAll();
     }
 
+    @Override
+    public OmiZone getOmiZoneById(Integer id) {
+        return omiZoneRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public OmiZone insertOmiZone(OmiZone omiZone) {
+        return omiZoneRepo.save(omiZone);
+    }
+
+    @Override
+    public OmiZone updateOmiZone(OmiZone omiZone) {
+        return omiZoneRepo.save(omiZone);
+    }
+
+    @Override
+    public void deleteOmiZone(Integer id) {
+        omiZoneRepo.deleteById(id);
+    }
+
 
 }
