@@ -1,9 +1,21 @@
 import "./Footer.css";
 import BottoneCTA from "../cta-button/BottoneCTA";
 import EstimoraLogo from "../../assets/logo/estimora-logo.svg";
-import { InstagramLogoIcon, FacebookLogoIcon, TiktokLogoIcon, EnvelopeSimpleIcon, WhatsappLogoIcon } from "@phosphor-icons/react";
+import { InstagramLogoIcon, FacebookLogoIcon, TiktokLogoIcon, PhoneCallIcon, EnvelopeSimpleIcon, WhatsappLogoIcon, MapPinIcon } from "@phosphor-icons/react";
 
 const Footer = () => {
+  const ContactItem = ({ Icon, title, value }) => (
+    <div className="contact-item">
+      <div className="contact-icon-wrapper">
+        <Icon size={20} className="contact-icon" />
+      </div>
+      <div>
+        <p className="contact-title">{title}</p>
+        <p className="contact-value">{value}</p>
+      </div>
+    </div>
+  );
+
   return (
     <footer className="footer container" role="contentinfo">
       <div className="footer-up">
@@ -11,92 +23,69 @@ const Footer = () => {
           <a href="#home">
             <img src={EstimoraLogo} alt="Logo di Estimora" className="footer-logo" />
           </a>
-          {/* <p>
-            Trasparenza, rapidità e esperienza: la stima immobiliare che ti
-            guida.
-          </p> */}
           <BottoneCTA />
         </div>
 
-        <nav className="footer-links-container" aria-label="Footer navigation">
+        <div className="footer-links-group">
           <div className="footer-links">
             <h4>Chi siamo</h4>
             <ul>
-              <li>
-                <a href="#">Mission</a>
-              </li>
-              <li>
-                <a href="#">Consegne</a>
-              </li>
+              <li><a href="#">Valuta la tua casa</a></li>
+              <li><a href="#">Come funziona</a></li>
+              <li><a href="#">Agenti</a></li>
+              <li><a href="#">Login</a></li>
             </ul>
           </div>
 
           <div className="footer-links">
-            <h4>Servizi</h4>
+            <h4>Services</h4>
             <ul>
-              <li>
-                <a href="#steps">Come funziona</a>
-              </li>
-              <li>
-                <a href="/evaluation">Valuta la tua casa</a>
-              </li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Condizioni d'utilizzo</a></li>
             </ul>
           </div>
-        </nav>
-
-        <div className="footer-links contact-links ">
-          <h4>Contatti</h4>
-          <ul>
-            <li>
-              <div className="cont-icons"> <EnvelopeSimpleIcon size={32} /></div>
-              <a href="mailto:contact@us.com">  contact@us.com</a>
-            </li>
-            <li>
-              <div className="cont-icons"> <WhatsappLogoIcon size={32} /> </div>
-              <a href="tel:+14146875892">  +41 468 758 92</a>
-            </li>
-          </ul>
         </div>
 
-        <div className="footer-links">
-          <h4>Seguici</h4>
-          <div className="social-icons" aria-label="Social media">
-            <a
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-            >
-              <FacebookLogoIcon size={32} />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-            >
-              <InstagramLogoIcon size={32} />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Twitter"
-            >
-              <TiktokLogoIcon size={32} />
-            </a>
+        <div className="footer-contact-and-social">
+          <div className="footer-contact-section">
+            <h4>Contact us</h4>
+            <div className="contact-details">
+              <ContactItem Icon={WhatsappLogoIcon} title="WhatsApp:" value="(414) 687 - 5892" />
+              <ContactItem Icon={PhoneCallIcon} title="Phone:" value="(414) 687 - 5892" />
+              <ContactItem Icon={EnvelopeSimpleIcon} title="Email:" value="contact@brix.com" />
+              <ContactItem Icon={MapPinIcon} title="Location:" value="Via Jacopo Durandi 33, TO" />
+            </div>
+          </div>
+
+          <div className="footer-social-section-top">
+            <h4>Follow us</h4>
+            <div className="social-icons" aria-label="Social media">
+              <a href="#" target="_blank" rel="noreferrer" aria-label="TikTok">
+                <TiktokLogoIcon size={20} />
+              </a>
+              <a href="#" target="_blank" rel="noreferrer" aria-label="Facebook">
+                <FacebookLogoIcon size={20} />
+              </a>
+              <a href="#" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <InstagramLogoIcon size={20} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="footer-down">
-        <p>
-          Copyright © {new Date().getFullYear()} - Tutti i diritti riservati.
-          <a href="#"> Termini e Condizioni</a>
-          <a href="#"> Privacy Policy</a>
-        </p>
+      <div>
+        <div className="footer-down">
+          <p>
+            Copyright © {new Date().getFullYear()} Estimora. Tutti i diritti riservati. &nbsp;|&nbsp;
+            <a href="/termini">Termini e Condizioni</a> &nbsp;|&nbsp;
+            <a href="/privacy-policy">Privacy Policy</a>
+
+          </p>
+        </div>
       </div>
-    </footer>
+    </footer >
   );
 };
 
