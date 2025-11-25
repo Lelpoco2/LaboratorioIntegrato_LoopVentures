@@ -30,9 +30,9 @@ const Footer = () => {
           <div className="footer-links">
             <h4>Chi siamo</h4>
             <ul>
-              <li><a href="#">Valuta la tua casa</a></li>
-              <li><a href="#">Come funziona</a></li>
-              <li><a href="#">Agenti</a></li>
+              <li><a href="#home">Valuta la tua casa</a></li>
+              <li><a href="#steps">Come funziona</a></li>
+              <li><a href="#agents">Agenti</a></li>
               <li><a href="/login">Login</a></li>
             </ul>
           </div>
