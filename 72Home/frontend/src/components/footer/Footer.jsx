@@ -17,7 +17,7 @@ const Footer = () => {
   );
 
   return (
-    <footer className="footer container" role="contentinfo">
+    <footer id="footer" className="footer container" role="contentinfo">
       <div className="footer-up">
         <div className="footer-logo-section">
           <a href="#home">

@@ -1,7 +1,7 @@
 import "./HomePage.css";
 
 import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/footer.jsx";
+import Footer from "../../components/footer/Footer.jsx";
 import HeroSection from "../../components/hero-section/HeroSection";
 import Steps from "../../components/steps/Steps";
 import WhyUs from "../../components/why-us/WhyUs";
