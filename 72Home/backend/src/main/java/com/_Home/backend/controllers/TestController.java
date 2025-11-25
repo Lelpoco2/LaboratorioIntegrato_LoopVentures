@@ -1,11 +1,14 @@
 package com._Home.backend.controllers;
 
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com._Home.backend.models.OmiZone;
@@ -16,12 +19,6 @@ import com._Home.backend.services.implementations.MailServiceImpl;
 import com._Home.backend.services.implementations.PropertyEvaluationServiceImpl;
 import com._Home.backend.services.interfaces.OmiZoneService;
 import com._Home.backend.services.interfaces.UserService;
-
-import io.swagger.v3.oas.annotations.Hidden;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 // Controller for testing various services. It is not show in in the Swagger API documentation.
 
@@ -83,13 +80,11 @@ public class TestController {
     @PostMapping("/send")
     public Map<String, String> sendEmail(
             @RequestParam String toEmail,
-            @RequestParam String name,
-            @RequestParam String activationLink) throws Exception {
+            @RequestParam String name) throws Exception {
 
         try {
             Map<String, String> variables = Map.of(
-                    "name", name,
-                    "activationLink", activationLink);
+                    "name", name);
 
             String htmlBody = templateLoaderService.loadTemplate("template1.html", variables);
 
