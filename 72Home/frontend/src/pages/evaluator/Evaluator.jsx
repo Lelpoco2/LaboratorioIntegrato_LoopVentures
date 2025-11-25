@@ -44,7 +44,6 @@ export default function Evaluator() {
 
   return (
     <>
-      <Navbar />
       <div className="evaluator-section-container">
         <section>
           <div className="evaluator-container">
@@ -82,7 +81,6 @@ export default function Evaluator() {
           </div>
         </section>
       </div>
-      <Footer />
     </>
   );
 }

@@ -2,6 +2,7 @@ import "../styles/Evaluator.css";
 
 import { useState, useEffect } from "react";
 import "../styles/Step5Contact.css";
+import Field from "../components/Field";
 
 const isValidEmail = (email) => {
   // regex per validazione email
@@ -9,12 +10,26 @@ const isValidEmail = (email) => {
   return regexEmail.test(email);
 };
 
-// Validazione cellulare (regole italiane con flessibilità richiesta)
-// - no parentesi
-// - accetta + o 00 come prefisso internazionale
-// - accetta spazi e trattini come separatori
-// - rimuove il prefisso '39' solo se è chiaro che sia un prefisso (c'è +/00 o il numero è più lungo di 10 cifre)
-// - verifica che il corpo contenga solo cifre e rispetti lunghezze tipiche (mobile: 10 cifre inizianti con '3'; telefono fisso: 6-10 cifre)
+/**
+ * Validates Italian phone numbers with flexible formatting.
+ * 
+ * Accepts:
+ * - International prefix: + or 00
+ * - Separators: spaces and hyphens
+ * - Mobile numbers: 10 digits starting with '3' (e.g., 333 1234567)
+ * - Landline numbers: 6-10 digits
+ * 
+ * Rejects:
+ * - Parentheses
+ * - Non-digit characters (except + prefix and allowed separators)
+ * 
+ * Country code '39' handling:
+ * - Removed only when explicitly prefixed with +/00 OR when total length > 10 digits
+ * - This prevents treating local numbers starting with '39' as having country code
+ * 
+ * Examples of valid inputs:
+ * +39 333 1234567, 00393331234567, 333-123-4567, 3331234567, 06 12345678
+ */
 const isValidPhone = (phone) => {
   if (!phone) return false;
 
@@ -66,25 +81,6 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
   };
 
   // Validation
-  // useEffect(() => {
-  //   const errors = {};
-
-  //   if (!formData.firstName) errors.firstName = true;
-  //   if (!formData.lastName) errors.lastName = true;
-  //   if (!formData.email) errors.email = true;
-  //   else if (!isValidEmail(formData.email)) errors.email = true;
-
-  //   // phone: obbligatorio + formato valido
-  //   if (!formData.phone) errors.phone = true;
-  //   else if (!isValidPhone(formData.phone)) errors.phone = true;
-
-  //   if (!formData.purpose) errors.purpose = true;
-  //   const requiresTiming = formData.purpose === "rent_out" || formData.purpose === "sell";
-  //   if (requiresTiming && !formData.timeframe) errors.timeframe = true;
-  //   if (!formData.acceptPrivacy) errors.acceptPrivacy = true;
-
-  //   setStepErrors(errors); // Update parent component state
-  // }, [formData, setStepErrors]);
   useEffect(() => {
     const errors = {};
 
@@ -93,20 +89,15 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
     if (!formData.email) errors.email = true;
     else if (!isValidEmail(formData.email)) errors.email = true;
 
-    // phone: obbligatorio + formato valido
     if (!formData.phone) errors.phone = true;
     else if (!isValidPhone(formData.phone)) errors.phone = true;
-
-    // Esegui la pulizia del numero di telefono per vedere cosa verrà salvato
-    const cleanedPhone = formData.phone.replace(/[\s-]+/g, "");
-    console.log("Numero di telefono che verrà salvato: ", cleanedPhone); // Questo log mostrerà il numero di telefono "ripulito"
 
     if (!formData.purpose) errors.purpose = true;
     const requiresTiming = formData.purpose === "rent_out" || formData.purpose === "sell";
     if (requiresTiming && !formData.timeframe) errors.timeframe = true;
     if (!formData.acceptPrivacy) errors.acceptPrivacy = true;
 
-    setStepErrors(errors); // Update parent component state
+    setStepErrors(errors);
   }, [formData, setStepErrors]);
 
 
@@ -121,43 +112,46 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
 
       {/* Row 1: Name + Surname */}
       <div className="form-row">
-        <div
-          className={`form-group ${touched.firstName && !formData.firstName ? "error" : ""}`}
+        <Field
+          label="Nome"
+          touched={touched.firstName}
+          error={touched.firstName && !formData.firstName ? "Campo obbligatorio" : null}
         >
-          <label>Nome</label>
           <input
             type="text"
             value={formData.firstName || ""}
             onChange={(e) => updateField("firstName", e.target.value)}
             onBlur={() => handleBlur("firstName")}
           />
-          {touched.firstName && !formData.firstName && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
 
-        <div
-          className={`form-group ${touched.lastName && !formData.lastName ? "error" : ""}`}
+        <Field
+          label="Cognome"
+          touched={touched.lastName}
+          error={touched.lastName && !formData.lastName ? "Campo obbligatorio" : null}
         >
-          <label>Cognome</label>
           <input
             type="text"
             value={formData.lastName || ""}
             onChange={(e) => updateField("lastName", e.target.value)}
             onBlur={() => handleBlur("lastName")}
           />
-          {touched.lastName && !formData.lastName && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
       </div>
 
       {/* Row 2: Email + Phone */}
       <div className="form-row">
-        <div
-          className={`form-group ${touched.email && !formData.email ? "error" : ""}`}
+        <Field
+          label="Email"
+          touched={touched.email}
+          error={
+            touched.email && !formData.email
+              ? "Campo obbligatorio"
+              : touched.email && formData.email && !isValidEmail(formData.email)
+              ? 'Formato email non valido. L\'email non può contenere spazi e lettere accentate. Sono ammessi i seguenti caratteri speciali: "-", "+", "_", "%", "$", "&", "=", "!", "~", "*", "`", "?", "." (non come primo o ultimo carattere).'
+              : null
+          }
         >
-          <label>Email</label>
           <input
             type="email"
             placeholder="esempio@mail.com"
@@ -165,20 +159,19 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
             onChange={(e) => updateField("email", e.target.value.trim())}
             onBlur={() => handleBlur("email")}
           />
-          {touched.email && !formData.email && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-          {touched.email && formData.email && !isValidEmail(formData.email) && (
-            <span className="error-message">
-              Formato email non valido. L'email non può contenere spazi e lettere accentate. Sono ammessi i seguenti caratteri speciali: "-", "+", "_", "%", "$", "&", "=", "!", "~", "*", "`", "?", "." (non come primo o ultimo carattere).
-            </span>
-          )}
-        </div>
+        </Field>
 
-        <div
-          className={`form-group ${touched.phone && !formData.phone ? "error" : ""}`}
+        <Field
+          label="Cellulare"
+          touched={touched.phone}
+          error={
+            touched.phone && !formData.phone
+              ? "Campo obbligatorio"
+              : touched.phone && formData.phone && !isValidPhone(formData.phone)
+              ? 'Formato numero non valido. Accetta + o 00 prefisso internazionale; spazi e trattini permessi; NO parentesi. Esempio: +39 333 1234567 o 333-1234567. Numeri che iniziano per "39" non vengono trattati come prefisso a meno che non ci sia +/00 o il numero risulti più lungo di 10 cifre.'
+              : null
+          }
         >
-          <label>Cellulare</label>
           <input
             type="tel"
             placeholder="+39 333 1234567"
@@ -186,60 +179,52 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
             onChange={(e) => updateField("phone", e.target.value)}
             onBlur={() => handleBlur("phone")}
           />
-          {touched.phone && !formData.phone && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-          {touched.phone && formData.phone && !isValidPhone(formData.phone) && (
-            <span className="error-message">
-              Formato numero non valido. Accetta + o 00 prefisso internazionale; spazi e trattini permessi; NO parentesi. Esempio: +39 333 1234567 o 333-1234567. Numeri che iniziano per "39" non vengono trattati come prefisso a meno che non ci sia +/00 o il numero risulti più lungo di 10 cifre.
-            </span>
-          )}
-        </div>
+        </Field>
       </div>
 
       {/* Purpose */}
-      <div
-        className={`more-margin form-group ${touched.purpose && !formData.purpose ? "error" : ""}`}
-      >
-        <label>Motivo della valutazione</label>
-        <select
-          value={formData.purpose || ""}
-          onChange={(e) => updateField("purpose", e.target.value)}
-          onBlur={() => handleBlur("purpose")}
+      <div className="more-margin">
+        <Field
+          label="Motivo della valutazione"
+          touched={touched.purpose}
+          error={touched.purpose && !formData.purpose ? "Campo obbligatorio" : null}
         >
-          <option value="" disabled>
-            Seleziona…
-          </option>
-          <option value="sell">Voglio venderlo</option>
-          <option value="rent_out">Voglio darlo in affitto</option>
-          <option value="info">Mi sto solo informando</option>
-        </select>
-        {touched.purpose && !formData.purpose && (
-          <span className="error-message">Campo obbligatorio</span>
-        )}
-      </div>
-
-      {/* Sub-question: timeframe */}
-      {requiresTiming && (
-        <div
-          className={`more-margin form-group ${touched.timeframe && !formData.timeframe ? "error" : ""}`}
-        >
-          <label>Entro quando?</label>
           <select
-            value={formData.timeframe || ""}
-            onChange={(e) => updateField("timeframe", e.target.value)}
-            onBlur={() => handleBlur("timeframe")}
+            value={formData.purpose || ""}
+            onChange={(e) => updateField("purpose", e.target.value)}
+            onBlur={() => handleBlur("purpose")}
           >
             <option value="" disabled>
               Seleziona…
             </option>
-            <option value="asap">Il prima possibile</option>
-            <option value="6months">Entro 6 mesi</option>
-            <option value="later">Fra più di 6 mesi</option>
+            <option value="sell">Voglio venderlo</option>
+            <option value="rent_out">Voglio darlo in affitto</option>
+            <option value="info">Mi sto solo informando</option>
           </select>
-          {touched.timeframe && !formData.timeframe && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
+        </Field>
+      </div>
+
+      {/* Sub-question: timeframe */}
+      {requiresTiming && (
+        <div className="more-margin">
+          <Field
+            label="Entro quando?"
+            touched={touched.timeframe}
+            error={touched.timeframe && !formData.timeframe ? "Campo obbligatorio" : null}
+          >
+            <select
+              value={formData.timeframe || ""}
+              onChange={(e) => updateField("timeframe", e.target.value)}
+              onBlur={() => handleBlur("timeframe")}
+            >
+              <option value="" disabled>
+                Seleziona…
+              </option>
+              <option value="asap">Il prima possibile</option>
+              <option value="6months">Entro 6 mesi</option>
+              <option value="later">Fra più di 6 mesi</option>
+            </select>
+          </Field>
         </div>
       )}
 
