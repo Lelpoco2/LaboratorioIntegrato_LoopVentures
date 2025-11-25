@@ -1,101 +1,88 @@
 import "./Footer.css";
 import BottoneCTA from "../cta-button/BottoneCTA";
 import EstimoraLogo from "../../assets/logo/estimora-logo.svg";
-import { useNavigate } from "react-router-dom";
+import { InstagramLogoIcon, FacebookLogoIcon, TiktokLogoIcon, PhoneCallIcon, EnvelopeSimpleIcon, WhatsappLogoIcon, MapPinIcon } from "@phosphor-icons/react";
 
 const Footer = () => {
-  const navigate = useNavigate();
+  const ContactItem = ({ Icon, title, value }) => (
+    <div className="contact-item">
+      <div className="contact-icon-wrapper">
+        <Icon size={20} className="contact-icon" />
+      </div>
+      <div>
+        <p className="contact-title">{title}</p>
+        <p className="contact-value">{value}</p>
+      </div>
+    </div>
+  );
 
   return (
     <footer id="footer" className="footer container" role="contentinfo">
       <div className="footer-up">
         <div className="footer-logo-section">
           <a href="#home">
-            <img src={EstimoraLogo} alt="Logo di Estimora" className="footer-logo"/>
+            <img src={EstimoraLogo} alt="Logo di Estimora" className="footer-logo" />
           </a>
-          <BottoneCTA className="footer-btn" />
+          <BottoneCTA />
         </div>
 
-        <nav className="footer-links-container" aria-label="Footer navigation">
+        <div className="footer-links-group">
           <div className="footer-links">
             <h4>Chi siamo</h4>
             <ul>
-              <li>
-                <a href="#">Mission</a>
-              </li>
-              <li>
-                <a href="#">Consegne</a>
-              </li>
-              <li>   <button className="footer-btn" onClick={() => navigate("/login")}>Area Riservata</button>
-        
-      </li>
+              <li><a href="#home">Valuta la tua casa</a></li>
+              <li><a href="#steps">Come funziona</a></li>
+              <li><a href="#agents">Agenti</a></li>
+              <li><a href="/login">Login</a></li>
             </ul>
           </div>
 
           <div className="footer-links">
-            <h4>Servizi</h4>
+            <h4>Services</h4>
             <ul>
-              <li>
-                <a href="#steps">Come funziona</a>
-              </li>
-              <li>
-                <a href="/evaluation">Valuta la tua casa</a>
-              </li>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Condizioni d'utilizzo</a></li>
             </ul>
           </div>
-        </nav>
-
-        <div className="footer-links">
-          <h4>Contatti</h4>
-          <ul>
-            <li>
-              <a href="mailto:contact@us.com">contact@us.com</a>
-            </li>
-            <li>
-              <a href="tel:+14146875892">+41 468 758 92</a>
-            </li>
-          </ul>
         </div>
 
-        <div className="footer-links">
-          <h4>Seguici</h4>
-          <div className="social-icons" aria-label="Social media">
-            <a
-              href="https://www.facebook.com/?locale=it_IT"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook"
-            >
-              f
-            </a>
-            <a
-              href="https://www.instagram.com/?hl=it"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram"
-            >
-              ig
-            </a>
-            <a
-              href="https://twitter.com/?lang=it"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Twitter"
-            >
-              t
-            </a>
+        <div className="footer-contact-and-social">
+          <div className="footer-contact-section">
+            <h4>Contact us</h4>
+            <div className="contact-details">
+              <ContactItem Icon={WhatsappLogoIcon} title="WhatsApp:" value="+39 342 768 9154" />
+              <ContactItem Icon={PhoneCallIcon} title="Phone:" value="+39 011 764 2385" />
+              <ContactItem Icon={EnvelopeSimpleIcon} title="Email:" value="estimora.info@gmail.com" />
+              <ContactItem Icon={MapPinIcon} title="Location:" value="Via Jacopo Durandi 33, TO" />
+            </div>
+          </div>
+
+          <div className="footer-social-section-top">
+            <h4>Follow us</h4>
+            <div className="social-icons" aria-label="Social media">
+              <a href="#" target="_blank" rel="noreferrer" aria-label="TikTok">
+                <TiktokLogoIcon size={20} />
+              </a>
+              <a href="#" target="_blank" rel="noreferrer" aria-label="Facebook">
+                <FacebookLogoIcon size={20} />
+              </a>
+              <a href="#" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <InstagramLogoIcon size={20} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="footer-down">
-        <p>
-          Copyright © {new Date().getFullYear()} - Tutti i diritti riservati.
-          <a href="#"> Termini e Condizioni</a>
-          <a href="#"> Privacy Policy</a>
-        </p>
+      <div>
+        <div className="footer-down">
+          <p>
+            Copyright © {new Date().getFullYear()} Estimora. Tutti i diritti riservati.
+          </p>
+        </div>
       </div>
-    </footer>
+    </footer >
   );
 };
 
