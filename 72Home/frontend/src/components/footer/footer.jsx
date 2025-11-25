@@ -33,7 +33,7 @@ const Footer = () => {
               <li><a href="#">Valuta la tua casa</a></li>
               <li><a href="#">Come funziona</a></li>
               <li><a href="#">Agenti</a></li>
-              <li><a href="#">Login</a></li>
+              <li><a href="/login">Login</a></li>
             </ul>
           </div>
 
@@ -78,10 +78,7 @@ const Footer = () => {
       <div>
         <div className="footer-down">
           <p>
-            Copyright © {new Date().getFullYear()} Estimora. Tutti i diritti riservati. &nbsp;|&nbsp;
-            <a href="/termini">Termini e Condizioni</a> &nbsp;|&nbsp;
-            <a href="/privacy-policy">Privacy Policy</a>
-
+            Copyright © {new Date().getFullYear()} Estimora. Tutti i diritti riservati.
           </p>
         </div>
       </div>

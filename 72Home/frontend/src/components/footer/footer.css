@@ -4,21 +4,28 @@
 
 .footer-up {
     display: flex;
-    justify-content:space-around;
-    align-items: flex-start;
+    justify-content: space-around;
+    align-items: center;
     gap: 20px;
     padding-bottom: 2rem;
 }
 
 .footer-logo-section .footer-logo {
-    max-width: 200px;
+    max-width: 300px;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+}
+.footer-logo-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 0;
 }
 
 .footer-links-group {
     display: flex;
     gap: 80px;
+    margin-bottom: 105px;
 }
 
 .footer-links h4 {
@@ -50,8 +57,9 @@
 
 .footer-contact-and-social {
     display: flex;
-    gap: 40px;
+    gap: 120px;
     align-items: flex-start;
+  
 }
 
 .footer-contact-section h4,
@@ -164,5 +172,89 @@
         flex-direction: column;
         width: 100%;
         gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer {
+        padding: 1rem 0.5rem;
+    }
+    .footer-up {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-bottom: 1rem;
+    }
+    .footer-logo-section {
+        width: 100%;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+    .footer-logo-section .footer-logo {
+        max-width: 200px;
+        padding-top: 40px;
+        height: auto;
+    }
+    .footer-links-group {
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+    .footer-links {
+        margin-bottom: 15px;
+        align-items: center;
+        text-align: center;
+    }
+    .footer-contact-and-social {
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .footer-contact-section,
+    .footer-social-section-top {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+    .contact-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .contact-icon-wrapper {
+        margin: 0 0 5px 0;
+        justify-content: center;
+    }
+    .contact-title, .contact-value {
+        text-align: center;
+        display: block;
+    }
+    .footer-social-section-top .social-icons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+    .bottone-cta {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .footer-down {
+        font-size: 0.8rem;
+        padding-top: 10px;
     }
 }
