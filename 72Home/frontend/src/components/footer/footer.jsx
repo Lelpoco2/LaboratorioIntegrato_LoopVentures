@@ -51,9 +51,9 @@ const Footer = () => {
           <div className="footer-contact-section">
             <h4>Contact us</h4>
             <div className="contact-details">
-              <ContactItem Icon={WhatsappLogoIcon} title="WhatsApp:" value="(414) 687 - 5892" />
-              <ContactItem Icon={PhoneCallIcon} title="Phone:" value="(414) 687 - 5892" />
-              <ContactItem Icon={EnvelopeSimpleIcon} title="Email:" value="contact@brix.com" />
+              <ContactItem Icon={WhatsappLogoIcon} title="WhatsApp:" value="+39 342 768 9154" />
+              <ContactItem Icon={PhoneCallIcon} title="Phone:" value="+39 011 764 2385" />
+              <ContactItem Icon={EnvelopeSimpleIcon} title="Email:" value="estimora.info@gmail.com" />
               <ContactItem Icon={MapPinIcon} title="Location:" value="Via Jacopo Durandi 33, TO" />
             </div>
           </div>
