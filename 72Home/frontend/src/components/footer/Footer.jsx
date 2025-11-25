@@ -1,19 +1,18 @@
 import "./Footer.css";
 import BottoneCTA from "../cta-button/BottoneCTA";
 import EstimoraLogo from "../../assets/logo/estimora-logo.svg";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
-    <footer className="footer container" role="contentinfo">
+    <footer id="footer" className="footer container" role="contentinfo">
       <div className="footer-up">
         <div className="footer-logo-section">
           <a href="#home">
             <img src={EstimoraLogo} alt="Logo di Estimora" className="footer-logo"/>
           </a>
-          {/* <p>
-            Trasparenza, rapidità e esperienza: la stima immobiliare che ti
-            guida.
-          </p> */}
           <BottoneCTA className="footer-btn" />
         </div>
 
@@ -27,6 +26,9 @@ const Footer = () => {
               <li>
                 <a href="#">Consegne</a>
               </li>
+              <li>   <button className="footer-btn" onClick={() => navigate("/login")}>Area Riservata</button>
+        
+      </li>
             </ul>
           </div>
 

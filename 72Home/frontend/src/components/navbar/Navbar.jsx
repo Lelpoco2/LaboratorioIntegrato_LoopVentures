@@ -63,7 +63,7 @@ export default function Navbar() {
               <a href="#why-choose-us" onClick={() => setMenuOpen(false)}>
                 Perché sceglierci
               </a>
-              <a href="#contacts" onClick={() => setMenuOpen(false)}>
+              <a href="#footer" onClick={() => setMenuOpen(false)}>
                 Contatti
               </a>
             </div>
