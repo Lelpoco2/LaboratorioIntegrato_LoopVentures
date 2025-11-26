@@ -28,9 +28,9 @@ public class OmiZoneController {
         return ResponseEntity.ok(omiZoneService.getAllOmiZones());
     }
 
-    @GetMapping("/omizones/{id}")
-    public ResponseEntity<OmiZone> getOmiZoneById(Integer id) {
-        OmiZone omiZone = omiZoneService.getOmiZoneById(id);
+    @GetMapping("/omizones/{name}")
+    public ResponseEntity<List<OmiZone>> getOmiZoneByName(@PathVariable String name) {
+        List<OmiZone> omiZone = omiZoneService.getOmiZoneByOmiZoneName(name);
         if (omiZone != null) {
             return ResponseEntity.ok(omiZone);
         } else {
