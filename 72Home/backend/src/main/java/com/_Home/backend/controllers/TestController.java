@@ -69,10 +69,9 @@ public class TestController {
         return propeval.evaluateProperty(property);
     }
 
-    @GetMapping("/findzone")
-    public OmiZone testFindZone(@RequestParam Double lon, @RequestParam Double lat) {
-        String wktPoint = String.format("POINT(%f %f)", lon, lat);
-        return propeval.getOmiZoneByWktPoint(wktPoint);
+    @GetMapping("/findzone-address")
+    public OmiZone testFindZone(@RequestParam String address) {
+        return propeval.getOmiZoneByAddress(address);
     }
 
     @PostMapping("/evaluate")

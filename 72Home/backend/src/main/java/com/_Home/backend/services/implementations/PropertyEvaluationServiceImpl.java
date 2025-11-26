@@ -92,7 +92,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         throw new UnsupportedOperationException("Unimplemented method 'getPropertyEvaluationById'");
     }
 
-    public OmiZone getOmiZoneByWktPoint(String wktPoint) {
+    public List<OmiZone> getOmiZoneByWktPoint(String wktPoint) {
         return omiZoneRepository.findZoneContainingPoint(wktPoint);
     }
 
@@ -102,11 +102,11 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
             throw new IllegalArgumentException("Impossibile ottenere le coordinate per l'indirizzo fornito: " + address);
         }
         String wktPoint = String.format("POINT(%f %f)", coords[1], coords[0]);
-        OmiZone zone = omiZoneRepository.findZoneContainingPoint(wktPoint);
-        if (zone == null) {
+        List<OmiZone> zones = omiZoneRepository.findZoneContainingPoint(wktPoint);
+        if (zones == null || zones.isEmpty()) {
             throw new IllegalArgumentException("Nessuna zona OMI trovata per l'indirizzo: " + address);
         }
-        return zone;
+        return zones.get(0);
     }
 
 
@@ -158,8 +158,9 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
     private Double calculateBaseSquareMeterSurfacePrice(Double[] coords, Double surfaceArea) {
         
          String wktPoint = String.format("POINT(%f %f)", coords[1], coords[0]);
-         OmiZone omiZone = omiZoneRepository.findZoneContainingPoint(wktPoint);
-         if (omiZone != null) {
+         List<OmiZone> omiZones = omiZoneRepository.findZoneContainingPoint(wktPoint);
+         if (omiZones != null && !omiZones.isEmpty()) {
+            OmiZone omiZone = omiZones.get(0);
             Double avarageSquareMeterPrice = (omiZone.getMaxSelling()+omiZone.getMinSelling()) / 2;
             Double basePrice = avarageSquareMeterPrice * surfaceArea;
             
