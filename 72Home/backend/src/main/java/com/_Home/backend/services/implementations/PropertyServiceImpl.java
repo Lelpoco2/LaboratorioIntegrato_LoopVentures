@@ -1,4 +1,4 @@
-package com._Home.backend.services;
+package com._Home.backend.services.implementations;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com._Home.backend.models.Property;
 import com._Home.backend.repos.PropertyRepo;
+import com._Home.backend.services.interfaces.PropertyService;
 
 
 @Service

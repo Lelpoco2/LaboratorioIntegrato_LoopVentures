@@ -1,9 +1,11 @@
-package com._Home.backend.services;
+package com._Home.backend.services.implementations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com._Home.backend.models.User;
 import com._Home.backend.repos.UserRepo;
+import com._Home.backend.services.interfaces.UserService;
+
 import java.util.List;
 
 @Service

@@ -1,6 +1,8 @@
 package com._Home.backend.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,17 +17,19 @@ import lombok.Data;
 public class User {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String username;
-    private String password;
+    private String firstName;
+    private String lastName;
     private String phone;
     private String email;
     // Set up relationship with Property
-    
+    @JsonIgnore
     @Column(name = "property_id")
     private Integer propertyId;
 
+    @JsonIgnore
     @Column(name = "created_at")
     private java.sql.Timestamp createdAt;
     

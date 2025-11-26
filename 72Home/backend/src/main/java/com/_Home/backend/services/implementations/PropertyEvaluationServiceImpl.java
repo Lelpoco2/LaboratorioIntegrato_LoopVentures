@@ -1,4 +1,4 @@
-package com._Home.backend.services;
+package com._Home.backend.services.implementations;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -20,6 +20,7 @@ import com._Home.backend.models.OmiZone;
 import com._Home.backend.models.Property;
 import com._Home.backend.models.PropertyEvaluation;
 import com._Home.backend.repos.OmiZoneRepo;
+import com._Home.backend.services.interfaces.PropertyEvaluationService;
 
 @Service
 public class PropertyEvaluationServiceImpl implements PropertyEvaluationService {
@@ -93,6 +94,19 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
     public OmiZone getOmiZoneByWktPoint(String wktPoint) {
         return omiZoneRepository.findZoneContainingPoint(wktPoint);
+    }
+
+    public OmiZone getOmiZoneByAddress(String address) {
+        Double[] coords = getLocationByAddress(address);
+        if (coords == null) {
+            throw new IllegalArgumentException("Impossibile ottenere le coordinate per l'indirizzo fornito: " + address);
+        }
+        String wktPoint = String.format("POINT(%f %f)", coords[1], coords[0]);
+        OmiZone zone = omiZoneRepository.findZoneContainingPoint(wktPoint);
+        if (zone == null) {
+            throw new IllegalArgumentException("Nessuna zona OMI trovata per l'indirizzo: " + address);
+        }
+        return zone;
     }
 
 
