@@ -4,6 +4,7 @@ import com._Home.backend.enums.BuildingType;
 import com._Home.backend.enums.Condition;
 import com._Home.backend.enums.EnergeticClass;
 import com._Home.backend.enums.HeatingType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,6 +40,10 @@ public class Property {
     private Integer bathrooms; //
     private HeatingType heatingType; //
     private BuildingType buildingType; //
+
+    @JsonIgnore
+    @Column(name = "created_at")
+    private java.sql.Timestamp createdAt;
 
 
 }

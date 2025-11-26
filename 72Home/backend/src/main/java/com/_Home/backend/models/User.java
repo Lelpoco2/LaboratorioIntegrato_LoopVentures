@@ -1,6 +1,8 @@
 package com._Home.backend.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +27,7 @@ public class User {
     @Column(name = "property_id")
     private Integer propertyId;
 
+    @JsonIgnore
     @Column(name = "created_at")
     private java.sql.Timestamp createdAt;
     
