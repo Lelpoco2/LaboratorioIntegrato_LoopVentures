@@ -80,7 +80,7 @@ public class TestController {
         return propeval.evaluateProperty(property);
     }
 
-    // The errors showing are normals because the Repo classes are not yet fixed.
+    // Check email sending functionality after modifing the PropertyRepo and User model
     @PostMapping("/send")
     public ResponseEntity<Map<String,String>> sendEmail(@RequestBody EmailRequestDTO request) throws Exception {
 
