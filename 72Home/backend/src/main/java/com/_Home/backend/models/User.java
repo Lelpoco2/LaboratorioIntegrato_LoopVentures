@@ -18,7 +18,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
-    private String password;
     private String phone;
     private String email;
     // Set up relationship with Property

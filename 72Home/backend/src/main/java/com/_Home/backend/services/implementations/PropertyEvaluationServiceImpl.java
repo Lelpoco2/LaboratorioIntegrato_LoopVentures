@@ -96,6 +96,19 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         return omiZoneRepository.findZoneContainingPoint(wktPoint);
     }
 
+    public OmiZone getOmiZoneByAddress(String address) {
+        Double[] coords = getLocationByAddress(address);
+        if (coords == null) {
+            throw new IllegalArgumentException("Impossibile ottenere le coordinate per l'indirizzo fornito: " + address);
+        }
+        String wktPoint = String.format("POINT(%f %f)", coords[1], coords[0]);
+        OmiZone zone = omiZoneRepository.findZoneContainingPoint(wktPoint);
+        if (zone == null) {
+            throw new IllegalArgumentException("Nessuna zona OMI trovata per l'indirizzo: " + address);
+        }
+        return zone;
+    }
+
 
     //! Private methods for evaluation calculations
 
