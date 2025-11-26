@@ -96,7 +96,7 @@ public class TestController {
             OmiZone omiZone = propeval.getOmiZoneByAddress(fullAddress);
 
             Map<String, String> variables = Map.of(
-                    "name", String.valueOf(user.getUsername()),
+                    "name", String.valueOf(user.getFirstName()),
                     "valuation", String.valueOf(valuation),
                     "valuationMin", String.valueOf(omiZone.getMinSelling()),
                     "valuationMax", String.valueOf(omiZone.getMaxSelling()),

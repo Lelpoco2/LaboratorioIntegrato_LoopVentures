@@ -17,13 +17,15 @@ import lombok.Data;
 public class User {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String username;
+    private String firstName;
+    private String lastName;
     private String phone;
     private String email;
     // Set up relationship with Property
-    
+    @JsonIgnore
     @Column(name = "property_id")
     private Integer propertyId;
 

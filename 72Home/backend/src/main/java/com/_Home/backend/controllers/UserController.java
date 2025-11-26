@@ -46,7 +46,9 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable Integer id, @RequestBody User userDetails) {
         User existingUser = userService.getUserById(id);
         if (existingUser != null) {
-            existingUser.setUsername(userDetails.getUsername());
+            existingUser.setFirstName(userDetails.getFirstName());
+            existingUser.setLastName(userDetails.getLastName());
+            existingUser.setPhone(userDetails.getPhone());
             existingUser.setEmail(userDetails.getEmail());
             // Update other fields as necessary
             User updatedUser = userService.updateUser(existingUser);

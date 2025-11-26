@@ -20,6 +20,7 @@ import lombok.Data;
 public class Property {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String address;
