@@ -6,7 +6,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +32,26 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
 
     @Override
-    public Double evaluateProperty(Property property) {
+    public Map<String, Double> evaluateProperty(Property property) {
         
         Double totalCoefficient = 0.0;
         
-        Double[] coords = getLocationByAddress(property.getAddress() + "," + property.getZipCode() + property.getCity());
+        Double[] coords = getLocationByAddress(property.getAddress() + ", " + property.getZipCode() + " " + property.getCity());
+        
+        if (coords == null) {
+            throw new IllegalArgumentException("Impossibile ottenere le coordinate per l'indirizzo fornito: " + 
+                property.getAddress() + ", " + property.getZipCode() + " " + property.getCity());
+        }
 
-        Double basePrice = calculateBaseSquareMeterSurfacePrice(coords, property.getSurfaceArea());
+        // Fetch OMI zones once for this location
+        String wktPoint = String.format("POINT(%f %f)", coords[1], coords[0]);
+        List<OmiZone> omiZones = omiZoneRepository.findZoneContainingPoint(wktPoint);
+        
+        if (omiZones == null || omiZones.isEmpty()) {
+            throw new IllegalArgumentException("Nessuna zona OMI trovata per le coordinate fornite.");
+        }
+
+        Double basePrice = calculateBaseSquareMeterSurfacePrice(omiZones, property.getSurfaceArea());
 
         Double roomCoeff = roomCoefficent(property.getRooms());
         
@@ -69,8 +84,28 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
                          * conditionCoeff * energyClassCoeff * buildingTypeCoeff * heatingTypeCoeff;
 
         Double finalPrice = basePrice * totalCoefficient;
-
-        return Math.round(finalPrice * 100.0) / 100.0;
+        Double propertyPrice = Math.round(finalPrice * 100.0) / 100.0;
+        
+        Map<String, Double> result = new HashMap<>();
+        result.put("propertyPrice", propertyPrice);
+        
+        // Calculate box price separately if hasBox is true and boxSurfaceArea is provided
+        if (property.getHasBox() != null && property.getHasBox() && 
+            property.getBoxSurfaceArea() != null && property.getBoxSurfaceArea() > 0) {
+            try {
+                Double boxPrice = calculateBoxSurfacePrice(omiZones, property.getBoxSurfaceArea());
+                result.put("boxPrice", Math.round(boxPrice * 100.0) / 100.0);
+            } catch (IllegalArgumentException e) {
+                // Box OMI data not available for this location, set to 0
+                result.put("boxPrice", 0.0);
+            }
+        } else {
+            result.put("boxPrice", 0.0); 
+        }
+        
+        result.put("totalPrice", result.get("propertyPrice") + result.get("boxPrice"));
+        
+        return result;
         
     }
 
@@ -96,7 +131,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         return omiZoneRepository.findZoneContainingPoint(wktPoint);
     }
 
-    public OmiZone getOmiZoneByAddress(String address) {
+    public List<OmiZone> getOmiZoneByAddress(String address) {
         Double[] coords = getLocationByAddress(address);
         if (coords == null) {
             throw new IllegalArgumentException("Impossibile ottenere le coordinate per l'indirizzo fornito: " + address);
@@ -106,7 +141,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         if (zones == null || zones.isEmpty()) {
             throw new IllegalArgumentException("Nessuna zona OMI trovata per l'indirizzo: " + address);
         }
-        return zones.get(0);
+        return zones;
     }
 
 
@@ -155,19 +190,27 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         return null;
     }
 
-    private Double calculateBaseSquareMeterSurfacePrice(Double[] coords, Double surfaceArea) {
+    private Double calculateBaseSquareMeterSurfacePrice(List<OmiZone> omiZones, Double surfaceArea) {
+        // Filter for "Abitazioni civili" with "NORMALE" or "OTTIMO" status
+        List<OmiZone> filteredZones = omiZones.stream()
+            .filter(zone -> "Abitazioni civili".equals(zone.getDescription()))
+            .filter(zone -> zone.getStatus() != null && 
+                ("NORMALE".equals(zone.getStatus().name()) || "OTTIMO".equals(zone.getStatus().name())))
+            .toList();
         
-         String wktPoint = String.format("POINT(%f %f)", coords[1], coords[0]);
-         List<OmiZone> omiZones = omiZoneRepository.findZoneContainingPoint(wktPoint);
-         if (omiZones != null && !omiZones.isEmpty()) {
-            OmiZone omiZone = omiZones.get(0);
-            Double avarageSquareMeterPrice = (omiZone.getMaxSelling()+omiZone.getMinSelling()) / 2;
-            Double basePrice = avarageSquareMeterPrice * surfaceArea;
-            
-            return basePrice;
-         } 
-
-        throw new IllegalArgumentException("Nessuna zona OMI trovata per le coordinate fornite.");
+        if (filteredZones.isEmpty()) {
+            throw new IllegalArgumentException("Nessuna zona OMI per 'Abitazioni civili' con stato 'NORMALE' o 'OTTIMO' trovata.");
+        }
+        
+        // Calculate average price across all matching zones
+        Double totalAveragePrice = filteredZones.stream()
+            .mapToDouble(zone -> (zone.getMaxSelling() + zone.getMinSelling()) / 2)
+            .average()
+            .orElseThrow(() -> new IllegalArgumentException("Errore nel calcolo del prezzo medio."));
+        
+        Double basePrice = totalAveragePrice * surfaceArea;
+        
+        return basePrice;
     }
 
     private Double roomCoefficent(Integer room)
@@ -286,6 +329,32 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         }
     }
 
+
+    private Double calculateBoxSurfacePrice(List<OmiZone> omiZones, Double boxSurfaceArea) {
+        // Filter for "Box" or "Autorimesse" description with "BUONO", "NORMALE" or "OTTIMO" status
+        List<OmiZone> filteredBoxZones = omiZones.stream()
+            .filter(zone -> zone.getDescription() != null && 
+                (zone.getDescription().contains("Box") || zone.getDescription().contains("Autorimesse")))
+            .filter(zone -> zone.getStatus() != null && 
+                ("BUONO".equals(zone.getStatus().name()) || 
+                 "NORMALE".equals(zone.getStatus().name()) || 
+                 "OTTIMO".equals(zone.getStatus().name())))
+            .toList();
+        
+        if (filteredBoxZones.isEmpty()) {
+            throw new IllegalArgumentException("Nessuna zona OMI per 'Box/Autorimesse' con stato 'BUONO', 'NORMALE' o 'OTTIMO' trovata.");
+        }
+        
+        // Calculate average price across all matching box zones
+        Double totalAverageBoxPrice = filteredBoxZones.stream()
+            .mapToDouble(zone -> (zone.getMaxSelling() + zone.getMinSelling()) / 2)
+            .average()
+            .orElseThrow(() -> new IllegalArgumentException("Errore nel calcolo del prezzo medio del Box."));
+        
+        Double boxPrice = totalAverageBoxPrice * boxSurfaceArea;
+        
+        return boxPrice;
+    }
 
     private Double boxCoefficient (Boolean hasBox) {
         return hasBox ? 1.03 : 1.0;

@@ -11,7 +11,7 @@ import com._Home.backend.models.OmiZone;
 @Repository
 public interface OmiZoneRepo extends JpaRepository<OmiZone, Integer> {
 
-	@Query(value = "SELECT * FROM omi_zones o WHERE ST_Intersects(o.geometry, ST_GeomFromText(?1, 4326)) = 1 LIMIT 1", nativeQuery = true)
+	@Query(value = "SELECT * FROM omi_zones o WHERE ST_Intersects(o.geometry, ST_GeomFromText(?1, 4326)) = 1", nativeQuery = true)
 	List<OmiZone> findZoneContainingPoint(String wktPoint);
 
 	List<OmiZone> findByOmiZone(String omiZone);
