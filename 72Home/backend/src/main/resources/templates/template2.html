@@ -60,8 +60,8 @@
                 Abbiamo calcolato il valore stimato sulla base dei dati inseriti e dei valori di zona aggiornati.
               </p>
 
-              <!-- Valore principale -->
-              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+              <!-- Valore principale - Immobile -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
                 <tr>
                   <td align="center">
                     <div class="value-box" style="display:inline-block; padding:18px 24px; border-radius:14px; background-color:#eff6ff; border:1px solid #dbeafe; min-width:260px;">
@@ -69,13 +69,54 @@
                         Valore stimato dell'immobile
                       </div>
                       <div style="font-size:30px; font-weight:700; color:#1e3a8a; margin-bottom:4px;">
-                        {{valuation}} €
+                        {{propertyPrice}} €
                       </div>
                       <div style="font-size:12px; color:#6b7280;">
                         Intervallo stimato: 
                         <span style="font-weight:500; color:#111827;">
                           {{valuationMin}} € - {{valuationMax}} €
                         </span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Valore Box/Garage -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:16px;">
+                <tr>
+                  <td align="center">
+                    <div class="value-box" style="display:inline-block; padding:18px 24px; border-radius:14px; background-color:#f0fdf4; border:1px solid #bbf7d0; min-width:260px;">
+                      <div style="font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:#15803d; margin-bottom:6px;">
+                        Valore stimato del box/garage
+                      </div>
+                      <div style="font-size:28px; font-weight:700; color:#166534; margin-bottom:4px;">
+                        {{boxPrice}} €
+                      </div>
+                      <div style="font-size:12px; color:#6b7280;">
+                        Superficie box: 
+                        <span style="font-weight:500; color:#111827;">
+                          {{boxSurface}} m²
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Valore Totale -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:20px;">
+                <tr>
+                  <td align="center">
+                    <div class="value-box" style="display:inline-block; padding:20px 28px; border-radius:14px; background:linear-gradient(135deg,#fef3c7,#fde68a); border:2px solid #fbbf24; min-width:280px;">
+                      <div style="font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:#92400e; margin-bottom:8px; font-weight:600;">
+                        Valore totale stimato
+                      </div>
+                      <div style="font-size:34px; font-weight:800; color:#92400e; margin-bottom:2px;">
+                        {{totalPrice}} €
+                      </div>
+                      <div style="font-size:11px; color:#78716c; font-weight:500;">
+                        Immobile + Box/Garage
                       </div>
                     </div>
                   </td>

@@ -6,8 +6,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -88,17 +91,16 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
                          * conditionCoeff * energyClassCoeff * buildingTypeCoeff * heatingTypeCoeff;
 
         Double finalPrice = basePrice * totalCoefficient;
-        Double propertyPrice = Math.round(finalPrice * 100.0) / 100.0;
         
         Map<String, Double> result = new HashMap<>();
-        result.put("propertyPrice", propertyPrice);
+        result.put("propertyPrice", finalPrice);
         
         // Calculate box price separately if hasBox is true and boxSurfaceArea is provided
         if (property.getHasBox() != null && property.getHasBox() && 
             property.getBoxSurfaceArea() != null && property.getBoxSurfaceArea() > 0) {
             try {
                 Double boxPrice = calculateBoxSurfacePrice(omiZones, property.getBoxSurfaceArea());
-                result.put("boxPrice", Math.round(boxPrice * 100.0) / 100.0);
+                result.put("boxPrice", boxPrice);
             } catch (IllegalArgumentException e) {
                 // Box OMI data not available for this location, set to 0
                 result.put("boxPrice", 0.0);
@@ -367,5 +369,18 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
     private Double terraceCoefficient (Boolean hasTerrace) {
         return hasTerrace ? 1.07 : 1.0;
+    }
+
+    /**
+     * Rounds price to nearest hundred and formats with thousand separators
+     * Example: 493450.0 -> 493400 -> "493.400"
+     */
+    private String formatPrice(Double price) {
+        // Round to nearest hundred
+        long rounded = Math.round(price / 100.0) * 100;
+        
+        // Format with thousand separator (dot)
+        DecimalFormat formatter = new DecimalFormat("#,###", DecimalFormatSymbols.getInstance(Locale.ITALIAN));
+        return formatter.format(rounded);
     }
 }

@@ -1,6 +1,9 @@
 package com._Home.backend.controllers;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,26 +79,51 @@ public class MainController {
                 .findFirst()
                 .orElse(omiZones.get(0));
 
-            // 6. Prepare template variables
-            Map<String, String> variables = Map.of(
-                "name", String.valueOf(savedUser.getFirstName()),
-                "valuation", String.valueOf(propertyValue),
-                "valuationMin", String.valueOf(omiZone.getMinSelling()),
-                "valuationMax", String.valueOf(omiZone.getMaxSelling()),
-                "propertyAddress", String.valueOf(savedProperty.getAddress()),
-                "surface", String.valueOf(savedProperty.getSurfaceArea()),
-                "rooms", String.valueOf(savedProperty.getRooms()),
-                "floor", String.valueOf(savedProperty.getFloor()),
-                "energyClass", String.valueOf(savedProperty.getEnergeticClass()));
+            // 6. Prepare template variables with formatted prices
+            String templateName;
+            Map<String, String> variables;
+            
+            // Check if property has a box to determine which template to use
+            if (savedProperty.getHasBox() != null && savedProperty.getHasBox() && 
+                savedProperty.getBoxSurfaceArea() != null && savedProperty.getBoxSurfaceArea() > 0) {
+                // Use template2 for properties with box
+                templateName = "template2.html";
+                variables = Map.ofEntries(
+                    Map.entry("name", String.valueOf(savedUser.getFirstName())),
+                    Map.entry("propertyPrice", formatPrice(evaluationResult.get("propertyPrice"))),
+                    Map.entry("boxPrice", formatPrice(evaluationResult.get("boxPrice"))),
+                    Map.entry("totalPrice", formatPrice(propertyValue)),
+                    Map.entry("valuationMin", formatPrice(omiZone.getMinSelling())),
+                    Map.entry("valuationMax", formatPrice(omiZone.getMaxSelling())),
+                    Map.entry("propertyAddress", String.valueOf(savedProperty.getAddress())),
+                    Map.entry("surface", String.valueOf(savedProperty.getSurfaceArea())),
+                    Map.entry("boxSurface", String.valueOf(savedProperty.getBoxSurfaceArea())),
+                    Map.entry("rooms", String.valueOf(savedProperty.getRooms())),
+                    Map.entry("floor", String.valueOf(savedProperty.getFloor())),
+                    Map.entry("energyClass", String.valueOf(savedProperty.getEnergeticClass())));
+            } else {
+                // Use template1 for properties without box
+                templateName = "template1.html";
+                variables = Map.of(
+                    "name", String.valueOf(savedUser.getFirstName()),
+                    "valuation", formatPrice(propertyValue),
+                    "valuationMin", formatPrice(omiZone.getMinSelling()),
+                    "valuationMax", formatPrice(omiZone.getMaxSelling()),
+                    "propertyAddress", String.valueOf(savedProperty.getAddress()),
+                    "surface", String.valueOf(savedProperty.getSurfaceArea()),
+                    "rooms", String.valueOf(savedProperty.getRooms()),
+                    "floor", String.valueOf(savedProperty.getFloor()),
+                    "energyClass", String.valueOf(savedProperty.getEnergeticClass()));
+            }
 
             // 7. Load template and send email
-            String htmlBody = templateLoaderService.loadTemplate("template1.html", variables);
+            String htmlBody = templateLoaderService.loadTemplate(templateName, variables);
             mailService.sendEvaluationEmail(savedUser.getEmail(), "La Tua Valutazione Immobiliare", htmlBody);
             
             // Return success response
             return ResponseEntity.ok(Map.of(
                 "message", "Form submitted successfully",
-                "propertyValue", String.valueOf(propertyValue)
+                "propertyValue", formatPrice(propertyValue)
             ));
             
         } catch (Exception e) {
@@ -104,5 +132,18 @@ public class MainController {
                 "details", e.getMessage()
             ));
         }
+    }
+
+    /**
+     * Formats price to nearest hundred with thousand separators
+     * Example: 493450.0 -> "493.400"
+     */
+    private String formatPrice(Double price) {
+        // Round to nearest hundred
+        long rounded = Math.round(price / 100.0) * 100;
+        
+        // Format with thousand separator (dot)
+        DecimalFormat formatter = new DecimalFormat("#,###", DecimalFormatSymbols.getInstance(Locale.ITALIAN));
+        return formatter.format(rounded);
     }
 }
