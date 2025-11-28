@@ -26,16 +26,31 @@
 }
 
 .feedback-text {
-  font-size: 18px;
+  font-size: 1.1rem;
   line-height: 1.6;
   color: #4a4a4a;
-  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .feedback-text.secondary {
-  font-size: 16px;
+  font-size: 1rem;
   color: #6b6b6b;
   margin-bottom: 30px;
+}
+
+.feedback-contact-info {
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 25px 0;
+  padding-bottom: 35px;
+}
+
+.feedback-contact-detail {
+  font-size: 16px;
+  color: #333;
+  margin: 8px 0;
+  word-break: break-word;
 }
 
 .home-button {

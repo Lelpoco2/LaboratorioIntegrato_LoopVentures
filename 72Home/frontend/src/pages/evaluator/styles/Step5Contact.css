@@ -4,10 +4,9 @@
 }
 
 .step-subtitle {
-  font-size: 15px;
+  font-size: 1.1rem;
   color: #6b6b6b;
-  margin-top: -10px;
-  margin-bottom: 15px;
+  line-height: 19px;
 }
 
 .form-row {
@@ -38,17 +37,6 @@
   background: white;
 }
 
-.form-group.error input,
-.form-group.error select {
-  border-color: #c40000;
-}
-
-.error-message {
-  color: #c40000;
-  font-size: 14px;
-  margin-top: 5px;
-}
-
 /* Checkbox rows */
 .checkbox-row {
   display: flex;
@@ -58,6 +46,23 @@
   font-size: 16px;
 }
 
+/* Fix dimensione checkbox per uniformità */
+.checkbox-row input[type="checkbox"] {
+  width: 20px; /* dimensione fissa */
+  height: 20px; /* dimensione fissa */
+  min-width: 20px; /* prevenire ridimensionamenti */
+  min-height: 20px;
+  /* cursor: pointer; */
+  /* accent-color: #149854; colore del checkmark su browser moderni */
+  flex-shrink: 0; /* non si rimpicciolisca con il gap */
+}
+
+/* Allineamento verticale del testo con la checkbox */
+.checkbox-row .more-margin-left {
+  line-height: 1.4;
+  display: inline-block;
+}
+
 .less-margin {
   margin-top: -20px;
   margin-left: 40px;
@@ -65,13 +70,18 @@
 }
 
 .less-margin-top {
-    margin-top: -15px;
+  margin-top: -15px;
 }
 
-/* .checkbox-row input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-} */
+.inline-link {
+  color: #149854;
+  text-decoration: none;
+}
+
+.inline-link:hover {
+  color: #0ac364;
+  text-decoration: underline;
+}
 
 /* Error style for checkbox */
 .checkbox-row.error {

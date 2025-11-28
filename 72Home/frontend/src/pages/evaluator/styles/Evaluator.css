@@ -1,7 +1,7 @@
-.form-group.error input,
+/* .form-group.error input,
 .form-group.error select {
   border-color: rgb(204, 1, 1);
-}
+} */
 
 .error-message {
   color: rgb(204, 1, 1);
@@ -27,10 +27,38 @@
   align-content: space-between;
 }
 
+/* Grid layout: left stepper + right main form on larger screens */
+.evaluator-grid {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.evaluator-left {
+  width: 280px; /* fixed width for stepper */
+}
+
+.evaluator-main {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .evaluator-card {
   padding: 40px;
   border-radius: 16px;
   background: #ffffff;
   border: 1px solid #d4c8b8;
   box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 768px) {
+  /* On small screens revert to single column: hide left column by CSS inside StepNavigation */
+  .evaluator-grid {
+    flex-direction: column;
+  }
+
+  /* keep left column visible on small screens; StepNavigation controls which view (horizontal/vertical) appears */
 }
