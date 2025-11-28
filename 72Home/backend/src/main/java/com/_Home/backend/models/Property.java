@@ -4,6 +4,7 @@ import com._Home.backend.enums.BuildingType;
 import com._Home.backend.enums.Condition;
 import com._Home.backend.enums.EnergeticClass;
 import com._Home.backend.enums.HeatingType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,6 +20,7 @@ import lombok.Data;
 public class Property {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String address;
@@ -39,6 +41,10 @@ public class Property {
     private Integer bathrooms; //
     private HeatingType heatingType; //
     private BuildingType buildingType; //
+
+    @JsonIgnore
+    @Column(name = "created_at")
+    private java.sql.Timestamp createdAt;
 
 
 }
