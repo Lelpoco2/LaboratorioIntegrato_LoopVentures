@@ -3,6 +3,8 @@ package com._Home.backend.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +32,8 @@ public class User {
     private Integer propertyId;
 
     @JsonIgnore
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private java.sql.Timestamp createdAt;
     
 }

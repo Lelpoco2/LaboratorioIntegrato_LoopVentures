@@ -1,5 +1,7 @@
 package com._Home.backend.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -31,6 +33,7 @@ public class PropertyEvaluation {
     private Double propertyValue;
 
     @JsonIgnore
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private java.sql.Timestamp createdAt;
 }

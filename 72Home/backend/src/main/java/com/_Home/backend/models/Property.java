@@ -6,6 +6,8 @@ import com._Home.backend.enums.EnergeticClass;
 import com._Home.backend.enums.HeatingType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,7 +45,8 @@ public class Property {
     private BuildingType buildingType; //
 
     @JsonIgnore
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private java.sql.Timestamp createdAt;
 
 

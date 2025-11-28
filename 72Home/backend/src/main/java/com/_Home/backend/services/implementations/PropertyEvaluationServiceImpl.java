@@ -22,6 +22,7 @@ import com._Home.backend.models.OmiZone;
 import com._Home.backend.models.Property;
 import com._Home.backend.models.PropertyEvaluation;
 import com._Home.backend.repos.OmiZoneRepo;
+import com._Home.backend.repos.PropertyEvaluationRepo;
 import com._Home.backend.services.interfaces.PropertyEvaluationService;
 
 @Service
@@ -29,6 +30,9 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
     @Autowired
     private OmiZoneRepo omiZoneRepository;
+
+    @Autowired
+    private PropertyEvaluationRepo propertyEvaluationRepo;
 
 
     @Override
@@ -111,20 +115,17 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
     @Override
     public List<PropertyEvaluation> getAllPropertyEvaluations() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllPropertyEvaluations'");
+        return propertyEvaluationRepo.findAll();
     }
 
     @Override
     public PropertyEvaluation savePropertyEvaluation(PropertyEvaluation propertyEvaluation) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'savePropertyEvaluation'");
+        return propertyEvaluationRepo.save(propertyEvaluation);
     }
 
     @Override
     public PropertyEvaluation getPropertyEvaluationById(Integer id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPropertyEvaluationById'");
+        return propertyEvaluationRepo.findById(id).orElse(null);
     }
 
     public List<OmiZone> getOmiZoneByWktPoint(String wktPoint) {
