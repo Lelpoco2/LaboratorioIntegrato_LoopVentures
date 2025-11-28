@@ -21,8 +21,8 @@ public class OmiZoneImpl implements OmiZoneService {
     }
 
     @Override
-    public OmiZone getOmiZoneById(Integer id) {
-        return omiZoneRepo.findById(id).orElse(null);
+    public List<OmiZone> getOmiZoneByOmiZoneName(String name) {
+        return omiZoneRepo.findByOmiZone(name);
     }
 
     @Override

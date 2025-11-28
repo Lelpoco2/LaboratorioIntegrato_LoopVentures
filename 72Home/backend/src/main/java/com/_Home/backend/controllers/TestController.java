@@ -23,6 +23,8 @@ import com._Home.backend.services.implementations.PropertyEvaluationServiceImpl;
 import com._Home.backend.services.interfaces.OmiZoneService;
 import com._Home.backend.services.interfaces.UserService;
 
+import io.swagger.v3.oas.annotations.Hidden;
+
 // Controller for testing various services. It is not show in in the Swagger API documentation.
 
 @RestController
@@ -64,20 +66,20 @@ public class TestController {
         return omiZoneService.getAllOmiZones();
     }
 
+    @Hidden
     @GetMapping("/calculate")
-    public Double getPrice(@RequestParam Property property) {
+    public Map<String, Double> getPrice(@RequestParam Property property) {
         return propeval.evaluateProperty(property);
     }
 
-    @GetMapping("/findzone")
-    public OmiZone testFindZone(@RequestParam Double lon, @RequestParam Double lat) {
-        String wktPoint = String.format("POINT(%f %f)", lon, lat);
-        return propeval.getOmiZoneByWktPoint(wktPoint);
+    @GetMapping("/findzone-address")
+    public List<OmiZone> testFindZone(@RequestParam String address) {
+        return propeval.getOmiZoneByAddress(address);
     }
 
     @PostMapping("/evaluate")
-    public Double evaluateFullProperty(@RequestBody Property property) {
-        return propeval.evaluateProperty(property);
+    public ResponseEntity<Map<String, Double>> evaluateFullProperty(@RequestBody Property property) {
+        return ResponseEntity.ok(propeval.evaluateProperty(property));
     }
 
     // Check email sending functionality after modifing the PropertyRepo and User model
@@ -89,11 +91,18 @@ public class TestController {
             Property property = request.getProperty();
             
             // Get property valuation
-            Double valuation = propeval.evaluateProperty(property);
+            Map<String, Double> evaluationResult = propeval.evaluateProperty(property);
+            Double valuation = evaluationResult.get("totalPrice");
             
             // Get OmiZone by address to retrieve min/max selling values
-            String fullAddress = property.getAddress() + "," + property.getZipCode() + property.getCity();
-            OmiZone omiZone = propeval.getOmiZoneByAddress(fullAddress);
+            String fullAddress = property.getAddress() + ", " + property.getZipCode() + " " + property.getCity();
+            List<OmiZone> omiZones = propeval.getOmiZoneByAddress(fullAddress);
+            
+            // Use the first zone for 'Abitazioni civili' if available
+            OmiZone omiZone = omiZones.stream()
+                .filter(zone -> "Abitazioni civili".equals(zone.getDescription()))
+                .findFirst()
+                .orElse(omiZones.get(0));
 
             Map<String, String> variables = Map.of(
                     "name", String.valueOf(user.getFirstName()),

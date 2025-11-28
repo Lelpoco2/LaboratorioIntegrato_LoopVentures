@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -46,5 +47,9 @@ public class Property {
     @Column(name = "created_at")
     private java.sql.Timestamp createdAt;
 
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new java.sql.Timestamp(System.currentTimeMillis());
+    }
 
 }
