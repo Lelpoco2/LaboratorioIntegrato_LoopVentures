@@ -95,7 +95,7 @@ public class MainController {
                     Map.entry("totalPrice", formatPrice(propertyValue)),
                     Map.entry("valuationMin", formatPrice(omiZone.getMinSelling())),
                     Map.entry("valuationMax", formatPrice(omiZone.getMaxSelling())),
-                    Map.entry("propertyAddress", String.valueOf(savedProperty.getAddress())),
+                    Map.entry("propertyAddress", String.valueOf(savedProperty.getAddress() + " " + savedProperty.getCivicNumber() + ", " + savedProperty.getCity() + " " + savedProperty.getZipCode())),
                     Map.entry("surface", String.valueOf(savedProperty.getSurfaceArea())),
                     Map.entry("boxSurface", String.valueOf(savedProperty.getBoxSurfaceArea())),
                     Map.entry("rooms", String.valueOf(savedProperty.getRooms())),
