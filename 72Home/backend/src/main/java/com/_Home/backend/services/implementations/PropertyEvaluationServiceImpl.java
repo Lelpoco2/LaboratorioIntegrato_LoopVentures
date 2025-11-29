@@ -158,6 +158,8 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
         try {
             String encodedAddress = URLEncoder.encode(address, "UTF-8");
             String urlString = "https://nominatim.openstreetmap.org/search?q=" + encodedAddress + "&format=json&limit=1";
+
+            // 'https://serpapi.com/search.json?engine=google_maps&q=' + address 
             
             HttpURLConnection conn = (HttpURLConnection) URI.create(urlString).toURL().openConnection();
 
