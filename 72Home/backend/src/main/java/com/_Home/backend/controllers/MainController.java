@@ -70,7 +70,9 @@ public class MainController {
             propertyEvaluationService.savePropertyEvaluation(propertyEvaluation);
             
             // 5. Get OmiZone data for the email template
-            String fullAddress = savedProperty.getAddress() + ", " + savedProperty.getZipCode() + " " + savedProperty.getCity();
+            String fullAddress = savedProperty.getAddress() + 
+                (savedProperty.getCivicNumber() != null ? " " + savedProperty.getCivicNumber() : "") + 
+                ", " + savedProperty.getZipCode() + " " + savedProperty.getCity();
             List<OmiZone> omiZones = propertyEvaluationServiceImpl.getOmiZoneByAddress(fullAddress);
             
             // Use the first zone for 'Abitazioni civili' if available
@@ -95,7 +97,8 @@ public class MainController {
                     Map.entry("totalPrice", formatPrice(propertyValue)),
                     Map.entry("valuationMin", formatPrice(omiZone.getMinSelling())),
                     Map.entry("valuationMax", formatPrice(omiZone.getMaxSelling())),
-                    Map.entry("propertyAddress", String.valueOf(savedProperty.getAddress() + " " + savedProperty.getCivicNumber() + ", " + savedProperty.getCity() + " " + savedProperty.getZipCode())),
+                    Map.entry("propertyAddress", savedProperty.getAddress() + 
+                        (savedProperty.getCivicNumber() != null ? " " + savedProperty.getCivicNumber() : "")),
                     Map.entry("surface", String.valueOf(savedProperty.getSurfaceArea())),
                     Map.entry("boxSurface", String.valueOf(savedProperty.getBoxSurfaceArea())),
                     Map.entry("rooms", String.valueOf(savedProperty.getRooms())),
@@ -109,7 +112,8 @@ public class MainController {
                     "valuation", formatPrice(propertyValue),
                     "valuationMin", formatPrice(omiZone.getMinSelling()),
                     "valuationMax", formatPrice(omiZone.getMaxSelling()),
-                    "propertyAddress", String.valueOf(savedProperty.getAddress()),
+                    "propertyAddress", savedProperty.getAddress() + 
+                        (savedProperty.getCivicNumber() != null ? " " + savedProperty.getCivicNumber() : ""),
                     "surface", String.valueOf(savedProperty.getSurfaceArea()),
                     "rooms", String.valueOf(savedProperty.getRooms()),
                     "floor", String.valueOf(savedProperty.getFloor()),

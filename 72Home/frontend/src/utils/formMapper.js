@@ -57,8 +57,11 @@ export const buildBackendPayload = (formData) => {
   payload.property = {};
 
   // Step 1: Address
-  if (formData.street && formData.streetNumber) {
-    payload.property.address = `${formData.street} ${formData.streetNumber}`;
+  if (formData.street) {
+    payload.property.address = formData.street;
+  }
+  if (formData.streetNumber) {
+    payload.property.civicNumber = formData.streetNumber;
   }
   if (formData.city) payload.property.city = formData.city;
   if (formData.zip) payload.property.zipCode = formData.zip;
