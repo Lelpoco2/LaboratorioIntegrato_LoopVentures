@@ -31,7 +31,7 @@ export default function Step2PropertyType({
   };
   return (
     <div className="step-card">
-      <h2>Tipologia di Immobile</h2>
+      <h2 className="step2-h2">Tipologia di Immobile</h2>
 
       <div className="property-type-cards">
         <div

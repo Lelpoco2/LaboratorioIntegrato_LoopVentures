@@ -1,5 +1,5 @@
 import "../styles/StepNavigation.css";
-import { CheckCircle } from "@phosphor-icons/react";
+import { CheckCircleIcon } from "@phosphor-icons/react";
 
 export default function StepNavigation({ currentStep = 0 }) {
   // Visual steps: Tipologia and Caratteristiche are presented as a single combined step
@@ -39,7 +39,7 @@ export default function StepNavigation({ currentStep = 0 }) {
               <div className="step-left">
                 <div className={`step-icon ${completed ? "completed" : ""}`}>
                   {completed ? (
-                    <CheckCircle size={20} weight="fill" color="#149854" />
+                    <CheckCircleIcon size={44} weight="fill" color="#1e6e53" />
                   ) : (
                     <span className="step-number">{i + 1}</span>
                   )}

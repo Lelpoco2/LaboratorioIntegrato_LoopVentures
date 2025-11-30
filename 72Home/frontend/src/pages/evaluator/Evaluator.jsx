@@ -4,8 +4,6 @@ import "./styles/Evaluator.css";
 import FormNavigationButtons from "./components/FormNavigationButtons";
 import StepNavigation from "./components/StepNavigation";
 
-import Navbar from "../../components/navbar/Navbar";
-import Footer from "../../components/footer/Footer";
 import { useState } from "react";
 import useEvaluatorForm from "./hooks/useEvaluatorForm";
 import { submitPropertyEvaluation } from "../../services/api";
@@ -39,23 +37,20 @@ export default function Evaluator() {
 
   return (
     <>
-      <div className="evaluator-section-container">
         <section>
-          <div className="evaluator-container">
-            <div className="evaluator-grid">
+          <div className="evaluator-layout">
             {currentStep !== steps.length - 1 && (
-              <aside className="evaluator-left">
+              <aside className="evaluator-stepper">
                 <StepNavigation currentStep={currentStep} />
               </aside>
             )}
-
-              <main className="evaluator-main">
-                <StepComponent
-                  formData={formData}
-                  updateField={updateField}
-                  setStepErrors={setStepErrors}
-                />
-
+            <div className="evaluator-container">
+              <main className="form-area">
+              <StepComponent
+                formData={formData}
+                updateField={updateField}
+                setStepErrors={setStepErrors}
+              />
                 <FormNavigationButtons
                   currentStep={currentStep}
                   stepsLength={steps.length}
@@ -111,7 +106,6 @@ export default function Evaluator() {
             </div>
           </div>
         </section>
-      </div>
     </>
   );
 }

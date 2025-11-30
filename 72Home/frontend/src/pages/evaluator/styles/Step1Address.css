@@ -57,10 +57,11 @@ select {
 .caret-down-icon {
   position: absolute;
   right: 15px; /* distance from the right edge */
-  top: 39%;
-  /* transform: translateY(100%); */
+  top: 50%;
+  transform: translateY(-50%); /* centers the icon vertically */
   pointer-events: none; /* clicks go through to select */
   color: #555;
+  margin-top: 13px; /* accounts for label height */
 }
 
 /* Mobile: stack everything vertically */
@@ -77,5 +78,7 @@ select {
 
   .caret-down-icon {
     top: 50%;
+    transform: translateY(-50%);
+    margin-top: 13px;
   }
 }

@@ -3,8 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
-  /* align-self: center; */
-  /* margin: 0 auto; */
+  /* align-self: center;
+  margin: 0 auto; */
 }
 
 .btn {

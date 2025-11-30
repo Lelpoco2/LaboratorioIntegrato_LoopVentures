@@ -21,7 +21,16 @@
   font-weight: 600;
 
   transition: all 0.25s ease;
-  background: white;
+  background: #ffffff;
+}
+
+.step2-h2 {
+  text-align: center;
+  padding: 40px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #d4c8b8;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.06);
 }
 
 .property-card p {

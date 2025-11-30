@@ -36,26 +36,6 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
           Cantina
         </label>
 
-        {/* Balcony */}
-        <label className="checkbox-row">
-          <input
-            type="checkbox"
-            checked={formData.balcony || false}
-            onChange={() => toggleCheckbox("balcony")}
-          />
-          Balcone
-        </label>
-
-        {/* Terrace */}
-        <label className="checkbox-row">
-          <input
-            type="checkbox"
-            checked={formData.terrace || false}
-            onChange={() => toggleCheckbox("terrace")}
-          />
-          Terrazza
-        </label>
-
         {/* Elevator */}
         <label className="checkbox-row">
           <input
@@ -64,6 +44,16 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
             onChange={() => toggleCheckbox("elevator")}
           />
           Ascensore
+        </label>
+
+        {/* Balcony */}
+        <label className="checkbox-row">
+          <input
+            type="checkbox"
+            checked={formData.balcony || false}
+            onChange={() => toggleCheckbox("balcony")}
+          />
+          Balcone
         </label>
 
         {/* Garden */}
@@ -75,17 +65,27 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
           />
           Giardino
         </label>
-      </div>
 
-      {/* Garage */}
-      <label className="checkbox-row">
-        <input
-          type="checkbox"
-          checked={formData.garage || false}
-          onChange={() => toggleCheckbox("garage")}
-        />
-        Box auto
-      </label>
+        {/* Garage */}
+        <label className="checkbox-row">
+          <input
+            type="checkbox"
+            checked={formData.garage || false}
+            onChange={() => toggleCheckbox("garage")}
+          />
+          Box auto
+        </label>
+
+        {/* Terrace */}
+        <label className="checkbox-row">
+          <input
+            type="checkbox"
+            checked={formData.terrace || false}
+            onChange={() => toggleCheckbox("terrace")}
+          />
+          Terrazza
+        </label>
+      </div>
 
       {/* MQ of car garage */}
       {formData.garage && (
