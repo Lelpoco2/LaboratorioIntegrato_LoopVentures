@@ -7,6 +7,8 @@ import StepNavigation from "./components/StepNavigation";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { useState } from "react";
+import useEvaluatorForm from "./hooks/useEvaluatorForm";
+import { submitPropertyEvaluation } from "../../services/api";
 
 import {
   Step1Address,
@@ -20,17 +22,9 @@ import {
 export default function Evaluator() {
   const [stepErrors, setStepErrors] = useState({});
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState({
-    address: "",
-    propertyType: "",
-    features: {},
-    addOns: {},
-    contact: {},
-  });
-
-  const updateField = (field, value) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
+  
+  // Use the custom hook that builds JSON progressively
+  const { formData, updateField, buildJSON, getJSONString } = useEvaluatorForm();
 
   const steps = [
     Step1Address,
@@ -81,9 +75,35 @@ export default function Evaluator() {
                       setCurrentStep((s) => s - 1);
                     }
                   }}
-                  onSubmit={() => {
-                    console.log("Submit", formData); // send data to backend
-                    setCurrentStep((s) => s + 1); // move to Feedback page
+                  onSubmit={async () => {
+                    // Build the final JSON payload
+                    const payload = buildJSON();
+                    console.log("Sending to backend:", payload);
+                    console.log("JSON String:", JSON.stringify(payload, null, 2));
+                    console.log("Full address:", `${payload.property.address}, ${payload.property.zipCode} ${payload.property.city}`);
+                    
+                    try {
+                      // Submit to backend using API service
+                      const result = await submitPropertyEvaluation(payload);
+                      console.log('Server response:', result);
+                      
+                      // Move to Feedback page on success
+                      setCurrentStep((s) => s + 1);
+                    } catch (error) {
+                      console.error('Submission error:', error);
+                      
+                      // Better error messages
+                      let errorMessage = 'Errore durante l\'invio del form.';
+                      if (error.message.includes('zona OMI')) {
+                        errorMessage = 'Non è stato possibile trovare una valutazione per questo indirizzo. Verifica che l\'indirizzo sia corretto e che si trovi in una zona coperta dal servizio.';
+                      } else if (error.message.includes('coordinate')) {
+                        errorMessage = 'Impossibile localizzare l\'indirizzo fornito. Verifica che sia corretto.';
+                      } else {
+                        errorMessage = `Errore: ${error.message}`;
+                      }
+                      
+                      alert(errorMessage);
+                    }
                   }}
                   hasErrors={Object.keys(stepErrors).length > 0}
                 />

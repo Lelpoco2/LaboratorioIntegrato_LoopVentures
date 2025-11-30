@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Entity
@@ -24,7 +25,10 @@ public class Property {
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Pattern(regexp = "^[^0-9]+$", message = "L'indirizzo non può contenere numeri")
     private String address;
+    @Pattern(regexp = "^[0-9]+$", message = "Il numero civico deve contenere solo numeri")
+    private String civicNumber;
     private String city;
     private String zipCode;
     private Double surfaceArea; //
