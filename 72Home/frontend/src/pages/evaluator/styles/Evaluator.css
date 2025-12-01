@@ -8,7 +8,7 @@ section {
   display: flex;
   min-height: 100vh;
   padding: 0;
-  background-color: #dbd0c2;
+  background-color: #f6f3f0;
 }
 
 .evaluator-layout {
@@ -21,28 +21,30 @@ section {
 .evaluator-container {
   display: flex;
   flex-direction: column;
-  align-content: space-between;
+  justify-content: center;
+  /* align-content: space-between; */
   flex: 1;
-  padding: 10vh 8vw;
+  padding: 20px;
 }
 
 .form-area {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 34px;
 }
 
 /* Stepper panel */
 .evaluator-stepper {
   width: 33.33vw;
-  background: #97580fa5;
-  color: #f5e9e9;
-  padding: clamp(20px, 2vw, 36px);
+  max-width: 540px;
+  background: #DBD0C2;
+  /* padding: clamp(20px, 2vw, 36px); */
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: flex-start;
+  justify-content: space-between;
+  position: relative; /* allow absolute-positioned decoration inside */
 }
 
 @media (max-width: 1024px) {
@@ -69,11 +71,4 @@ section {
   background: #ffffff;
   border: 1px solid #d4c8b8;
   box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.06);
-}
-
-/* Desktop layout: contrast adjustments for stepper */
-@media (min-width: 1025px) {
-  .evaluator-stepper .step-title { color: #ffffff; }
-  .evaluator-stepper .step-sub { color: #f5efe8; }
-  .evaluator-stepper .step-icon { background: rgba(255, 255, 255, 0.95); }
 }
