@@ -1,7 +1,7 @@
 /* SEZIONE GENERALE */
 .agents-section {
   padding: 4rem 2rem;
-  background-color: #D6C6B4;
+  background-color: #d6c6b4;
   text-align: center;
 }
 
@@ -33,7 +33,7 @@
   border: none;
   font-size: 3rem;
   cursor: pointer;
-  color: #3B2F2F;
+  color: #3b2f2f;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -55,10 +55,11 @@
   overflow: hidden;
   width: 80%;
   justify-content: center;
+  padding: 20px 0;
 }
 
 .agent-card {
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   padding: 1.2rem;
@@ -69,7 +70,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: 95%;
 }
 
 .agent-card:hover {
@@ -100,7 +101,7 @@
 .agent-card p {
   font-size: 0.95rem;
   line-height: 1.4;
-  color: #5A4E4E;
+  color: #5a4e4e;
   margin-bottom: 1.2rem;
 }
 
@@ -108,11 +109,12 @@
 .agent-info {
   display: flex;
   justify-content: space-between;
+  font-weight: 600;
   align-items: center;
   gap: 1.5rem;
   font-size: 0.9rem;
   margin-bottom: 1.2rem;
-  color: #5C4B46;
+  color: #5c4b46;
 }
 
 .agent-info span {
@@ -123,7 +125,7 @@
 
 /* BOTTONE CONTATTA */
 .contact-button {
-  background-color: #522A1A;
+  background-color: #522a1a;
   color: #fff;
   border: none;
   width: 100%;
@@ -137,7 +139,7 @@
 }
 
 .contact-button:hover {
-  background-color: #6B3A22;
+  background-color: #6b3a22;
 }
 
 /* PUNTINI DEL CAROUSEL */
@@ -151,14 +153,14 @@
 .carousel-dots .dot {
   width: 10px;
   height: 10px;
-  background-color: #ccc;
+  background-color: #f5f3f3;
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .carousel-dots .dot.active {
-  background-color: #522A1A;; /* Colore evidenziato per il puntino attivo */
+  background-color: #522a1a; /* Colore evidenziato per il puntino attivo */
 }
 
 @media (max-width: 768px) {
