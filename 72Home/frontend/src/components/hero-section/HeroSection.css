@@ -1,6 +1,7 @@
 .hero-section-container {
   width: 100%;
-  max-width: 100vw; /* Ensures no overflow even with scrollbars */
+  max-width: 100vw;
+  /* Ensures no overflow even with scrollbars */
   padding: 10vh 15vw;
   height: 100vh;
   background-image: url("../../assets/background/header.jpg");
@@ -96,18 +97,52 @@
 
 @media (max-width: 720px) {
   .overlay {
-    padding-left: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
   }
 
   .content-box {
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding-left: 5rem;
+    padding-right: 0.5rem;
+    box-sizing: border-box;
+    gap: 0.5rem;
+  }
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: transparent;
+    box-sizing: border-box;
   }
 
   .address-input {
-    padding-right: 120px;
+    width: 80%;
+    max-width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-left: -70px;
   }
 
   .button-container {
-    right: 8px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+    margin-top: 10px;
+  }
+
+  .button-container button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+
   }
 }
