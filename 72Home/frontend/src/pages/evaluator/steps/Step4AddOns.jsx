@@ -5,10 +5,16 @@ import "../styles/Step4AddOns.css";
 export default function Step4AddOns({ formData, updateField, setStepErrors }) {
   const [touched, setTouched] = useState({});
 
-  // Step without required fields → always clear errors
+  // Validation: if garage selected, garageSize becomes required (>0 like surface field logic)
   useEffect(() => {
-    setStepErrors({});
-  }, [setStepErrors]);
+    const errors = {};
+    if (formData.garage) {
+      if (!formData.garageSize) {
+        errors.garageSize = "Inserisci un numero intero maggiore di zero.";
+      }
+    }
+    setStepErrors(errors);
+  }, [formData.garage, formData.garageSize, setStepErrors]);
 
   const toggleCheckbox = (field) => {
     updateField(field, !formData[field]);
@@ -87,7 +93,7 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
         </label>
       </div>
 
-      {/* MQ of car garage */}
+      {/* Garage size (required if garage checked) */}
       {formData.garage && (
         <div className="form-group garage-size-group">
           <label>Dimensione box auto (m²)</label>
@@ -99,18 +105,15 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
             value={formData.garageSize || ""}
             onChange={(e) => {
               const v = e.target.value;
-
-              //  Accetta solo cifre o stringa vuota (campo opzionale).
+              // Allow only digits
               if (!/^\d*$/.test(v)) return;
-
+              // If empty keep empty (will trigger required error on blur)
               if (v === "") {
                 updateField("garageSize", "");
                 return;
               }
-
-              // Deve essere >= 1
+              // Must be >=1
               if (Number(v) < 1) return;
-
               updateField("garageSize", v);
             }}
             onKeyDown={(e) => {
@@ -121,9 +124,7 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
             onBlur={() => handleBlur("garageSize")}
           />
           {touched.garageSize && formData.garageSize === "" && (
-            <span className="error-message">
-              Inserisci un numero maggiore di zero o lascia il campo vuoto.
-            </span>
+            <span className="error-message">Inserisci un numero intero maggiore di zero.</span>
           )}
         </div>
       )}

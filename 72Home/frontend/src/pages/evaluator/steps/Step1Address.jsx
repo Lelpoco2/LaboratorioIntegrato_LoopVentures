@@ -10,11 +10,16 @@ export default function Step1Address({ formData, updateField, setStepErrors }) {
   // Validate fields whenever formData changes
   useEffect(() => {
     const errors = {};
-    if (!formData.street || formData.street.trim() === "") errors.street = true;
+    // Street: require more than two letters (≥3 letters)
+    const street = (formData.street || "").trim();
+    const streetLetters = street.match(/[A-Za-zÀ-ÖØ-öø-ÿ]/g)?.length || 0;
+    if (!street || streetLetters < 3) errors.street = true;
     if (!formData.streetNumber || formData.streetNumber.trim() === "")
       errors.streetNumber = true;
     if (!formData.city || formData.city.trim() === "") errors.city = true;
-    if (!formData.zip || formData.zip.trim() === "") errors.zip = true;
+    // CAP: exactly 5 digits
+    const zip = (formData.zip || "").trim();
+    if (!zip || !/^\d{5}$/.test(zip)) errors.zip = true;
 
     setStepErrors(errors);
   }, [formData, setStepErrors]);
@@ -29,43 +34,48 @@ export default function Step1Address({ formData, updateField, setStepErrors }) {
 
       {/* Row 1: Via / Piazza + Numero Civico */}
       <div className="form-row">
-        <div
-          className={`form-group ${
-            touched.street && !formData.street ? "error" : ""
-          }`}
+        <Field
+          label="Via / Piazza"
+          touched={touched.street}
+          error={
+            touched.street && !(formData.street && formData.street.trim())
+              ? "Campo obbligatorio"
+              : touched.street && formData.street && formData.street.trim() &&
+                ((formData.street.trim().match(/[A-Za-zÀ-ÖØ-öø-ÿ]/g)?.length || 0) < 3)
+              ? "Inserisci almeno 3 lettere"
+              : null
+          }
         >
-          <label htmlFor="street">Via / Piazza</label>
           <input
             id="street"
             type="text"
             placeholder="Piazza Statuto"
             value={formData.street || ""}
             onChange={(e) => updateField("street", e.target.value)}
-            onBlur={() => handleBlur("street")}
+            onBlur={() => {
+              if (formData.street) updateField("street", formData.street.trim());
+              handleBlur("street");
+            }}
           />
-          {touched.street && !formData.street && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
 
-        <div
-          className={`form-group short-field ${
-            touched.streetNumber && !formData.streetNumber ? "error" : ""
-          }`}
+        <Field
+          label="Numero civico"
+          touched={touched.streetNumber}
+          error={
+            touched.streetNumber && !formData.streetNumber ? "Campo obbligatorio" : null
+          }
         >
-          <label htmlFor="streetNumber">Numero civico</label>
           <input
             id="streetNumber"
             type="text"
+            className="short-field"
             placeholder="9"
             value={formData.streetNumber || ""}
             onChange={(e) => updateField("streetNumber", e.target.value)}
             onBlur={() => handleBlur("streetNumber")}
           />
-          {touched.streetNumber && !formData.streetNumber && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
       </div>
 
       {/* Row 2: Comune + CAP */}
@@ -94,14 +104,32 @@ export default function Step1Address({ formData, updateField, setStepErrors }) {
         <Field
           label="CAP"
           touched={touched.zip}
-          error={touched.zip && !formData.zip ? "Campo obbligatorio" : null}
+          error={
+            touched.zip && !(formData.zip && formData.zip.trim())
+              ? "Campo obbligatorio"
+              : touched.zip && formData.zip && formData.zip.trim() && !/^\d{5}$/.test(formData.zip.trim())
+              ? "Inserisci un CAP corretto (5 cifre)"
+              : null
+          }
         >
           <input
             id="zip"
             type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
             placeholder="10122"
             value={formData.zip || ""}
-            onChange={(e) => updateField("zip", e.target.value)}
+            onChange={(e) => {
+              const v = e.target.value;
+              if (!/^\d*$/.test(v)) return;
+              if (v.length > 5) return;
+              updateField("zip", v);
+            }}
+            onKeyDown={(e) => {
+              if (["e", ".", ",", "+", "-", "E"].includes(e.key)) {
+                e.preventDefault();
+              }
+            }}
             onBlur={() => handleBlur("zip")}
             className="short-field"
           />
