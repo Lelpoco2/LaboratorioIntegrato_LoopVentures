@@ -21,7 +21,6 @@
   transition: border-color 0.2s, background 0.2s;
 }
 
-/* Hide native select caret for custom icon */
 .field-input-wrapper select {
   appearance: none;
   -webkit-appearance: none;
@@ -33,7 +32,6 @@
   font-size: 15px;
 }
 
-/* ICONA ✓ */
 .valid-icon {
   position: absolute;
   right: 10px;
@@ -43,7 +41,6 @@
   pointer-events: none;
 }
 
-/* Caret icon positioning within Field wrapper */
 .field-input-wrapper .field-caret,
 .field-input-wrapper .caret-down-icon {
   position: absolute;
@@ -52,11 +49,9 @@
   transform: translateY(-50%);
   pointer-events: none;
   color: #555;
-  margin-top: 13px; /* ensure vertical centering unaffected by other styles */
-  /* z-index: 1; */
+  margin-top: 13px;
 }
 
-/* Hide the caret when the field is valid and the check icon is shown */
 .form-group.valid .caret-down-icon {
   display: none;
 }
@@ -64,26 +59,22 @@
   display: none;
 }
 
-/* untouched */
 .form-group.untouched input,
 .form-group.untouched select {
   border-color: #cfcfcf;
 }
 
-/* touched */
 .form-group.touched input,
 .form-group.touched select {
   border-color: #6aa3e8;
 }
 
-/* errore */
 .form-group.error input,
 .form-group.error select {
   border-color: #c40000;
   background: #ffe9e9;
 }
 
-/* valid */
 .form-group.valid input,
 .form-group.valid select {
   border-color: #1e6e53;

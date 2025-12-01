@@ -5,8 +5,6 @@
   width: 100%;
   padding: 45px 0 40px 0;
 }
-
-/* Logo container - hidden on mobile, visible on desktop */
 .stepper-logo-container {
   display: none;
   width: 100%;
@@ -14,13 +12,10 @@
   justify-content: center;
   align-items: center;
 }
-
 .stepper-logo {
   max-width: 240px;
   height: auto;
 }
-
-/* Decorative image container - hidden on mobile, visible on desktop */
 .stepper-decoration-container {
   display: none;
   width: 100%;
@@ -30,36 +25,30 @@
   overflow: hidden;
   left: 0;
   right: 0;
-  bottom: 0; /* attach to bottom of aside */
+  bottom: 0;
 }
-
 .stepper-decoration {
   width: auto;
   max-height: 330px;
 }
-
-/* Vertical steps (visible on tablet/desktop) */
 .vertical-steps {
-  display: none; /* hidden by default, shown on larger screens */
+  display: none;
   width: 240px;
   padding: 20px 0;
 }
-
 .step-item {
   display: flex;
   gap: 6px;
   align-items: flex-start;
-  min-height: 72px; /* ensures there is vertical space so connector can stretch */
+  min-height: 72px;
 }
-
 .step-left {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 56px;
-  align-self: stretch; /* makes it fill the full height of step-item */
+  align-self: stretch;
 }
-
 .step-icon {
   width: 36px;
   height: 36px;
@@ -71,86 +60,66 @@
   background: #faf8f8;
   flex: 0 0 auto;
 }
-
 .step-icon.completed {
   border-color: #612916;
   background: #faf8f8;
 }
-
 .step-number {
-  font-weight: 500;
-  font-size: 16px;
   font-weight: 700;
+  font-size: 16px;
   color: #786a5a;
 }
-
 .step-connector {
   width: 4px;
-  flex: 1 1 auto; /* let connector stretch to fill available vertical space */
+  flex: 1 1 auto;
   background: #faf8f8;
 }
-
 .step-connector.filled {
   background: #612916;
 }
-
 .step-text {
   display: flex;
   flex-direction: column;
 }
-
 .step-title {
   font-size: 1.1rem;
   padding-bottom: 3px;
   color: #786a5a;
   font-weight: 600;
 }
-
 .step-sub {
   font-size: 1rem;
   color: #383130;
 }
-
 .step-item.active .step-title {
   font-weight: 700;
   color: #612916;
 }
-
 .step-item.completed .step-title {
   color: #612916;
 }
-
-/* Make current step icon a filled circle for clarity */
 .step-item.active .step-icon {
-  background: #612916; /* active fill */
+  background: #612916;
   border-color: #612916;
 }
-
 .step-item.active .step-number {
-  color: #ffffff; /* ensure number is readable on filled circle */
+  color: #ffffff;
 }
-
-/* Horizontal progress bar for small devices */
 .horizontal-progress {
   display: flex;
   gap: 6px;
   width: 80vw;
   padding-top: 20px;
-  /* margin: 0 auto 18px auto; */
 }
-
 .hp-segment {
   flex: 1 1 0;
   height: 10px;
   background: #bebcbc;
   border-radius: 6px;
 }
-
 .hp-segment.filled {
   background: #612916;
 }
-
-/* Responsive rules */
 @media (min-width: 1025px) {
   .stepper-logo-container {
     display: flex;
@@ -158,7 +127,6 @@
   .stepper-decoration-container {
     display: flex;
   }
-
   .vertical-steps {
     display: block;
   }
@@ -166,7 +134,6 @@
     display: none;
   }
 }
-
 @media (min-width: 1025px) {
   .vertical-steps {
     width: 320px;
@@ -178,8 +145,6 @@
     min-height: 84px;
   }
 }
-
-/* Hide decoration on short viewports (less than 880px height) */
 @media (max-height: 889px) {
   .stepper-decoration-container {
     display: none;

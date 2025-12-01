@@ -6,33 +6,25 @@
   width: 70vh;
   align-content: center;
 }
-
 .step1-h2 {
   padding-bottom: 20px;
 }
-
 .form-row {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  align-items: flex-start; /* prevent groups from stretching in height */
-  flex-wrap: wrap; /* for mobile */
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
-
 .form-group {
   display: flex;
   flex-direction: column;
-  position: relative; /* make select position relative to the caret icon */
-
-  /* flex: 1;  */
-  /* makes all inputs in a row equal width */
+  position: relative;
 }
-
 .form-group label {
   font-weight: 600;
   margin-bottom: 6px;
 }
-
 .form-group input,
 select {
   padding: 10px 14px;
@@ -40,38 +32,28 @@ select {
   border: 1px solid #ccc;
   font-size: 16px;
 }
-
 .form-group select {
   color: rgb(109, 109, 109);
-  appearance: none; /* disables the select caret */
+  appearance: none;
 }
-
 .short-field {
-  /* flex: 0 0 80px; do not grow or shrink, fixed width */
   width: 150px;
-  /* flex: 0; */
 }
-
-/* Mobile: stack everything vertically */
 @media (max-width: 768px) {
   .step-card {
     width: 100%;
     align-content: center;
   }
-
   .form-row {
     flex-direction: column;
     gap: 30px;
   }
-
   .form-row .form-group {
     width: 100%;
   }
-
   .short-field {
     width: 100%;
   }
-
   .caret-down-icon {
     top: 50%;
     transform: translateY(-50%);
