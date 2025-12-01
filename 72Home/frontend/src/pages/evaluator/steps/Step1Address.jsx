@@ -25,7 +25,7 @@ export default function Step1Address({ formData, updateField, setStepErrors }) {
 
   return (
     <div className="step-card evaluator-card">
-      <h2>Indirizzo dell'immobile</h2>
+      <h2 className="step1-h2">Indirizzo dell'immobile</h2>
 
       {/* Row 1: Via / Piazza + Numero Civico */}
       <div className="form-row">

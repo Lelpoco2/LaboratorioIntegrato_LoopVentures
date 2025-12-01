@@ -134,14 +134,15 @@
 .horizontal-progress {
   display: flex;
   gap: 6px;
-  width: 100%;
-  margin: 0 auto 18px auto; /* center horizontally */
+  width: 80vw;
+  padding-top: 20px;
+  /* margin: 0 auto 18px auto; */
 }
 
 .hp-segment {
   flex: 1 1 0;
-  height: 8px;
-  background: #e6e6e6;
+  height: 10px;
+  background: #bebcbc;
   border-radius: 6px;
 }
 

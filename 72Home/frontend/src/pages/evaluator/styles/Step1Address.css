@@ -8,6 +8,10 @@
   /* margin: 0 auto; */
 }
 
+.step1-h2 {
+  padding-bottom: 20px;
+}
+
 .form-row {
   display: flex;
   flex-direction: row;

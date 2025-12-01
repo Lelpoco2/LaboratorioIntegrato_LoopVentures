@@ -4,7 +4,7 @@
   margin-top: 4px;
 }
 
-section {
+.evaluator-section {
   display: flex;
   min-height: 100vh;
   padding: 0;
@@ -22,7 +22,6 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-content: space-between; */
   flex: 1;
   padding: 20px;
 }
@@ -38,8 +37,7 @@ section {
 .evaluator-stepper {
   width: 33.33vw;
   max-width: 540px;
-  background: #DBD0C2;
-  /* padding: clamp(20px, 2vw, 36px); */
+  background: #dbd0c2;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -50,20 +48,15 @@ section {
 @media (max-width: 1024px) {
   .evaluator-layout {
     flex-direction: column;
+    align-items: center;
   }
-  
+
   .evaluator-stepper {
     width: 100%;
     position: static;
+    background: transparent;
   }
 }
-
-/* .evaluator-main {
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-} */
 
 .evaluator-card {
   padding: 40px;

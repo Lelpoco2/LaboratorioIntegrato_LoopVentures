@@ -37,7 +37,7 @@ export default function Evaluator() {
 
   return (
     <>
-        <section>
+        <section className="evaluator-section">
           <div className="evaluator-layout">
             {currentStep !== steps.length - 1 && (
               <aside className="evaluator-stepper">
