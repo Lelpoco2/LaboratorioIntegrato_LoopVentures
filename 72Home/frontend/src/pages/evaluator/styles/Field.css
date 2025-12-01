@@ -21,6 +21,13 @@
   transition: border-color 0.2s, background 0.2s;
 }
 
+/* Hide native select caret for custom icon */
+.field-input-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 .field-input-wrapper select option {
   padding: 10px;
   font-size: 15px;
@@ -34,6 +41,27 @@
   color: #1e6e53;
   font-weight: bold;
   pointer-events: none;
+}
+
+/* Caret icon positioning within Field wrapper */
+.field-input-wrapper .field-caret,
+.field-input-wrapper .caret-down-icon {
+  position: absolute;
+  right: 12px;
+  top: 30%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555;
+  margin-top: 13px; /* ensure vertical centering unaffected by other styles */
+  /* z-index: 1; */
+}
+
+/* Hide the caret when the field is valid and the check icon is shown */
+.form-group.valid .caret-down-icon {
+  display: none;
+}
+.form-group.valid .field-caret {
+  display: none;
 }
 
 /* untouched */

@@ -183,7 +183,6 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
       </div>
 
       {/* Purpose */}
-      <div className="more-margin">
         <Field
           label="Motivo della valutazione"
           touched={touched.purpose}
@@ -202,11 +201,9 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
             <option value="info">Mi sto solo informando</option>
           </select>
         </Field>
-      </div>
 
       {/* Sub-question: timeframe */}
       {requiresTiming && (
-        <div className="more-margin">
           <Field
             label="Entro quando?"
             touched={touched.timeframe}
@@ -225,7 +222,6 @@ export default function Step5Contact({ formData, updateField, setStepErrors }) {
               <option value="later">Fra più di 6 mesi</option>
             </select>
           </Field>
-        </div>
       )}
 
       {/* Privacy */}

@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
+  align-items: flex-start; /* prevent groups from stretching in height */
   flex-wrap: wrap; /* for mobile */
 }
 
@@ -42,26 +43,10 @@ select {
   appearance: none; /* disables the select caret */
 }
 
-.long-field {
-  /* flex-grow: 1; */
-  flex: 1;
-  /* flex: 1 1 auto; default, takes remaining space */
-}
-
 .short-field {
   /* flex: 0 0 80px; do not grow or shrink, fixed width */
   width: 150px;
   /* flex: 0; */
-}
-
-.caret-down-icon {
-  position: absolute;
-  right: 15px; /* distance from the right edge */
-  top: 50%;
-  transform: translateY(-50%); /* centers the icon vertically */
-  pointer-events: none; /* clicks go through to select */
-  color: #555;
-  margin-top: 13px; /* accounts for label height */
 }
 
 /* Mobile: stack everything vertically */
@@ -74,6 +59,14 @@ select {
   .form-row {
     flex-direction: column;
     gap: 30px;
+  }
+
+  .form-row .form-group {
+    width: 100%;
+  }
+
+  .short-field {
+    width: 100%;
   }
 
   .caret-down-icon {

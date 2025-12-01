@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { CaretDownIcon } from "@phosphor-icons/react";
+import Field from "../components/Field";
 import "../styles/Step1Address.css";
 import "../styles/Evaluator.css";
 
@@ -30,7 +30,7 @@ export default function Step1Address({ formData, updateField, setStepErrors }) {
       {/* Row 1: Via / Piazza + Numero Civico */}
       <div className="form-row">
         <div
-          className={`form-group long-field ${
+          className={`form-group ${
             touched.street && !formData.street ? "error" : ""
           }`}
         >
@@ -70,12 +70,11 @@ export default function Step1Address({ formData, updateField, setStepErrors }) {
 
       {/* Row 2: Comune + CAP */}
       <div className="form-row">
-        <div
-          className={`form-group long-field ${
-            touched.city && !formData.city ? "error" : ""
-          }`}
-        >
-          <label htmlFor="city">Comune</label>
+        <Field
+          label="Comune"
+          touched={touched.city}
+          error={touched.city && !formData.city ? "Campo obbligatorio" : null}
+          >
           <select
             id="city"
             value={formData.city || ""}
@@ -90,18 +89,13 @@ export default function Step1Address({ formData, updateField, setStepErrors }) {
             <option value="Cuneo">Cuneo</option>
             <option value="Torino">Torino</option>
           </select>
-          <CaretDownIcon className="caret-down-icon" size={24} />
-          {touched.city && !formData.city && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
 
-        <div
-          className={`form-group short-field ${
-            touched.zip && !formData.zip ? "error" : ""
-          }`}
+        <Field
+          label="CAP"
+          touched={touched.zip}
+          error={touched.zip && !formData.zip ? "Campo obbligatorio" : null}
         >
-          <label htmlFor="zip">CAP</label>
           <input
             id="zip"
             type="text"
@@ -109,11 +103,9 @@ export default function Step1Address({ formData, updateField, setStepErrors }) {
             value={formData.zip || ""}
             onChange={(e) => updateField("zip", e.target.value)}
             onBlur={() => handleBlur("zip")}
+            className="short-field"
           />
-          {touched.zip && !formData.zip && (
-            <span className="error-message">Campo obbligatorio</span>
-          )}
-        </div>
+        </Field>
       </div>
     </div>
   );

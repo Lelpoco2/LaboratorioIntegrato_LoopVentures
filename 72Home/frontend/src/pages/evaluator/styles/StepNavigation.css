@@ -61,8 +61,8 @@
 }
 
 .step-icon {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 2.5px solid #faf8f8;
   display: flex;
@@ -79,8 +79,9 @@
 
 .step-number {
   font-weight: 500;
-  font-size: 14px;
-  color: #5f5f5f;
+  font-size: 16px;
+  font-weight: 700;
+  color: #786a5a;
 }
 
 .step-connector {
@@ -101,8 +102,8 @@
 .step-title {
   font-size: 1.1rem;
   padding-bottom: 3px;
-  font-weight: 700;
-  color: #957F66;
+  color: #786a5a;
+  font-weight: 600;
 }
 
 .step-sub {
@@ -111,11 +112,22 @@
 }
 
 .step-item.active .step-title {
+  font-weight: 700;
   color: #612916;
 }
 
 .step-item.completed .step-title {
   color: #612916;
+}
+
+/* Make current step icon a filled circle for clarity */
+.step-item.active .step-icon {
+  background: #612916; /* active fill */
+  border-color: #612916;
+}
+
+.step-item.active .step-number {
+  color: #ffffff; /* ensure number is readable on filled circle */
 }
 
 /* Horizontal progress bar for small devices */
@@ -163,5 +175,12 @@
   }
   .step-item {
     min-height: 84px;
+  }
+}
+
+/* Hide decoration on short viewports (less than 880px height) */
+@media (max-height: 889px) {
+  .stepper-decoration-container {
+    display: none;
   }
 }

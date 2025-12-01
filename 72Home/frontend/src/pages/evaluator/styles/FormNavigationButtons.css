@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 10px;
+  gap: 50px;
   /* align-self: center;
   margin: 0 auto; */
 }
@@ -19,12 +19,13 @@
 }
 
 .btn.back {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   color: #333;
+  border: 1px solid #612916;
 }
 
 .btn.back:hover {
-  background-color: #e0e0e0;
+  background-color: #f1f1f1;
 }
 
 .btn.next {
@@ -33,7 +34,7 @@
 }
 
 .btn.next:hover:enabled {
-  background-color: #9d8062;
+  background-color: #8e3b1f;
 }
 
 /* Disabled state styling */
@@ -45,10 +46,10 @@
 }
 
 .btn.submit {
-  background-color: #136d29;
+  background-color: #612916;
   color: white;
 }
 
 .btn.submit:hover {
-  background-color: #a86833;
+  background-color: #136d29;
 }
