@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 create table users (
     id int auto_increment primary key,
     username varchar(50) not null unique,
@@ -33,3 +34,12 @@ set @admin_user_id = LAST_INSERT_ID();
 insert into user_roles (user_id, role_id) values (@admin_user_id, @administrator_role_id);
 
 
+=======
+-- create table users (
+--     id serial primary key,
+--     username varchar(50) not null unique,
+--     password varchar(100) not null,
+--     email varchar(100) not null unique,
+--     created_at timestamp default current_timestamp
+-- );
+>>>>>>> 9b2ecc9a169f402e8936e2bb52538a4f6d91cc0c

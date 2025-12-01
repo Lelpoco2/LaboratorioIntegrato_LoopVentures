@@ -1,16 +1,15 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-h1 {
-  color:#009fcb;
-
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-body {
+html, body {
+  width: 100%;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #0c3c7c;
+  padding: 0;
+  overflow-x: hidden; 
+  font-family: 'Segoe UI', sans-serif; 
+}
+
+#root {
+  min-height: 100vh;
 }

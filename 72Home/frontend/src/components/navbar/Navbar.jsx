@@ -1,6 +1,10 @@
-import { useState } from "react";
-import { CaretDown, ArrowRight } from "@phosphor-icons/react";
 import "./Navbar.css";
+
+import { useState } from "react";
+
+import BottoneCTA from "../cta-button/BottoneCTA";
+import EstimoraLogo from "../../assets/logo/estimora-logo.svg";
+import { CaretDownIcon } from "@phosphor-icons/react";
 
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState();
@@ -17,7 +21,11 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
-      <div className="navbar-logo">logo</div>
+      <div className="navbar-logo">
+        <a href="#home">
+          <img src={EstimoraLogo} alt="Logo di Estimora" className="logo" />
+        </a>
+      </div>
 
       {/* hamburger icon */}
       <div
@@ -31,53 +39,46 @@ export default function Navbar() {
 
       {/* nav links */}
       <nav className={`navbar-links ${menuOpen ? "active" : ""}`}>
-        <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-        <a href="#chi-siamo" onClick={() => setMenuOpen(false)}>Chi siamo</a>
+        <a href="#home" onClick={() => setMenuOpen(false)}>
+          Home
+        </a>
+        <a href="#steps" onClick={() => setMenuOpen(false)}>
+          Come funziona
+        </a>
 
         <div
           className="navbar-item"
-          onMouseEnter={() => window.innerWidth > 768 && toggleSubmenu("servizi")}
+          onMouseEnter={() =>
+            window.innerWidth > 768 && toggleSubmenu("about-us")
+          }
           onMouseLeave={() => window.innerWidth > 768 && toggleSubmenu(null)}
-          onClick={() => window.innerWidth <= 768 && toggleSubmenu("servizi")}
+          onClick={() => window.innerWidth <= 768 && toggleSubmenu("about-us")}
         >
           <button className="navbar-button">
-            Servizi{" "}
-            <CaretDown size={16} weight="bold" className="navbar-icon" />
+            Chi siamo{" "}
+            <CaretDownIcon size={16} weight="bold" className="navbar-icon" />
           </button>
-          {activeMenu === "servizi" && (
+          {activeMenu === "about-us" && (
             <div className="submenu">
-              <a href="#web" onClick={() => setMenuOpen(false)}>Blog</a>
-              <a href="#grafica" onClick={() => setMenuOpen(false)}>Grafica</a>
-              <a href="#seo" onClick={() => setMenuOpen(false)}>SEO</a>
+              <a href="#why-choose-us" onClick={() => setMenuOpen(false)}>
+                Perché sceglierci
+              </a>
+              <a href="#footer" onClick={() => setMenuOpen(false)}>
+                Contatti
+              </a>
             </div>
           )}
         </div>
 
-        <div
-          className="navbar-item"
-          onMouseEnter={() => window.innerWidth > 768 && toggleSubmenu("progetti")}
-          onMouseLeave={() => window.innerWidth > 768 && toggleSubmenu(null)}
-          onClick={() => window.innerWidth <= 768 && toggleSubmenu("progetti")}
-        >
-          <button className="navbar-button">
-            Progetti{" "}
-            <CaretDown size={16} weight="bold" className="navbar-icon" />
-          </button>
-          {activeMenu === "progetti" && (
-            <div className="submenu">
-              <a href="#aziendali" onClick={() => setMenuOpen(false)}>Aziendali</a>
-              <a href="#personali" onClick={() => setMenuOpen(false)}>Personali</a>
-            </div>
-          )}
-        </div>
-
-        <a href="#contatti" onClick={() => setMenuOpen(false)}>Contatti</a>
-        
+        <a href="#agents" onClick={() => setMenuOpen(false)}>
+          Agenti
+        </a>
       </nav>
 
-      <button className="navbar-right-button">
-        Get in touch <ArrowRight size={20} weight="bold" className="right-arrow" />
-      </button>
+      {/* Bottone CTA spostato fuori dal nav links */}
+      <div className="navbar-cta">
+        <BottoneCTA />
+      </div>
     </header>
   );
 }

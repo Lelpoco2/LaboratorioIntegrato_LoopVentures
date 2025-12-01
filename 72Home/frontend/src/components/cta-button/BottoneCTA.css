@@ -1,0 +1,30 @@
+.button {
+  padding: 0.7rem 1.1rem;
+  background-color: #612916;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.button:hover {
+  background-color: #9d8062;
+}
+
+.right-arrow {
+  margin-left: 0.5rem;
+  position: relative;
+
+}
+a{
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}

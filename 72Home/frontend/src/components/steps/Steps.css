@@ -1,0 +1,178 @@
+/* Steps.css */
+.steps-section-container section {
+  width: 100%;
+  max-width: 100vw; /* Ensures no overflow even with scrollbars */
+  padding: 10vh 15vw;
+  background-color: #dbd0c2;
+
+  /* Squiggly Line */
+  background-image: url("../../assets/background/squigglyLineHorizontal.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position-y: 270px;
+}
+
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.steps-header {
+  text-align: center;
+  margin-bottom: 90px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 10px;
+  color: #432818ff;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #432818ff;
+  margin: 0;
+}
+
+/* Grid and cards */
+.grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.cards-container {
+  display: grid;
+  /* grid-auto-columns: repeat(auto-fill, minmax(350px, 1fr)); */
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+  gap: 40px;
+  width: 100%;
+  min-height: 300px;
+  min-width: 250px;
+}
+
+.cards-timer-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: -55px;
+  margin-left: -15px;
+  align-items: center;
+  color: #612916;
+  text-shadow: 0.5px 0.5px 2px #55241465;
+}
+
+.timer-icon {
+  /* align-self: center; */
+  margin-right: 5px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px 90px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 25px 0;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  margin-bottom: 0;
+  color: #612916;
+}
+
+.card-description {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.card-icon {
+  margin-top: auto;
+  align-self: flex-end;
+  color: #612916;
+}
+
+/* Responsiveness ---------------------- */
+@media (min-width: 1700px) {
+  .grid-wrapper {
+    max-width: 50vw;
+  }
+}
+
+@media (max-width: 992px) {
+.steps-section-container section {
+    /* Squiggly Line */
+    background-image: url("../../assets/background/squigglyLineVertical.svg");
+    background-position-y: 400px;
+    background-position-x: 270px;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+    padding: 0 100px;
+    gap: 50px;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 660px) {
+.steps-section-container section {
+    /* Squiggly Line */
+    background-image: url("../../assets/background/squigglyLineVertical.svg");
+    background-position-y: 400px;
+    background-position-x: 50px;
+  }
+
+  .cards-container {
+    padding: 0 10vw;
+  }
+
+  .cards-timer-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: -60px;
+  }
+
+  .cards-timer-container p {
+    font-size: 0.9rem;
+  }
+
+  .timer-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+  }
+
+  .card-description {
+    font-size: 1rem;
+  }
+
+  .card-icon {
+    width: 100px;
+    height: 100px;
+  }
+}

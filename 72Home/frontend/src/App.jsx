@@ -1,15 +1,18 @@
-import Navbar from "./components/navbar/Navbar";
 import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Homepage from "./pages/homepage/HomePage";
+import Evaluator from "./pages/evaluator/Evaluator";
+import LoginPage from "./pages/login/LoginPage";
 
 function App() {
   return (
-    <>
-      <div>
-        <Navbar />
-        <h1>Benvenuto nel mio sito!</h1>
-        <p>Questa è una navbar fissa, animata e con sottomenu.</p>
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/evaluation" element={<Evaluator />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </Router>
   );
 }
 
