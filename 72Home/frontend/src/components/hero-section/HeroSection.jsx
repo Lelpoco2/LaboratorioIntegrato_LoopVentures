@@ -1,7 +1,10 @@
 import "./HeroSection.css";
 import BottoneCTA from "../../components/cta-button/BottoneCTA";
+import { useState } from "react";
 
 export default function HeroSection() {
+  const [address, setAddress] = useState("");
+
   return (
     <>
       <section id="home" className="hero-section-container">
@@ -18,9 +21,11 @@ export default function HeroSection() {
                   type="text"
                   placeholder="Inserisci l'indirizzo del tuo immobile"
                   className="address-input"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
                 <div className="button-container">
-                  <BottoneCTA />
+                  <BottoneCTA address={address} />
                 </div>
               </div>
             </div>

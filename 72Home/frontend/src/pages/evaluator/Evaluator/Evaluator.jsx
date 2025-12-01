@@ -2,14 +2,17 @@ import "./Evaluator.css";
 import FormNavigationButtons from "../components/form-navigation-buttons/FormNavigationButtons.jsx";
 import StepNavigation from "../components/step-navigation/StepNavigation.jsx";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import useEvaluatorForm from "../hooks/useEvaluatorForm.js";
 import { submitPropertyEvaluation } from "../../../services/api.js";
 import { Step1Address, Step2PropertyType, Step3Features, Step4AddOns, Step5Contact, Feedback } from "../components/steps/index.js";
 
 export default function Evaluator() {
+  const location = useLocation();
+  const initialAddress = location.state?.initialAddress || "";
   const [stepErrors, setStepErrors] = useState({});
   const [currentStep, setCurrentStep] = useState(0);
-  const { formData, updateField, buildJSON } = useEvaluatorForm();
+  const { formData, updateField, buildJSON } = useEvaluatorForm(initialAddress ? { street: initialAddress } : {});
 
   const steps = [Step1Address, Step2PropertyType, Step3Features, Step4AddOns, Step5Contact, Feedback];
   const StepComponent = steps[currentStep];
