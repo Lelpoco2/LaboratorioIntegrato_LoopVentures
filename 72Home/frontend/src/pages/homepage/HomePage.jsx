@@ -8,6 +8,7 @@ import WhyUs from "../../components/why-us/WhyUs";
 import Stats from "../../components/stats/Stats.jsx";
 import Banner from "../../components/banner/Banner.jsx";
 import Newsletter from "../../components/newsletter/Newsletter.jsx";
+import Agents from "../../components/agents/Agents";
 
 export default function Homepage() {
   return (
@@ -18,7 +19,8 @@ export default function Homepage() {
       <WhyUs />
       <Stats />
       <Banner />
-      <Newsletter/>
+      <Agents />
+      <Newsletter />
       <Footer />
     </>
   );
