@@ -1,0 +1,88 @@
+.sidebar {
+  width: 240px;
+  background-color: #f5e6d3; 
+  color: #5a3e2b; 
+  height: 100vh;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #d3b8a5; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar-nav {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.sidebar-nav li {
+  margin: 2rem 0;
+}
+
+.sidebar-nav a {
+  color: #5a3e2b; 
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.3rem; /* Increased size */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the text and icon */
+  padding: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar-nav a:hover {
+  background-color: #e6ccb2; 
+  color: #3e2a1e;
+}
+
+.icon {
+  margin-right: 0.5rem;
+  font-size: 1.8rem; /* Increased icon size */
+}
+
+.sidebar-footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid #d3b8a5;
+}
+
+.logout-button {
+  color: #5a3e2b; 
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.5rem; /* Increased size */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the text and icon */
+  padding: 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #e6ccb2; /* Lighter brown hover effect */
+  color: #3e2a1e; /* Even darker brown on hover */
+}
+
+.sidebar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.logo-sidebar {
+  max-width: 100%;
+  height: auto;
+}

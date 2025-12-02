@@ -1,0 +1,38 @@
+/* Miglioramento dello stile della lista proprietà */
+.property-list {
+  margin-top: 2rem;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 1px solid #dbd0c2;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.property-list-title {
+  color: #612916;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.property-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.property-table th,
+.property-table td {
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid #e0dcd8;
+  text-align: left;
+  color: #3b2f2f;
+}
+
+.property-table th {
+  background-color: #dbd0c2;
+  font-weight: bold;
+}
+
+.property-table tr:hover {
+  background-color: #f5f2f0;
+}
