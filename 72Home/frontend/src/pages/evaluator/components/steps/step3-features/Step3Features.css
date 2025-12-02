@@ -1,0 +1,21 @@
+.step-card {
+  max-width: 700px;
+  width: 100%;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .step-card {
+    width: 100%;
+  }
+  .form-column {
+    width: 100%;
+    gap: 25px;
+  }
+}

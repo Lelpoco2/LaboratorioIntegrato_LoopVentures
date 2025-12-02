@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 10px;
-  /* align-self: center; */
-  /* margin: 0 auto; */
+  gap: 50px;
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
-
 .btn {
   padding: 20px 0;
   width: 130px;
@@ -17,38 +16,31 @@
   font-size: 16px;
   transition: all 0.2s ease;
 }
-
 .btn.back {
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   color: #333;
+  border: 1px solid #612916;
 }
-
 .btn.back:hover {
-  background-color: #e0e0e0;
+  background-color: #f1f1f1;
 }
-
 .btn.next {
   background-color: #612916;
   color: white;
 }
-
 .btn.next:hover:enabled {
-  background-color: #9d8062;
+  background-color: #8e3b1f;
 }
-
-/* Disabled state styling */
 .navigation-buttons button:disabled {
-  background-color: #612916; /* light gray */
-  color: white; /* darker gray for text */
+  background-color: #612916;
+  color: white;
   cursor: not-allowed;
   opacity: 0.6;
 }
-
 .btn.submit {
-  background-color: #136d29;
+  background-color: #612916;
   color: white;
 }
-
 .btn.submit:hover {
-  background-color: #a86833;
+  background-color: #136d29;
 }

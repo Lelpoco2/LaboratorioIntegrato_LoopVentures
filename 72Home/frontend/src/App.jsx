@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/homepage/HomePage";
-import Evaluator from "./pages/evaluator/Evaluator";
+import Evaluator from "./pages/evaluator/Evaluator/Evaluator";
 import LoginPage from "./pages/login/LoginPage";
 
 function App() {

@@ -1,9 +1,14 @@
 //handles style, label, error messages
 
-import "../styles/Field.css";
+import "./Field.css";
+import { CaretDownIcon } from "@phosphor-icons/react";
+import { Children } from "react";
 
 export default function Field({ label, error, touched, children }) {
   const isValid = touched && !error;
+  const hasSelect = Children.toArray(children).some(
+    (child) => child && child.type === "select"
+  );
 
   return (
     <div
@@ -19,8 +24,11 @@ export default function Field({ label, error, touched, children }) {
       <div className="field-input-wrapper">
         {children}
 
-        {/* Icona di validazione */}
         {isValid && <span className="valid-icon">✓</span>}
+
+        {hasSelect && !isValid && (
+          <CaretDownIcon className="field-caret" size={20} />
+        )}
       </div>
 
       {error && <span className="error-message">{error}</span>}

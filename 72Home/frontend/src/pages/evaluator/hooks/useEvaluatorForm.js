@@ -4,9 +4,9 @@
 import { useState } from "react";
 import { buildBackendPayload } from "../../../utils/formMapper";
 
-export default function useEvaluatorForm() {
-  // Start with empty object - we'll build it progressively
-  const [formData, setFormData] = useState({});
+export default function useEvaluatorForm(initialData = {}) {
+  // Start with initialData or empty object - we'll build it progressively
+  const [formData, setFormData] = useState(initialData);
 
   const updateField = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

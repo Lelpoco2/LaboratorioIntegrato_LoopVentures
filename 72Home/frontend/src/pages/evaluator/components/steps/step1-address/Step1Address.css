@@ -5,30 +5,26 @@
   max-width: 700px;
   width: 70vh;
   align-content: center;
-  /* margin: 0 auto; */
 }
-
+.step1-h2 {
+  padding-bottom: 20px;
+}
 .form-row {
   display: flex;
   flex-direction: row;
   gap: 20px;
-  flex-wrap: wrap; /* for mobile */
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
-
 .form-group {
   display: flex;
   flex-direction: column;
-  position: relative; /* make select position relative to the caret icon */
-
-  /* flex: 1;  */
-  /* makes all inputs in a row equal width */
+  position: relative;
 }
-
 .form-group label {
   font-weight: 600;
   margin-bottom: 6px;
 }
-
 .form-group input,
 select {
   padding: 10px 14px;
@@ -36,46 +32,31 @@ select {
   border: 1px solid #ccc;
   font-size: 16px;
 }
-
 .form-group select {
   color: rgb(109, 109, 109);
-  appearance: none; /* disables the select caret */
+  appearance: none;
 }
-
-.long-field {
-  /* flex-grow: 1; */
-  flex: 1;
-  /* flex: 1 1 auto; default, takes remaining space */
-}
-
 .short-field {
-  /* flex: 0 0 80px; do not grow or shrink, fixed width */
   width: 150px;
-  /* flex: 0; */
 }
-
-.caret-down-icon {
-  position: absolute;
-  right: 15px; /* distance from the right edge */
-  top: 39%;
-  /* transform: translateY(100%); */
-  pointer-events: none; /* clicks go through to select */
-  color: #555;
-}
-
-/* Mobile: stack everything vertically */
 @media (max-width: 768px) {
   .step-card {
     width: 100%;
     align-content: center;
   }
-
   .form-row {
     flex-direction: column;
     gap: 30px;
   }
-
+  .form-row .form-group {
+    width: 100%;
+  }
+  .short-field {
+    width: 100%;
+  }
   .caret-down-icon {
     top: 50%;
+    transform: translateY(-50%);
+    margin-top: 13px;
   }
 }

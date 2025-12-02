@@ -1,0 +1,152 @@
+.step-navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 45px 0 40px 0;
+}
+.stepper-logo-container {
+  display: none;
+  width: 100%;
+  padding-bottom: 40px;
+  justify-content: center;
+  align-items: center;
+}
+.stepper-logo {
+  max-width: 240px;
+  height: auto;
+}
+.stepper-decoration-container {
+  display: none;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.stepper-decoration {
+  width: auto;
+  max-height: 330px;
+}
+.vertical-steps {
+  display: none;
+  width: 240px;
+  padding: 20px 0;
+}
+.step-item {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  min-height: 72px;
+}
+.step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 56px;
+  align-self: stretch;
+}
+.step-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2.5px solid #faf8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #faf8f8;
+  flex: 0 0 auto;
+}
+.step-icon.completed {
+  border-color: #612916;
+  background: #faf8f8;
+}
+.step-number {
+  font-weight: 700;
+  font-size: 16px;
+  color: #786a5a;
+}
+.step-connector {
+  width: 4px;
+  flex: 1 1 auto;
+  background: #faf8f8;
+}
+.step-connector.filled {
+  background: #612916;
+}
+.step-text {
+  display: flex;
+  flex-direction: column;
+}
+.step-title {
+  font-size: 1.1rem;
+  padding-bottom: 3px;
+  color: #786a5a;
+  font-weight: 600;
+}
+.step-sub {
+  font-size: 1rem;
+  color: #383130;
+}
+.step-item.active .step-title {
+  font-weight: 700;
+  color: #612916;
+}
+.step-item.completed .step-title {
+  color: #612916;
+}
+.step-item.active .step-icon {
+  background: #612916;
+  border-color: #612916;
+}
+.step-item.active .step-number {
+  color: #ffffff;
+}
+.horizontal-progress {
+  display: flex;
+  gap: 6px;
+  width: 80vw;
+  padding-top: 20px;
+}
+.hp-segment {
+  flex: 1 1 0;
+  height: 10px;
+  background: #bebcbc;
+  border-radius: 6px;
+}
+.hp-segment.filled {
+  background: #612916;
+}
+@media (min-width: 1025px) {
+  .stepper-logo-container {
+    display: flex;
+  }
+  .stepper-decoration-container {
+    display: flex;
+  }
+  .vertical-steps {
+    display: block;
+  }
+  .horizontal-progress {
+    display: none;
+  }
+}
+@media (min-width: 1025px) {
+  .vertical-steps {
+    width: 320px;
+  }
+  .step-left {
+    width: 64px;
+  }
+  .step-item {
+    min-height: 84px;
+  }
+}
+@media (max-height: 889px) {
+  .stepper-decoration-container {
+    display: none;
+  }
+}

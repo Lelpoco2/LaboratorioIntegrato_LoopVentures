@@ -21,12 +21,17 @@
   transition: border-color 0.2s, background 0.2s;
 }
 
+.field-input-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 .field-input-wrapper select option {
   padding: 10px;
   font-size: 15px;
 }
 
-/* ICONA ✓ */
 .valid-icon {
   position: absolute;
   right: 10px;
@@ -36,26 +41,40 @@
   pointer-events: none;
 }
 
-/* untouched */
+.field-input-wrapper .field-caret,
+.field-input-wrapper .caret-down-icon {
+  position: absolute;
+  right: 12px;
+  top: 30%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555;
+  margin-top: 13px;
+}
+
+.form-group.valid .caret-down-icon {
+  display: none;
+}
+.form-group.valid .field-caret {
+  display: none;
+}
+
 .form-group.untouched input,
 .form-group.untouched select {
   border-color: #cfcfcf;
 }
 
-/* touched */
 .form-group.touched input,
 .form-group.touched select {
   border-color: #6aa3e8;
 }
 
-/* errore */
 .form-group.error input,
 .form-group.error select {
   border-color: #c40000;
   background: #ffe9e9;
 }
 
-/* valid */
 .form-group.valid input,
 .form-group.valid select {
   border-color: #1e6e53;
@@ -69,7 +88,6 @@
 }
 
 .garage-size-group .error-message {
-  color: #666666;
   margin-top: 6px;
   font-size: 13.5px;
   line-height: 20px;
