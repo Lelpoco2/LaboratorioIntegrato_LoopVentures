@@ -1,0 +1,102 @@
+.properties-container-dashboard {
+  padding: 2rem;
+  background-color: #f9f4ef;
+  border-radius: 12px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.properties-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.properties-header h1 {
+  font-size: 2rem;
+  color: #5a3e2b;
+  font-weight: bold;
+}
+
+.properties-header .search-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-bar input {
+  padding: 0.75rem;
+  border: 1px solid #d3b8a5;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 250px;
+}
+
+.search-bar button {
+  padding: 0.75rem 1.5rem;
+  background-color: #612916;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+  background-color: #9d8062;
+}
+
+.properties-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.properties-table th,
+.properties-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #d3b8a5;
+}
+
+.properties-table th {
+  background-color: #f5e6d3;
+  color: #5a3e2b;
+  font-weight: 800;
+}
+
+.properties-table td {
+  color: #333;
+}
+
+.properties-table .actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.actions button {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.actions .edit {
+  background-color: #612916;
+  color: #ffffff;
+}
+
+.actions .delete {
+  background-color: #d9534f;
+  color: #ffffff;
+}
+
+.actions .edit:hover {
+  background-color: #9d8062;
+}
+
+.actions .delete:hover {
+  background-color: #c9302c;
+}

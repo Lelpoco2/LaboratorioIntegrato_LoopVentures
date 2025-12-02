@@ -1,0 +1,39 @@
+/* Miglioramento dello stile dell'header */
+.header {
+  background-color: #e6ccb2;
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid #432818;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 2rem;
+  color: #612916;
+  font-weight: bold;
+}
+
+.header-user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.welcome-message {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #5a3e2b;
+  margin-right: 10px;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+}
+
