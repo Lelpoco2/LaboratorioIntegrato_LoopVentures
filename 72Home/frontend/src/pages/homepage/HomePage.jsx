@@ -9,17 +9,39 @@ import Stats from "../../components/stats/Stats.jsx";
 import Banner from "../../components/banner/Banner.jsx";
 import Newsletter from "../../components/newsletter/Newsletter.jsx";
 import Agents from "../../components/agents/Agents";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function Homepage() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const hash = location.hash?.replace('#', '');
+    if (hash) {
+      const el = document.getElementById(hash);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [location]);
+
   return (
     <>
       <Navbar />
-      <HeroSection />
-      <Steps />
-      <WhyUs />
+      <section id="home">
+        <HeroSection />
+      </section>
+      <section id="steps">
+        <Steps />
+      </section>
+      <section id="why-choose-us">
+        <WhyUs />
+      </section>
       <Stats />
       <Banner />
-      <Agents />
+      <section id="agents">
+        <Agents />
+      </section>
       <Newsletter />
       <Footer />
     </>

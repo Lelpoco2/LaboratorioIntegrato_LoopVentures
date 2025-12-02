@@ -2,6 +2,7 @@ import "./Footer.css";
 import BottoneCTA from "../cta-button/BottoneCTA";
 import EstimoraLogo from "../../assets/logo/estimora-logo.svg";
 import { InstagramLogoIcon, FacebookLogoIcon, TiktokLogoIcon, PhoneCallIcon, EnvelopeSimpleIcon, WhatsappLogoIcon, MapPinIcon } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const ContactItem = ({ Icon, title, value }) => (
@@ -20,9 +21,9 @@ const Footer = () => {
     <footer id="footer" className="footer container" role="contentinfo">
       <div className="footer-up">
         <div className="footer-logo-section">
-          <a href="#home">
+          <Link to="/#home">
             <img src={EstimoraLogo} alt="Logo di Estimora" className="footer-logo" />
-          </a>
+          </Link>
           <BottoneCTA />
         </div>
 
@@ -30,19 +31,19 @@ const Footer = () => {
           <div className="footer-links">
             <h4>Chi siamo</h4>
             <ul>
-              <li><a href="#home">Valuta la tua casa</a></li>
-              <li><a href="#steps">Come funziona</a></li>
-              <li><a href="#agents">Agenti</a></li>
-              <li><a href="/login">Login</a></li>
+              <li><Link to="/evaluation">Valuta la tua casa</Link></li>
+              <li><Link to="/#steps">Come funziona</Link></li>
+              <li><Link to="/#agents">Agenti</Link></li>
+              <li><Link to="/login">Login</Link></li>
             </ul>
           </div>
 
           <div className="footer-links">
             <h4>Services</h4>
             <ul>
-              <li><a href="#">Cookies</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Condizioni d'utilizzo</a></li>
+              <li><Link to="/cookies">Cookies</Link></li>
+              <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+              <li><Link to="/termini-condizioni">Condizioni d'utilizzo</Link></li>
             </ul>
           </div>
         </div>
