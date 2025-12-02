@@ -122,6 +122,7 @@ export const buildBackendPayload = (formData) => {
   payload.property.hasBalcony = formData.balcony || false;
   payload.property.hasGarden = formData.garden || false;
   payload.property.hasTerrace = formData.terrace || false;
+  payload.property.hasCanteen = formData.canteen || false;
 
   return payload;
 };
