@@ -43,6 +43,7 @@ public class Property {
     private Boolean hasBalcony; //
     private Boolean hasGarden; //
     private Boolean hasTerrace; //
+    private Boolean hasCanteen; 
     private Integer bathrooms; //
     private HeatingType heatingType; //
     private BuildingType buildingType; //

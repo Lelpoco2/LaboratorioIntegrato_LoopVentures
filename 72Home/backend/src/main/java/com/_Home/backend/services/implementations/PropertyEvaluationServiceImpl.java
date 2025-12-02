@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,8 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
         Double conditionCoeff = conditionCoefficient(property.getCondition());
 
+        Double canteenCoeff = canteenCoefficient(property.getHasCanteen());
+
         Double energyClassCoeff = energyClassCoefficient(property.getEnergeticClass());
 
         Double buildingTypeCoeff = buildingTypeCoefficient(property.getBuildingType());
@@ -88,7 +91,7 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
 
         totalCoefficient = roomCoeff * bathroomCoeff * floorCoeff * boxCoeff * balconyCoeff * terraceCoeff
-                         * conditionCoeff * energyClassCoeff * buildingTypeCoeff * heatingTypeCoeff;
+                         * conditionCoeff * energyClassCoeff * buildingTypeCoeff * heatingTypeCoeff * canteenCoeff;
 
         Double finalPrice = basePrice * totalCoefficient;
         
@@ -369,6 +372,10 @@ public class PropertyEvaluationServiceImpl implements PropertyEvaluationService 
 
     private Double terraceCoefficient (Boolean hasTerrace) {
         return hasTerrace ? 1.07 : 1.0;
+    }
+
+    private Double canteenCoefficient(Boolean hasCanteen) {
+        return hasCanteen ? 1.02 : 1.0;
     }
 
     /**
