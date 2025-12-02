@@ -1,8 +1,7 @@
-
 services:
   db:
     image: mysql:8.0
-    container_name: app_database_MySQL_dev
+    container_name: app_database_MySQL_devtunnel
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -11,7 +10,7 @@ services:
     ports:
       - "${MYSQL_PORT:-3306}:3306"
     volumes:
-      - db_data_dev:/var/lib/mysql
+      - db_data_devtunnel:/var/lib/mysql
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u${MYSQL_USER} -p${MYSQL_PASSWORD}"]
       interval: 10s
@@ -22,7 +21,7 @@ services:
     build:
       context: ./72Home/backend
       dockerfile: Dockerfile.dev
-    container_name: app_backend_Spring_dev
+    container_name: app_backend_Spring_devtunnel
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE}
       SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
@@ -54,7 +53,7 @@ services:
     build:
       context: ./72Home/frontend
       dockerfile: Dockerfile.dev
-    container_name: app_frontend_React_dev
+    container_name: app_frontend_React_devtunnel
     ports:
       - "5173:5173"  # Vite dev server
     volumes:
@@ -66,7 +65,8 @@ services:
       # Volume per node_modules (evita conflitti con il sistema host)
       - /app/node_modules
     environment:
-      - VITE_API_URL=http://localhost:8080
+      # DevTunnel URL - Aggiorna con il tuo URL DevTunnel del backend
+      - VITE_API_URL=https://2szqn6js-8080.euw.devtunnels.ms
     depends_on:
       - backend
 
