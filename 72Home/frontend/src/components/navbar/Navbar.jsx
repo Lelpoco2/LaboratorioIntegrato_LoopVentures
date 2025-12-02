@@ -1,6 +1,7 @@
 import "./Navbar.css";
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import BottoneCTA from "../cta-button/BottoneCTA";
 import EstimoraLogo from "../../assets/logo/estimora-logo.svg";
@@ -22,9 +23,9 @@ export default function Navbar() {
   return (
     <header className="navbar">
       <div className="navbar-logo">
-        <a href="#home">
+        <Link to="/#home">
           <img src={EstimoraLogo} alt="Logo di Estimora" className="logo" />
-        </a>
+        </Link>
       </div>
 
       {/* hamburger icon */}
@@ -39,12 +40,12 @@ export default function Navbar() {
 
       {/* nav links */}
       <nav className={`navbar-links ${menuOpen ? "active" : ""}`}>
-        <a href="#home" onClick={() => setMenuOpen(false)}>
+        <Link to="/#home" onClick={() => setMenuOpen(false)}>
           Home
-        </a>
-        <a href="#steps" onClick={() => setMenuOpen(false)}>
+        </Link>
+        <Link to="/#steps" onClick={() => setMenuOpen(false)}>
           Come funziona
-        </a>
+        </Link>
 
         <div
           className="navbar-item"
@@ -60,19 +61,19 @@ export default function Navbar() {
           </button>
           {activeMenu === "about-us" && (
             <div className="submenu">
-              <a href="#why-choose-us" onClick={() => setMenuOpen(false)}>
+              <Link to="/#why-choose-us" onClick={() => setMenuOpen(false)}>
                 Perché sceglierci
-              </a>
-              <a href="#footer" onClick={() => setMenuOpen(false)}>
+              </Link>
+              <Link to="/#footer" onClick={() => setMenuOpen(false)}>
                 Contatti
-              </a>
+              </Link>
             </div>
           )}
         </div>
 
-        <a href="#agents" onClick={() => setMenuOpen(false)}>
+        <Link to="/#agents" onClick={() => setMenuOpen(false)}>
           Agenti
-        </a>
+        </Link>
       </nav>
 
       {/* Bottone CTA spostato fuori dal nav links */}

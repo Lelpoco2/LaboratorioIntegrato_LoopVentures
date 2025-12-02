@@ -2,10 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12vh 20px;
-  width: 100%;
   background: #dbd0c2;
+  min-height: 70vh;
+  padding-top: 100px;
+  padding-bottom: 70px;
+  height: auto;
+  width: 100%;
+  outline: 20px #dbd0c2 solid;
 }
+
 .feedback-card {
   background: #ffffff;
   padding: 40px 45px;
@@ -49,7 +54,7 @@
 .home-button {
   display: inline-block;
   padding: 12px 28px;
-  background-color: #684f3b;
+  background-color: #612916;
   color: white;
   text-decoration: none;
   font-size: 17px;
@@ -57,7 +62,7 @@
   transition: background-color 0.2s ease-in-out;
 }
 .home-button:hover {
-  background-color: #836a57;
+  background-color: #8e3b1f;
 }
 @media (max-width: 768px) {
   .feedback-card {
