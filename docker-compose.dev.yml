@@ -66,7 +66,8 @@ services:
       # Volume per node_modules (evita conflitti con il sistema host)
       - /app/node_modules
     environment:
-      - VITE_API_URL=http://localhost:8080
+      - VITE_API_URL=https://2szqn6js-8080.euw.devtunnels.ms
+      # - VITE_API_URL=http://localhost:8080 # Togliere il commento per uso locale
     depends_on:
       - backend
 

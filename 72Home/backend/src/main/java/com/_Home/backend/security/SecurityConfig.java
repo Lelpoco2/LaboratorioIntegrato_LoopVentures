@@ -1,7 +1,11 @@
 package com._Home.backend.security;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -14,12 +18,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
 
 import lombok.RequiredArgsConstructor;
-
-import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("AMMINISTRATORE")
                 .requestMatchers("/actuator/**").hasRole("AMMINISTRATORE")
+                .requestMatchers("/api/form-submit").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement(session -> session
@@ -75,7 +76,8 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList(
             "http://localhost:5173",
             "http://localhost:3000",
-            "https://0f1b7t1g-5173.euw.devtunnels.ms"
+            "https://0f1b7t1g-5173.euw.devtunnels.ms",
+            "https://2szqn6js-5173.euw.devtunnels.ms"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));

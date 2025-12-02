@@ -1,7 +1,7 @@
 // api.js
 // API service for backend communication
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://2szqn6js-8080.euw.devtunnels.ms';
 
 /**
  * Submit property evaluation form to backend
