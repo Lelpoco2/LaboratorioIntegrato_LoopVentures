@@ -4,7 +4,7 @@
   /* Ensures no overflow even with scrollbars */
   padding: 10vh 15vw;
   height: 100vh;
-  background-image: url("../../assets/background/header.jpg");
+  background-image: url("../../assets/background/header.avif");
   background-size: cover;
   background-position: center;
   display: flex;

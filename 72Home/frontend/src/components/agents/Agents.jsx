@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Agents.css";
 import { HouseLineIcon, CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
-import agent1Img from "../../assets/agents/agente_uomo1.jpg";
-import agent2Img from "../../assets/agents/agente_donna1.jpg";
-import agent3Img from "../../assets/agents/agente_donna2.jpg";
-import agent4Img from "../../assets/agents/agente_uomo2.jpg";
-import agent5Img from "../../assets/agents/agente_donna3.jpg";
-import agent6Img from "../../assets/agents/agente_uomo3.jpg";
+import agent1Img from "../../assets/agents/agente_uomo1.avif";
+import agent2Img from "../../assets/agents/agente_donna1.avif";
+import agent3Img from "../../assets/agents/agente_donna2.avif";
+import agent4Img from "../../assets/agents/agente_uomo2.avif";
+import agent5Img from "../../assets/agents/agente_donna3.avif";
+import agent6Img from "../../assets/agents/agente_uomo3.avif";
 
 const agentsData = [
     {
@@ -90,7 +90,7 @@ const Agents = () => {
                 <div className="agents-container">
                     {visibleAgents.map((agent, index) => (
                         <div key={index} className="agent-card">
-                            <img src={agent.image} alt={agent.name} className="agent-image" />
+                            <img src={agent.image} alt={agent.name} className="agent-image" loading="lazy" />
                             <h3>{agent.name}</h3>
                             <p>{agent.description}</p>
                             <div className="agent-info">

@@ -1,6 +1,6 @@
 import "./WhyUs.css";
-import AtticImg from "../../assets/background/attic-glimpse.png";
-import LivingRoomImg from "../../assets/background/living-room-glimpse.png";
+import AtticImg from "../../assets/background/attic-glimpse.avif";
+import LivingRoomImg from "../../assets/background/living-room-glimpse.avif";
 import {
   QuotesIcon,
   NumberCircleOneIcon,
@@ -74,6 +74,7 @@ const WhyUs = () => {
                 className="why-us-image "
                 src={AtticImg}
                 alt="Una mansarda piena di luce con una lampada ed un divano."
+                loading="lazy"
               />
             </div>
             <div className="image-container flex-end">
@@ -81,6 +82,7 @@ const WhyUs = () => {
                 className="why-us-image border-radius-inverted"
                 src={LivingRoomImg}
                 alt="Un salotto luminoso con una libreria piena di libri"
+                loading="lazy"
               />
             </div>
           </div>
