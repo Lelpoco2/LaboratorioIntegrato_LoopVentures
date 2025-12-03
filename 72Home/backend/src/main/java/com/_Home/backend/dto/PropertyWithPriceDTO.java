@@ -10,6 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,8 +40,25 @@ public class PropertyWithPriceDTO {
     private BuildingType buildingType;
     private java.sql.Timestamp createdAt;
     
-    // Additional field for latest evaluation price
-    private Double latestEvaluationPrice;
+    // Additional field for latest evaluation price (formatted)
+    private String latestEvaluationPrice;
+
+    /**
+     * Formats price to nearest hundred with thousand separators
+     * Example: 493450.0 -> "493.400", 270000.0 -> "270.000"
+     */
+    private static String formatPrice(Double price) {
+        if (price == null) {
+            return null;
+        }
+        // Round to nearest hundred
+        long rounded = Math.round(price / 100.0) * 100;
+        
+        // Format with thousand separator (dot) using Italian locale
+        DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(Locale.ITALIAN);
+        DecimalFormat formatter = new DecimalFormat("###,###,##0", symbols);
+        return formatter.format(rounded);
+    }
 
     public static PropertyWithPriceDTO fromProperty(Property property, Double latestPrice) {
         PropertyWithPriceDTO dto = new PropertyWithPriceDTO();
@@ -62,7 +83,7 @@ public class PropertyWithPriceDTO {
         dto.setHeatingType(property.getHeatingType());
         dto.setBuildingType(property.getBuildingType());
         dto.setCreatedAt(property.getCreatedAt());
-        dto.setLatestEvaluationPrice(latestPrice);
+        dto.setLatestEvaluationPrice(formatPrice(latestPrice));
         return dto;
     }
 }

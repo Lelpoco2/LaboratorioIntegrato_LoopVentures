@@ -69,6 +69,11 @@ export default function PropertiesPage() {
 
     const formatPrice = (price) => {
         if (price === null || price === undefined) return '-';
+        // If price is already a formatted string from backend, just add the € symbol
+        if (typeof price === 'string') {
+            return `€ ${price}`;
+        }
+        // Otherwise format as number (legacy support)
         const n = Number(price);
         if (!Number.isFinite(n)) return '-';
         return new Intl.NumberFormat('it-IT', {
