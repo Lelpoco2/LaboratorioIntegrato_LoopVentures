@@ -55,6 +55,10 @@ const DashBoard = () => {
               value={loading ? '...' : stats.totalOmiZones} 
             />
             <StatsCard 
+              title="Totale Valutazioni Immobili" 
+              value={loading ? '...' : stats.totalEvaluations} 
+            />
+            <StatsCard 
               title="Valore medio degli immobili" 
               value={loading ? '...' : stats.averageEvaluationPrice + ' €'} 
             />

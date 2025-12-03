@@ -24,8 +24,7 @@ export default function PropertiesPage() {
                     tipologia: mapBuildingType(p.buildingType),
                     indirizzo: formatAddress(p.address, p.civicNumber),
                     citta: p.city,
-                    // TODO: prezzo is not connected to backend yet
-                    prezzo: '-',
+                    prezzo: formatPrice(p.latestEvaluationPrice),
                     // TODO: disponibilita is not connected to backend yet, default to "Disponibile"
                     disponibilita: 'Disponibile',
                     // Full details for modal
@@ -33,7 +32,7 @@ export default function PropertiesPage() {
                         tipologia: mapBuildingType(p.buildingType),
                         indirizzo: formatAddress(p.address, p.civicNumber),
                         citta: p.city,
-                        prezzo: '-', // TODO
+                        prezzo: formatPrice(p.latestEvaluationPrice),
                         cap: p.zipCode,
                         stanze: p.rooms,
                         bagni: p.bathrooms,
@@ -66,6 +65,18 @@ export default function PropertiesPage() {
     const formatAddress = (address, civic) => {
         if (!address) return '-';
         return civic ? `${address} ${civic}` : address;
+    };
+
+    const formatPrice = (price) => {
+        if (price === null || price === undefined) return '-';
+        const n = Number(price);
+        if (!Number.isFinite(n)) return '-';
+        return new Intl.NumberFormat('it-IT', {
+            style: 'currency',
+            currency: 'EUR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        }).format(n);
     };
 
     const formatSurface = (sqm) => {

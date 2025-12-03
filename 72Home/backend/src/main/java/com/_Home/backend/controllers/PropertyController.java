@@ -1,6 +1,7 @@
 package com._Home.backend.controllers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com._Home.backend.dto.PropertyWithPriceDTO;
 import com._Home.backend.models.Property;
+import com._Home.backend.repos.PropertyEvaluationRepo;
 import com._Home.backend.services.interfaces.PropertyService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,10 +28,22 @@ public class PropertyController {
 
     @Autowired
     private PropertyService propertyService;
+    
+    @Autowired
+    private PropertyEvaluationRepo propertyEvaluationRepo;
 
     @GetMapping("/properties")
-    public ResponseEntity<List<Property>> getAllProperties() {
-        return ResponseEntity.ok(propertyService.getAllProperty());
+    public ResponseEntity<List<PropertyWithPriceDTO>> getAllProperties() {
+        List<Property> properties = propertyService.getAllProperty();
+        List<PropertyWithPriceDTO> propertiesWithPrices = properties.stream()
+            .map(property -> {
+                Double latestPrice = propertyEvaluationRepo.findLatestByProperty(property)
+                    .map(evaluation -> evaluation.getPropertyValue())
+                    .orElse(null);
+                return PropertyWithPriceDTO.fromProperty(property, latestPrice);
+            })
+            .collect(Collectors.toList());
+        return ResponseEntity.ok(propertiesWithPrices);
     }
 
     @GetMapping("/properties/{id}")
