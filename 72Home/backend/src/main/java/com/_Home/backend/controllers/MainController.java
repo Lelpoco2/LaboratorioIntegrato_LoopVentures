@@ -70,9 +70,8 @@ public class MainController {
             propertyEvaluationService.savePropertyEvaluation(propertyEvaluation);
             
             // 5. Get OmiZone data for the email template
-            String fullAddress = savedProperty.getAddress() + 
-                (savedProperty.getCivicNumber() != null ? " " + savedProperty.getCivicNumber() : "") + 
-                ", " + savedProperty.getZipCode() + " " + savedProperty.getCity();
+            // Use the same address format as evaluateProperty to ensure consistency
+            String fullAddress = savedProperty.getAddress() + ", " + savedProperty.getZipCode() + " " + savedProperty.getCity();
             List<OmiZone> omiZones = propertyEvaluationServiceImpl.getOmiZoneByAddress(fullAddress);
             
             // Use the first zone for 'Abitazioni civili' if available
