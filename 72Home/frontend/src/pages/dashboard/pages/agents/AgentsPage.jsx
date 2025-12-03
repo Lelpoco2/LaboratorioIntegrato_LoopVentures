@@ -1,15 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DashboardLayout from '../../DashboardLayout';
 import { TrashIcon, PencilIcon } from '@phosphor-icons/react';
 import './AgentsPage.css';
+import { apiRequest } from '../../../../services/api';
 
 export default function AgentsPage() {
-    const [agents, setAgents] = useState([
-        { id: 1, nome: 'Marco', cognome: 'Verdi', email: 'marco.verdi@gmail.com', telefono: '3456789012', citta: 'Alessandria' },
-        { id: 2, nome: 'Chiara', cognome: 'Neri', email: 'chiara.neri@gmail.com', telefono: '3471234567', citta: 'Torino' },
-        { id: 3, nome: 'Giulia', cognome: 'Conti', email: 'giulia.conti@gmail.com', telefono: '3499876543', citta: 'Torino' },
-        { id: 4, nome: 'Luca', cognome: 'Rossi', email: 'luca.rossi@gmail.com', telefono: '3465432198', citta: 'Asti' },
-    ]);
+    const [agents, setAgents] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    useEffect(() => {
+        const fetchAgents = async () => {
+            setLoading(true);
+            setError('');
+            try {
+                const data = await apiRequest('/api/admin/special-users', { method: 'GET' });
+                const formattedAgents = (Array.isArray(data) ? data : []).map(user => ({
+                    id: user.id,
+                    nome: user.firstName || '-',
+                    cognome: user.lastName || '-',
+                    email: user.email || '-',
+                    telefono: user.phone || '-',
+                    citta: '-', // Not available in backend model
+                    roles: user.roles || []
+                }));
+                setAgents(formattedAgents);
+            } catch (err) {
+                console.error('Failed to fetch agents:', err);
+                setError(`Impossibile caricare gli agenti: ${err.message}`);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAgents();
+    }, []);
 
     const handleDelete = (id) => {
         setAgents((prevAgents) => prevAgents.filter((agent) => agent.id !== id));
@@ -26,6 +51,7 @@ export default function AgentsPage() {
                         <button className="add-agent">Aggiungi Agente</button>
                     </div>
                 </div>
+                {error && <div className="error-banner">{error}</div>}
                 <table className="agents-table">
                     <thead>
                         <tr>
@@ -38,7 +64,13 @@ export default function AgentsPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {agents.map((agent) => (
+                        {loading && (
+                            <tr><td colSpan={6}>Caricamento…</td></tr>
+                        )}
+                        {!loading && agents.length === 0 && (
+                            <tr><td colSpan={6}>Nessun agente trovato</td></tr>
+                        )}
+                        {!loading && agents.map((agent) => (
                             <tr key={agent.id}>
                                 <td>{agent.nome}</td>
                                 <td>{agent.cognome}</td>

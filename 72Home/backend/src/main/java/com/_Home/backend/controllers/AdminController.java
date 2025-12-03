@@ -3,6 +3,7 @@ package com._Home.backend.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com._Home.backend.dto.SpecialUserDTO;
 import com._Home.backend.repos.OmiZoneRepo;
 import com._Home.backend.repos.PropertyEvaluationRepo;
 import com._Home.backend.repos.PropertyRepo;
@@ -12,7 +13,9 @@ import com._Home.backend.repos.UserRepo;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -58,6 +61,15 @@ public class AdminController {
         dashboard.put("statistics", stats);
         
         return ResponseEntity.ok(dashboard);
+    }
+
+    @GetMapping("/special-users")
+    @PreAuthorize("hasRole('AMMINISTRATORE')")
+    public ResponseEntity<List<SpecialUserDTO>> getAllSpecialUsers() {
+        List<SpecialUserDTO> specialUsers = specialUserRepo.findAll().stream()
+            .map(SpecialUserDTO::fromSpecialUser)
+            .collect(Collectors.toList());
+        return ResponseEntity.ok(specialUsers);
     }
 
     
