@@ -1,23 +1,31 @@
 /* SEZIONE GENERALE */
 .agents-section {
   padding: 4rem 2rem;
-  background-color: #d6c6b4;
+  background-color: #F4F4F4;
   text-align: center;
 }
 
+/* HEADER */
+.agents-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
 /* TITOLO */
-.agents-section h2 {
-  font-size: 2.4rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
+.agents-section .title {
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 10px;
   color: #432818ff;
 }
 
 /* SOTTOTITOLO */
-.agents-section p {
-  font-size: 1.1rem;
-  margin-bottom: 3rem;
+.agents-section .subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
   color: #432818ff;
+  margin: 0;
 }
 
 /* CONTENITORE CAROUSEL */
@@ -168,6 +176,14 @@
 @media (max-width: 768px) {
   .agents-section {
     padding: 1.5rem 1rem;
+  }
+
+  .agents-section .title {
+    font-size: 1.8rem;
+  }
+
+  .agents-section .subtitle {
+    font-size: 1.1rem;
   }
 
   .carousel-container {

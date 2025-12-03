@@ -39,7 +39,7 @@ const Footer = () => {
           </div>
 
           <div className="footer-links">
-            <h4>Services</h4>
+            <h4>Servizi</h4>
             <ul>
               <li><Link to="/cookies">Cookies</Link></li>
               <li><Link to="/privacy-policy">Privacy Policy</Link></li>
@@ -50,17 +50,17 @@ const Footer = () => {
 
         <div className="footer-contact-and-social">
           <div className="footer-contact-section">
-            <h4>Contact us</h4>
+            <h4>Contatti</h4>
             <div className="contact-details">
               <ContactItem Icon={WhatsappLogoIcon} title="WhatsApp:" value="+39 342 768 9154" />
-              <ContactItem Icon={PhoneCallIcon} title="Phone:" value="+39 011 764 2385" />
+              <ContactItem Icon={PhoneCallIcon} title="Telefono:" value="+39 011 764 2385" />
               <ContactItem Icon={EnvelopeSimpleIcon} title="Email:" value="estimora.info@gmail.com" />
-              <ContactItem Icon={MapPinIcon} title="Location:" value="Via Jacopo Durandi 33, TO" />
+              <ContactItem Icon={MapPinIcon} title="Sede:" value="Via Jacopo Durandi 33, TO" />
             </div>
           </div>
 
           <div className="footer-social-section-top">
-            <h4>Follow us</h4>
+            <h4>Seguici</h4>
             <div className="social-icons" aria-label="Social media">
               <a href="#" target="_blank" rel="noreferrer" aria-label="TikTok">
                 <TiktokLogoIcon size={20} />

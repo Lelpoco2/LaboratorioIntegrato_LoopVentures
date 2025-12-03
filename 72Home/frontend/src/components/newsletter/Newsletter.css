@@ -134,3 +134,9 @@
     display: none;
   }
 }
+
+@media (max-width: 2000px) {
+  .envelope-icon {
+    display: none;
+  }
+}

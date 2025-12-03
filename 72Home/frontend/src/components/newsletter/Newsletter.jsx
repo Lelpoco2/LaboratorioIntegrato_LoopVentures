@@ -35,9 +35,9 @@ const Newsletter = ({
     return (
         <div className="news-section-container">
             <section id="newsletter">
-            <div className="news-container">
+                <div className="news-container">
 
-                    <EnvelopeIcon size={300} weight="thin" className='envelope-icon left' color='black' />
+                    <EnvelopeIcon size={300} weight="thin" className='envelope-icon left' color='#74584bff' />
 
 
                     <div className="new-box">
@@ -72,7 +72,7 @@ const Newsletter = ({
 
 
 
-                    <EnvelopeIcon size={200} className="envelope-icon right" weight="thin" color='black' />
+                    <EnvelopeIcon size={200} className="envelope-icon right" weight="thin" color='#74584bff' />
 
                 </div>
             </section>

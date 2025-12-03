@@ -81,8 +81,10 @@ const Agents = () => {
 
     return (
         <section id="agents" className="agents-section">
-            <h2>Agenti</h2>
-            <p>Vendi in fretta e senza preoccupazioni con l'aiuto dei nostri professionisti!</p>
+            <div className="agents-header">
+                <h1 className="title">Agenti</h1>
+                <h3 className="subtitle">Vendi in fretta e senza preoccupazioni con l'aiuto dei nostri professionisti!</h3>
+            </div>
             <div className="carousel-container">
                 <button className="carousel-button prev" onClick={handlePrev}>
                     <CaretLeftIcon size={40} weight="bold" />
