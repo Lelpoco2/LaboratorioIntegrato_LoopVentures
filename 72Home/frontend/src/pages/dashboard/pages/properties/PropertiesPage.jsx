@@ -27,8 +27,7 @@ export default function PropertiesPage() {
                     prezzo: formatPrice(p.latestEvaluationPrice),
                     taken: p.taken || false,
                     assignedAdministrator: p.assignedAdministrator || null,
-                    // TODO: disponibilita is not connected to backend yet, default to "Disponibile"
-                    disponibilita: 'Disponibile',
+                    disponibilita: (p.taken && p.assignedAdministrator) ? 'Non disponibile' : 'Disponibile',
                     // Full details for modal
                     fullData: {
                         tipologia: mapBuildingType(p.buildingType),
