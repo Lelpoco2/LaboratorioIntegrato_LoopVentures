@@ -7,6 +7,7 @@ import Dashboard from "./pages/dashboard/DashBoard";
 import AgentsPage from "./pages/dashboard/pages/agents/AgentsPage";
 import UsersPage from "./pages/dashboard/pages/users/UsersPage";
 import PropertiesPage from "./pages/dashboard/pages/properties/PropertiesPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -15,10 +16,10 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/evaluation" element={<Evaluator />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/agenti" element={<AgentsPage />} />
-        <Route path="/dashboard/utenti" element={<UsersPage />} />
-        <Route path="/dashboard/immobili" element={<PropertiesPage />} />
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/dashboard/agenti" element={<ProtectedRoute><AgentsPage /></ProtectedRoute>} />
+        <Route path="/dashboard/utenti" element={<ProtectedRoute><UsersPage /></ProtectedRoute>} />
+        <Route path="/dashboard/immobili" element={<ProtectedRoute><PropertiesPage /></ProtectedRoute>} />
       </Routes>
     </Router>
   );
