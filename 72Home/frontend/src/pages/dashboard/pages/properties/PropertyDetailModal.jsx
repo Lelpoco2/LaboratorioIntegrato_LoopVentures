@@ -21,7 +21,6 @@ const fieldOrder = [
   'riscaldamento',
   'condizione',
   'classeEnergetica',
-  'creatoIl',
 ];
 
 const labelMap = {

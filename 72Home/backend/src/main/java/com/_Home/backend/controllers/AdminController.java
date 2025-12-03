@@ -39,11 +39,22 @@ public class AdminController {
         dashboard.put("message", "Welcome to the admin dashboard, " + userDetails.getUsername() + "!");
         
         // Statistiche
-        Map<String, Long> stats = new HashMap<>();
+        Map<String, Object> stats = new HashMap<>();
         stats.put("totalUsers", userRepo.count());
         stats.put("totalProperties", propertyRepo.count());
         stats.put("totalEvaluations", propertyEvaluationRepo.count());
         stats.put("totalOmiZones", omiZoneRepo.count());
+        
+        // Calculate average evaluation price
+        Double averagePrice = propertyEvaluationRepo.findAll().stream()
+            .map(evaluation -> evaluation.getPropertyValue())
+            .filter(value -> value != null)
+            .mapToDouble(Double::doubleValue)
+            .average()
+            .orElse(0.0);
+        
+        stats.put("averageEvaluationPrice", Math.round(averagePrice * 100.0) / 100.0);
+        
         dashboard.put("statistics", stats);
         
         return ResponseEntity.ok(dashboard);
