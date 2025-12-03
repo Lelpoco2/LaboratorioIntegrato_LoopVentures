@@ -23,7 +23,6 @@ import lombok.Data;
 public class SpecialUser {
 
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     

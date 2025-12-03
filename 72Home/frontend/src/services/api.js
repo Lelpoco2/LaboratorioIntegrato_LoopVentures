@@ -44,9 +44,11 @@ export const submitPropertyEvaluation = async (payload) => {
  */
 export const apiRequest = async (endpoint, options = {}) => {
   try {
+    const token = localStorage.getItem('auth_token');
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       headers: {
         'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...options.headers,
       },
       ...options
@@ -55,6 +57,11 @@ export const apiRequest = async (endpoint, options = {}) => {
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+
+    // Handle 204 No Content responses (like DELETE)
+    if (response.status === 204 || response.headers.get('content-length') === '0') {
+      return null;
     }
 
     return await response.json();

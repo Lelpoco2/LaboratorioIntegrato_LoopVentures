@@ -7,6 +7,7 @@ public interface UserService {
 	List<User> getAllUsers();
 	User insertUser(User user);
 	User getUserById(Integer id);
+	User getUserByPropertyId(Integer propertyId);
 	User updateUser(User user);
 	void deleteUser(Integer id);
 }

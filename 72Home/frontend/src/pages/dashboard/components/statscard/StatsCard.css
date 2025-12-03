@@ -1,0 +1,22 @@
+/* Miglioramento dello stile delle carte statistiche */
+.stats-card-dash {
+  background-color: #ffffff;
+  border: 1px solid #dbd0c2;
+  border-radius: 8px;
+  padding: 1.5rem;
+  min-width: 180px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stats-card-title {
+  font-size: 1rem;
+  color: #7f6a5d;
+  font-weight: bold;
+}
+
+.stats-card-value {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #612916;
+  margin-top: 0.8rem;
+}

@@ -70,9 +70,8 @@ public class MainController {
             propertyEvaluationService.savePropertyEvaluation(propertyEvaluation);
             
             // 5. Get OmiZone data for the email template
-            String fullAddress = savedProperty.getAddress() + 
-                (savedProperty.getCivicNumber() != null ? " " + savedProperty.getCivicNumber() : "") + 
-                ", " + savedProperty.getZipCode() + " " + savedProperty.getCity();
+            // Use the same address format as evaluateProperty to ensure consistency
+            String fullAddress = savedProperty.getAddress() + ", " + savedProperty.getZipCode() + " " + savedProperty.getCity();
             List<OmiZone> omiZones = propertyEvaluationServiceImpl.getOmiZoneByAddress(fullAddress);
             
             // Use the first zone for 'Abitazioni civili' if available
@@ -140,14 +139,15 @@ public class MainController {
 
     /**
      * Formats price to nearest hundred with thousand separators
-     * Example: 493450.0 -> "493.400"
+     * Example: 493450.0 -> "493.400", 270000.0 -> "270.000"
      */
     private String formatPrice(Double price) {
         // Round to nearest hundred
         long rounded = Math.round(price / 100.0) * 100;
         
-        // Format with thousand separator (dot)
-        DecimalFormat formatter = new DecimalFormat("#,###", DecimalFormatSymbols.getInstance(Locale.ITALIAN));
+        // Format with thousand separator (dot) using Italian locale
+        DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(Locale.ITALIAN);
+        DecimalFormat formatter = new DecimalFormat("###,###,##0", symbols);
         return formatter.format(rounded);
     }
 }

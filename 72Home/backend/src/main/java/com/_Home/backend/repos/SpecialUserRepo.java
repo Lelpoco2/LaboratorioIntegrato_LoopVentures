@@ -1,5 +1,6 @@
 package com._Home.backend.repos;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -13,4 +14,7 @@ public interface SpecialUserRepo extends JpaRepository<SpecialUser, Integer> {
     
     @EntityGraph(attributePaths = {"roles"})
     Optional<SpecialUser> findByEmail(String email);
+    
+    @EntityGraph(attributePaths = {"roles"})
+    List<SpecialUser> findAll();
 }
