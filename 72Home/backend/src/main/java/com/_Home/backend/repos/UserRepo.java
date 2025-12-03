@@ -8,5 +8,6 @@ import com._Home.backend.models.User;
 @Repository
 public interface UserRepo extends JpaRepository<User, Integer> {
 
+    User findByPropertyId(Integer propertyId);
     
 }

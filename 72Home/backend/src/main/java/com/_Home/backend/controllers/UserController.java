@@ -48,6 +48,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/users/by-property/{propertyId}")
+    public ResponseEntity<User> getUserByPropertyId(@PathVariable Integer propertyId) {
+        User user = userService.getUserByPropertyId(propertyId);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.insertUser(user);

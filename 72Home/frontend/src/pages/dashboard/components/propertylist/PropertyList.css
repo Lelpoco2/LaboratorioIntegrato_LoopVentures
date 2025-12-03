@@ -36,3 +36,30 @@
 .property-table tr:hover {
   background-color: #f5f2f0;
 }
+
+.action-cell {
+  text-align: center;
+}
+
+.view-button {
+  background-color: #d9c0a6;
+  color: #3e2b1f;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-button:hover {
+  background-color: #c9b093;
+}
+
+.view-button:disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}
