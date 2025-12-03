@@ -257,8 +257,8 @@ export default function PropertiesPage() {
                                             Prendi in carico
                                         </button>
                                     )}
-                                    <button className="edit"><PencilIcon /></button>
-                                    <button className="delete" onClick={() => handleDelete(property.id)}><TrashIcon /></button>
+                                    {/* <button className="edit"><PencilIcon /></button>
+                                    <button className="delete" onClick={() => handleDelete(property.id)}><TrashIcon /></button> */}
                                     <button className="view light-brown" onClick={() => openDetailModal(property)}><EyeIcon /></button>
                                 </td>
                             </tr>
