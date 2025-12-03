@@ -47,6 +47,12 @@
   color: #3e2a1e;
 }
 
+.sidebar-nav a.active {
+  background-color: #d3b8a5;
+  color: #3e2a1e;
+  font-weight: 700;
+}
+
 .icon {
   margin-right: 0.5rem;
   font-size: 1.8rem; /* Increased icon size */

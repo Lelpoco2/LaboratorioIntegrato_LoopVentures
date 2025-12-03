@@ -1,7 +1,7 @@
 import React from 'react';
 import './SideBar.css';
 import { GaugeIcon, UsersThreeIcon, UserIcon, BuildingsIcon, SignOutIcon } from '@phosphor-icons/react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import EstimoraLogo from "../../../../assets/logo/estimora-logo.svg";
 
 export default function Sidebar() {
@@ -13,24 +13,24 @@ export default function Sidebar() {
       <nav className="sidebar-nav">
         <ul>
           <li>
-            <Link to="/dashboard">
+            <NavLink to="/dashboard" end>
               <GaugeIcon className="icon" /> Dashboard
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/dashboard/agenti">
+            <NavLink to="/dashboard/agenti">
               <UserIcon className="icon" /> Agenti
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/dashboard/utenti">
+            <NavLink to="/dashboard/utenti">
               <UsersThreeIcon className="icon" /> Utenti
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/dashboard/immobili">
+            <NavLink to="/dashboard/immobili">
               <BuildingsIcon className="icon" /> Immobili
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
