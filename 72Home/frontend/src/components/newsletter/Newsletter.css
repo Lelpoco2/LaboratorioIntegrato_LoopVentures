@@ -94,6 +94,9 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .news-button:hover {

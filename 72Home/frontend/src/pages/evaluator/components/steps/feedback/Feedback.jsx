@@ -31,17 +31,12 @@ export default function Feedback({ formData }) {
           <p className="feedback-text">
             <strong>Entro 72 ore</strong> sarai ricontattato da un agente esperto che ti aiuterà a completare la valutazione e ti fornirà utili consigli su come valorizzare al meglio il tuo immobile.
           </p>
-          {(email || phone) && (
+          {(email) && (
             <div className="feedback-contact-info">
               <p className="feedback-text">Invieremo il report a:</p>
               {email && (
                 <p className="feedback-contact-detail">
                   <strong>Email:</strong> {email}
-                </p>
-              )}
-              {phone && (
-                <p className="feedback-contact-detail">
-                  <strong>Cellulare:</strong> {phone}
                 </p>
               )}
             </div>
