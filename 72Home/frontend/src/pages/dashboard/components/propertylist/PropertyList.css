@@ -1,0 +1,65 @@
+/* Miglioramento dello stile della lista proprietà */
+.property-list {
+  margin-top: 2rem;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border: 1px solid #dbd0c2;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.property-list-title {
+  color: #612916;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.property-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.property-table th,
+.property-table td {
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid #e0dcd8;
+  text-align: left;
+  color: #3b2f2f;
+}
+
+.property-table th {
+  background-color: #dbd0c2;
+  font-weight: bold;
+}
+
+.property-table tr:hover {
+  background-color: #f5f2f0;
+}
+
+.action-cell {
+  text-align: center;
+}
+
+.view-button {
+  background-color: #d9c0a6;
+  color: #3e2b1f;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-button:hover {
+  background-color: #c9b093;
+}
+
+.view-button:disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+}

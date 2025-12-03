@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User getUserByPropertyId(Integer propertyId) {
+		return userRepo.findByPropertyId(propertyId);
+	}
+
+	@Override
 	public User updateUser(User user) {
 		return userRepo.save(user);
 	}

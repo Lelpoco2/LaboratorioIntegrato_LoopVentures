@@ -17,7 +17,7 @@ export default function Step4AddOns({ formData, updateField, setStepErrors }) {
       <h2>Dotazioni Aggiuntive</h2>
       <p className="step-subtitle">Seleziona le dotazioni che valorizzano il tuo immobile</p>
       <div className="addons-grid">
-        <label className="checkbox-row"><input type="checkbox" checked={formData.basement || false} onChange={() => toggleCheckbox("basement")}/>Cantina</label>
+        <label className="checkbox-row"><input type="checkbox" checked={formData.canteen || false} onChange={() => toggleCheckbox("canteen")}/>Cantina</label>
         <label className="checkbox-row"><input type="checkbox" checked={formData.elevator || false} onChange={() => toggleCheckbox("elevator")}/>Ascensore</label>
         <label className="checkbox-row"><input type="checkbox" checked={formData.balcony || false} onChange={() => toggleCheckbox("balcony")}/>Balcone</label>
         <label className="checkbox-row"><input type="checkbox" checked={formData.garden || false} onChange={() => toggleCheckbox("garden")}/>Giardino</label>

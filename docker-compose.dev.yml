@@ -12,6 +12,7 @@ services:
       - "${MYSQL_PORT:-3306}:3306"
     volumes:
       - db_data_dev:/var/lib/mysql
+      - ./db-init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u${MYSQL_USER} -p${MYSQL_PASSWORD}"]
       interval: 10s
