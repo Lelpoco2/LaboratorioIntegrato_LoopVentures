@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { apiRequest } from '../../../../services/api';
 import './UsersPage.css';
 import UsersInfoModale from './UsersInfoModale';
+import DeleteConfirmationModal from './DeleteConfirmationModal';
 
 export default function UsersPage() {
     const [users, setUsers] = useState([]);
@@ -13,6 +14,10 @@ export default function UsersPage() {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
+    
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [deletionInfo, setDeletionInfo] = useState(null);
+    const [deleting, setDeleting] = useState(false);
 
     useEffect(() => {
         const loadUsers = async () => {
@@ -38,8 +43,45 @@ export default function UsersPage() {
         loadUsers();
     }, []);
 
-    const handleDelete = (id) => {
-        setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+    const handleDelete = async (id) => {
+        setError('');
+        try {
+            console.log('Fetching deletion info for user ID:', id);
+            // First, fetch deletion info
+            const info = await apiRequest(`/api/users/${id}/deletion-info`, { method: 'GET' });
+            console.log('Deletion info received:', info);
+            setDeletionInfo(info);
+            setDeleteModalOpen(true);
+        } catch (err) {
+            console.error('Failed to fetch deletion info:', err);
+            setError(`Impossibile recuperare le informazioni di eliminazione: ${err.message}`);
+        }
+    };
+
+    const confirmDelete = async () => {
+        if (!deletionInfo) return;
+        
+        setDeleting(true);
+        setError('');
+        try {
+            console.log('Deleting user ID:', deletionInfo.userId);
+            const response = await apiRequest(`/api/users/${deletionInfo.userId}`, { method: 'DELETE' });
+            console.log('Delete response:', response);
+            setUsers((prevUsers) => prevUsers.filter((user) => user.id !== deletionInfo.userId));
+            setDeleteModalOpen(false);
+            setDeletionInfo(null);
+        } catch (err) {
+            console.error('Failed to delete user:', err);
+            setError(`Impossibile eliminare l'utente: ${err.message}`);
+            setDeleteModalOpen(false);
+        } finally {
+            setDeleting(false);
+        }
+    };
+
+    const cancelDelete = () => {
+        setDeleteModalOpen(false);
+        setDeletionInfo(null);
     };
 
     const openUserModal = (user) => {
@@ -96,6 +138,13 @@ export default function UsersPage() {
                 <UsersInfoModale
                     data={selectedUser}
                     onClose={() => setModalOpen(false)}
+                />
+            )}
+            {deleteModalOpen && deletionInfo && (
+                <DeleteConfirmationModal
+                    data={deletionInfo}
+                    onConfirm={confirmDelete}
+                    onCancel={cancelDelete}
                 />
             )}
         </DashboardLayout>

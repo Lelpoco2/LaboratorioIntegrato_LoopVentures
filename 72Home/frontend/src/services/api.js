@@ -59,6 +59,11 @@ export const apiRequest = async (endpoint, options = {}) => {
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
+    // Handle 204 No Content responses (like DELETE)
+    if (response.status === 204 || response.headers.get('content-length') === '0') {
+      return null;
+    }
+
     return await response.json();
   } catch (error) {
     console.error(`API request failed for ${endpoint}:`, error);

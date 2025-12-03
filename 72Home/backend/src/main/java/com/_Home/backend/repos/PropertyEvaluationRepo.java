@@ -10,11 +10,16 @@ import org.springframework.stereotype.Repository;
 
 import com._Home.backend.models.Property;
 import com._Home.backend.models.PropertyEvaluation;
+import com._Home.backend.models.User;
 
 @Repository
 public interface PropertyEvaluationRepo extends JpaRepository<PropertyEvaluation, Integer> {
     
     List<PropertyEvaluation> findByProperty(Property property);
+    
+    List<PropertyEvaluation> findByUser(User user);
+    
+    Long countByUser(User user);
     
     @Query("SELECT pe FROM PropertyEvaluation pe WHERE pe.property = :property ORDER BY pe.createdAt DESC")
     Optional<PropertyEvaluation> findLatestByProperty(@Param("property") Property property);

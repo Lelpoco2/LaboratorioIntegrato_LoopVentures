@@ -18,7 +18,6 @@ import lombok.Data;
 public class User {
 
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String firstName;
