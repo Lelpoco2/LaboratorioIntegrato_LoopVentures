@@ -159,7 +159,7 @@ export default function PropertiesPage() {
                     <div className="search-bar">
                         <input type="text" placeholder="Cerca immobile (es. città, indirizzo)..." />
                         <button>Cerca</button>
-                        <button className="add-property">Aggiungi immobile</button>
+                        {/* <button className="add-property">Aggiungi immobile</button> */}
                     </div>
                 </div>
                 {error && <div className="error-banner">{error}</div>}

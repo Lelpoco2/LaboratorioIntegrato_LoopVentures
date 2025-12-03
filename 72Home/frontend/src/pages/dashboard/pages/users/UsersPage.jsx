@@ -97,7 +97,7 @@ export default function UsersPage() {
                     <div className="search-bar">
                         <input type="text" placeholder="Cerca cliente..." />
                         <button>Cerca</button>
-                        <button className="add-user">Aggiungi Utente</button>
+                        {/* <button className="add-user">Aggiungi Utente</button> */}
                     </div>
                 </div>
                 {error && <div className="error-banner">{error}</div>}

@@ -48,7 +48,7 @@ export default function AgentsPage() {
                     <div className="search-bar">
                         <input type="text" placeholder="Cerca agente..." />
                         <button>Cerca</button>
-                        <button className="add-agent">Aggiungi Agente</button>
+                        {/* <button className="add-agent">Aggiungi Agente</button> */}
                     </div>
                 </div>
                 {error && <div className="error-banner">{error}</div>}
@@ -59,7 +59,7 @@ export default function AgentsPage() {
                             <th>Cognome</th>
                             <th>Email</th>
                             <th>Telefono</th>
-                            <th>Città</th>
+                            {/* <th>Città</th> */}
                             <th>Azioni</th>
                         </tr>
                     </thead>
@@ -76,7 +76,7 @@ export default function AgentsPage() {
                                 <td>{agent.cognome}</td>
                                 <td>{agent.email}</td>
                                 <td>{agent.telefono}</td>
-                                <td>{agent.citta}</td>
+                                {/* <td>{agent.citta}</td> */}
                                 <td className="actions">
                                     <button className="edit"><PencilIcon /></button>
                                     <button className="delete" onClick={() => handleDelete(agent.id)}><TrashIcon  /></button>
