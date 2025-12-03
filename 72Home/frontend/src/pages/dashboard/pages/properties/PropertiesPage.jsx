@@ -22,15 +22,17 @@ export default function PropertiesPage() {
                 const items = (Array.isArray(data) ? data : []).map((p, index) => ({
                     id: p.id || index, // Fallback to index if no id
                     tipologia: mapBuildingType(p.buildingType),
-                    indirizzo: formatAddress(p.address, p.civicNumber),
+                    indirizzo: formatAddress(p.address, p.civicNumber, p.zipCode),
                     citta: p.city,
                     prezzo: formatPrice(p.latestEvaluationPrice),
+                    taken: p.taken || false,
+                    assignedAdministrator: p.assignedAdministrator || null,
                     // TODO: disponibilita is not connected to backend yet, default to "Disponibile"
                     disponibilita: 'Disponibile',
                     // Full details for modal
                     fullData: {
                         tipologia: mapBuildingType(p.buildingType),
-                        indirizzo: formatAddress(p.address, p.civicNumber),
+                        indirizzo: formatAddress(p.address, p.civicNumber, p.zipCode),
                         citta: p.city,
                         prezzo: formatPrice(p.latestEvaluationPrice),
                         cap: p.zipCode,
@@ -62,9 +64,13 @@ export default function PropertiesPage() {
         load();
     }, []);
 
-    const formatAddress = (address, civic) => {
+    const formatAddress = (address, civic, zipCode) => {
         if (!address) return '-';
-        return civic ? `${address} ${civic}` : address;
+        let result = civic ? `${address} ${civic}` : address;
+        if (zipCode) {
+            result += `, ${zipCode}`;
+        }
+        return result;
     };
 
     const formatPrice = (price) => {
@@ -151,6 +157,30 @@ export default function PropertiesPage() {
         setProperties((prevProperties) => prevProperties.filter((property) => property.id !== id));
     };
 
+    const handleTakeProperty = async (id) => {
+        try {
+            const response = await apiRequest(`/api/admin/take-property/${id}`, { method: 'POST' });
+            
+            // Update the properties list to reflect the change
+            setProperties((prevProperties) =>
+                prevProperties.map((property) =>
+                    property.id === id
+                        ? { 
+                            ...property, 
+                            taken: true, 
+                            assignedAdministrator: response.assignedTo 
+                          }
+                        : property
+                )
+            );
+            
+            alert('Proprietà presa in carico con successo!');
+        } catch (err) {
+            console.error('Failed to take property:', err);
+            alert(err.message || 'Errore nel prendere in carico la proprietà');
+        }
+    };
+
     const openDetailModal = (property) => {
         setSelectedProperty(property.fullData);
         setModalOpen(true);
@@ -176,15 +206,16 @@ export default function PropertiesPage() {
                             <th>Città</th>
                             <th>Prezzo (€)</th>
                             <th>Disponibilità</th>
+                            <th>Assegnato a</th>
                             <th>Azioni</th>
                         </tr>
                     </thead>
                     <tbody>
                         {loading && (
-                            <tr><td colSpan={6}>Caricamento…</td></tr>
+                            <tr><td colSpan={7}>Caricamento…</td></tr>
                         )}
                         {!loading && properties.length === 0 && (
-                            <tr><td colSpan={6}>Nessun immobile trovato</td></tr>
+                            <tr><td colSpan={7}>Nessun immobile trovato</td></tr>
                         )}
                         {!loading && properties.map((property) => (
                             <tr key={property.id}>
@@ -193,7 +224,23 @@ export default function PropertiesPage() {
                                 <td>{property.citta}</td>
                                 <td>{property.prezzo}</td>
                                 <td>{property.disponibilita}</td>
+                                <td>
+                                    {property.taken ? (
+                                        <span className="assigned-admin">{property.assignedAdministrator}</span>
+                                    ) : (
+                                        <span className="not-taken">-</span>
+                                    )}
+                                </td>
                                 <td className="actions">
+                                    {!property.taken && (
+                                        <button 
+                                            className="take-property"
+                                            onClick={() => handleTakeProperty(property.id)}
+                                            title="Prendi in carico"
+                                        >
+                                            Prendi in carico
+                                        </button>
+                                    )}
                                     <button className="edit"><PencilIcon /></button>
                                     <button className="delete" onClick={() => handleDelete(property.id)}><TrashIcon /></button>
                                     <button className="view light-brown" onClick={() => openDetailModal(property)}><EyeIcon /></button>

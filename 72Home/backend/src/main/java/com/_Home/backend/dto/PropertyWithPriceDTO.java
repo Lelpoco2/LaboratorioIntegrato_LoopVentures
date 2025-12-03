@@ -40,6 +40,11 @@ public class PropertyWithPriceDTO {
     private BuildingType buildingType;
     private java.sql.Timestamp createdAt;
     
+    // Fields for property assignment
+    private Integer specialUserId;
+    private Boolean taken;
+    private String assignedAdministrator; // Nome completo dell'amministratore assegnato
+    
     // Additional field for latest evaluation price (formatted)
     private String latestEvaluationPrice;
 
@@ -83,6 +88,8 @@ public class PropertyWithPriceDTO {
         dto.setHeatingType(property.getHeatingType());
         dto.setBuildingType(property.getBuildingType());
         dto.setCreatedAt(property.getCreatedAt());
+        dto.setSpecialUserId(property.getSpecialUserId());
+        dto.setTaken(property.getTaken());
         dto.setLatestEvaluationPrice(formatPrice(latestPrice));
         return dto;
     }

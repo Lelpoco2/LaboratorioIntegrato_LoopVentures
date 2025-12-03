@@ -19,4 +19,7 @@ public interface PropertyRepo extends JpaRepository<Property, Integer> {
     @Query("SELECT p FROM Property p WHERE p.id IN (SELECT u.propertyId FROM User u WHERE u.id = :userId AND u.propertyId IS NOT NULL)")
     List<Property> findPropertiesOwnedByUser(@Param("userId") Integer userId);
 
+    // Find properties taken by a specific special user (administrator)
+    List<Property> findBySpecialUserId(Integer specialUserId);
+
 }

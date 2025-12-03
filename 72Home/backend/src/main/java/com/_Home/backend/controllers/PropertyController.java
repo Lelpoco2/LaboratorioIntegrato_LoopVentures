@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com._Home.backend.dto.PropertyWithPriceDTO;
 import com._Home.backend.models.Property;
 import com._Home.backend.repos.PropertyEvaluationRepo;
+import com._Home.backend.repos.SpecialUserRepo;
 import com._Home.backend.services.interfaces.PropertyService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +32,9 @@ public class PropertyController {
     
     @Autowired
     private PropertyEvaluationRepo propertyEvaluationRepo;
+    
+    @Autowired
+    private SpecialUserRepo specialUserRepo;
 
     @GetMapping("/properties")
     public ResponseEntity<List<PropertyWithPriceDTO>> getAllProperties() {
@@ -40,7 +44,19 @@ public class PropertyController {
                 Double latestPrice = propertyEvaluationRepo.findLatestByProperty(property)
                     .map(evaluation -> evaluation.getPropertyValue())
                     .orElse(null);
-                return PropertyWithPriceDTO.fromProperty(property, latestPrice);
+                PropertyWithPriceDTO dto = PropertyWithPriceDTO.fromProperty(property, latestPrice);
+                
+                // Add administrator name if property is taken
+                if (property.getSpecialUserId() != null) {
+                    specialUserRepo.findById(property.getSpecialUserId())
+                        .ifPresent(admin -> {
+                            dto.setAssignedAdministrator(
+                                admin.getFirstName() + " " + admin.getLastName()
+                            );
+                        });
+                }
+                
+                return dto;
             })
             .collect(Collectors.toList());
         return ResponseEntity.ok(propertiesWithPrices);

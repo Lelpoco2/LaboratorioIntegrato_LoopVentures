@@ -48,6 +48,12 @@ public class Property {
     private HeatingType heatingType; //
     private BuildingType buildingType; //
 
+    @Column(name = "special_user_id")
+    private Integer specialUserId; // Nullable - ID dell'amministratore che ha preso in carico la proprietà
+    
+    @Column(name = "taken")
+    private Boolean taken = false; // Indica se la proprietà è stata presa in carico
+
     @JsonIgnore
     @Column(name = "created_at")
     private java.sql.Timestamp createdAt;

@@ -3,7 +3,9 @@ package com._Home.backend.controllers;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com._Home.backend.dto.PropertyWithPriceDTO;
 import com._Home.backend.dto.SpecialUserDTO;
+import com._Home.backend.models.Property;
 import com._Home.backend.repos.OmiZoneRepo;
 import com._Home.backend.repos.PropertyEvaluationRepo;
 import com._Home.backend.repos.PropertyRepo;
@@ -22,6 +24,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
@@ -70,6 +74,67 @@ public class AdminController {
             .map(SpecialUserDTO::fromSpecialUser)
             .collect(Collectors.toList());
         return ResponseEntity.ok(specialUsers);
+    }
+
+    @GetMapping("/taken-properties")
+    @PreAuthorize("hasRole('AMMINISTRATORE')")
+    public ResponseEntity<List<PropertyWithPriceDTO>> getTakenProperties(@AuthenticationPrincipal UserDetails userDetails) {
+        // Get the SpecialUser by email (which is the username in UserDetails)
+        var specialUser = specialUserRepo.findByEmail(userDetails.getUsername())
+            .orElseThrow(() -> new RuntimeException("Special user not found"));
+        
+        // Find all properties taken by this special user
+        List<Property> takenProperties = propertyRepo.findBySpecialUserId(specialUser.getId());
+        
+        // Convert to DTOs with prices
+        List<PropertyWithPriceDTO> propertiesWithPrices = takenProperties.stream()
+            .map(property -> {
+                Double latestPrice = propertyEvaluationRepo.findLatestByProperty(property)
+                    .map(evaluation -> evaluation.getPropertyValue())
+                    .orElse(null);
+                PropertyWithPriceDTO dto = PropertyWithPriceDTO.fromProperty(property, latestPrice);
+                
+                // Add administrator name
+                dto.setAssignedAdministrator(specialUser.getFirstName() + " " + specialUser.getLastName());
+                
+                return dto;
+            })
+            .collect(Collectors.toList());
+        
+        return ResponseEntity.ok(propertiesWithPrices);
+    }
+
+    @PostMapping("/take-property/{propertyId}")
+    @PreAuthorize("hasRole('AMMINISTRATORE')")
+    public ResponseEntity<?> takeProperty(
+            @PathVariable Integer propertyId,
+            @AuthenticationPrincipal UserDetails userDetails) {
+        
+        // Get the SpecialUser by email
+        var specialUser = specialUserRepo.findByEmail(userDetails.getUsername())
+            .orElseThrow(() -> new RuntimeException("Special user not found"));
+        
+        // Find the property
+        var property = propertyRepo.findById(propertyId)
+            .orElseThrow(() -> new RuntimeException("Property not found"));
+        
+        // Check if property is already taken
+        if (Boolean.TRUE.equals(property.getTaken())) {
+            return ResponseEntity.badRequest().body(Map.of(
+                "error", "Property already taken by another administrator"
+            ));
+        }
+        
+        // Assign property to this special user
+        property.setSpecialUserId(specialUser.getId());
+        property.setTaken(true);
+        propertyRepo.save(property);
+        
+        return ResponseEntity.ok(Map.of(
+            "message", "Property successfully taken",
+            "propertyId", propertyId,
+            "assignedTo", specialUser.getFirstName() + " " + specialUser.getLastName()
+        ));
     }
 
     

@@ -1,11 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './PropertyList.css';
+import { apiRequest } from '../../../../services/api';
 
 export default function PropertyList() {
-  const dummy = [
-    { id: 1, address: "Via Roma 10", price: "€ 250.000" },
-    { id: 2, address: "Corso Milano 45", price: "€ 320.000" },
-  ];
+  const [properties, setProperties] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const loadTakenProperties = async () => {
+      setLoading(true);
+      try {
+        const data = await apiRequest('/api/admin/taken-properties', { method: 'GET' });
+        setProperties(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Failed to load taken properties:', error);
+        setProperties([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadTakenProperties();
+  }, []);
+
+  const formatAddress = (address, civicNumber, zipCode) => {
+    if (!address) return '-';
+    let result = civicNumber ? `${address} ${civicNumber}` : address;
+    if (zipCode) {
+      result += `, ${zipCode}`;
+    }
+    return result;
+  };
+
+  const formatPrice = (price) => {
+    if (!price) return '-';
+    return `€ ${price}`;
+  };
+
+  const buildingTypeMap = {
+    APARTMENT: 'Appartamento',
+    INDEPENDENT_HOUSE: 'Casa indipendente',
+    VILLA: 'Villa',
+  };
+
+  const mapBuildingType = (bt) => {
+    if (!bt) return '-';
+    const key = String(bt).toUpperCase();
+    return buildingTypeMap[key] || bt;
+  };
 
   return (
     <div className="property-list">
@@ -13,17 +54,29 @@ export default function PropertyList() {
       <table className="property-table">
         <thead>
           <tr>
-            <th>ID</th>
+            <th>Tipologia</th>
             <th>Indirizzo</th>
+            <th>Città</th>
             <th>Prezzo stimato</th>
           </tr>
         </thead>
         <tbody>
-          {dummy.map(p => (
+          {loading && (
+            <tr>
+              <td colSpan={4}>Caricamento...</td>
+            </tr>
+          )}
+          {!loading && properties.length === 0 && (
+            <tr>
+              <td colSpan={4}>Nessun immobile preso in carico</td>
+            </tr>
+          )}
+          {!loading && properties.map(p => (
             <tr key={p.id}>
-              <td>{p.id}</td>
-              <td>{p.address}</td>
-              <td>{p.price}</td>
+              <td>{mapBuildingType(p.buildingType)}</td>
+              <td>{formatAddress(p.address, p.civicNumber, p.zipCode)}</td>
+              <td>{p.city || '-'}</td>
+              <td>{formatPrice(p.latestEvaluationPrice)}</td>
             </tr>
           ))}
         </tbody>
