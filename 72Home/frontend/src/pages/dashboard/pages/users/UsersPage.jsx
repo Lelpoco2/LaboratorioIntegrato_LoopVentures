@@ -1,40 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DashboardLayout from '../../DashboardLayout';
 import { PencilIcon, TrashIcon, EyeIcon } from '@phosphor-icons/react';
 import { useState } from 'react';
 import { apiRequest } from '../../../../services/api';
 import './UsersPage.css';
-import PropertyInfoModal from './PropertyInfoModal';
+import UsersInfoModale from './UsersInfoModale';
 
 export default function UsersPage() {
-    const [users, setUsers] = useState([
-        { id: 1, nome: 'Andrea', cognome: 'Riva', email: 'andrea.riva@email.it', telefono: '3331234567' },
-        { id: 2, nome: 'Laura', cognome: 'Moretti', email: 'laura.moretti@email.it', telefono: '3342345678' },
-        { id: 3, nome: 'Giorgio', cognome: 'Ferrari', email: 'giorgio.ferrari@email.it', telefono: '3353456789' },
-        { id: 4, nome: 'Elena', cognome: 'Bianchi', email: 'elena.bianchi@email.it', telefono: '3364567890' }
-    ]);
+    const [users, setUsers] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [selectedProperty, setSelectedProperty] = useState(null);
+    const [selectedUser, setSelectedUser] = useState(null);
+
+    useEffect(() => {
+        const loadUsers = async () => {
+            setLoading(true);
+            setError('');
+            try {
+                const data = await apiRequest('/api/users', { method: 'GET' });
+                const userList = (Array.isArray(data) ? data : []).map((u, index) => ({
+                    id: u.id ?? index,
+                    firstName: u.firstName ?? '-',
+                    lastName: u.lastName ?? '-',
+                    email: u.email ?? '-',
+                    phone: u.phone ?? '-',
+                }));
+                setUsers(userList);
+            } catch (err) {
+                console.error('Failed to load users:', err);
+                setError('Impossibile caricare gli utenti.');
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadUsers();
+    }, []);
 
     const handleDelete = (id) => {
         setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
     };
 
-    const openPropertyModal = async (userId) => {
-        try {
-            // Fetch dashboard data and find property by user id (adjust mapping as needed)
-            const data = await apiRequest('/api/admin/dashboard', { method: 'GET' });
-            // Assume data.properties is an array; adjust based on actual response
-            const property = (data?.properties || []).find(p => p.userId === userId) || null;
-            // Fallback: if not found, keep null to show empty fields gracefully
-            setSelectedProperty(property);
-            setModalOpen(true);
-        } catch (err) {
-            console.error('Failed to load property details:', err);
-            setSelectedProperty(null);
-            setModalOpen(true);
-        }
+    const openUserModal = (user) => {
+        setSelectedUser(user);
+        setModalOpen(true);
     };
 
     return (
@@ -48,6 +58,7 @@ export default function UsersPage() {
                         <button className="add-user">Aggiungi Utente</button>
                     </div>
                 </div>
+                {error && <div className="error-banner">{error}</div>}
                 <table className="users-table">
                     <thead>
                         <tr>
@@ -59,25 +70,31 @@ export default function UsersPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map((user) => (
+                        {loading && (
+                            <tr><td colSpan={5}>Caricamento…</td></tr>
+                        )}
+                        {!loading && users.length === 0 && (
+                            <tr><td colSpan={5}>Nessun utente trovato</td></tr>
+                        )}
+                        {!loading && users.map((user) => (
                             <tr key={user.id}>
-                                <td>{user.nome}</td>
-                                <td>{user.cognome}</td>
+                                <td>{user.firstName}</td>
+                                <td>{user.lastName}</td>
                                 <td>{user.email}</td>
-                                <td>{user.telefono}</td>
+                                <td>{user.phone}</td>
                                 <td className="actions">
                                     <button className="edit"><PencilIcon /></button>
                                     <button className="delete" onClick={() => handleDelete(user.id)}><TrashIcon /></button>
-                                    <button className="view light-brown" onClick={() => openPropertyModal(user.id)}><EyeIcon /></button>
+                                    <button className="view light-brown" onClick={() => openUserModal(user)}><EyeIcon /></button>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            {modalOpen && selectedProperty && (
-                <PropertyInfoModal
-                    data={selectedProperty}
+            {modalOpen && selectedUser && (
+                <UsersInfoModale
+                    data={selectedUser}
                     onClose={() => setModalOpen(false)}
                 />
             )}

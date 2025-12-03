@@ -98,5 +98,68 @@
 }
 
 .actions .delete:hover {
-  background-color: #c9302c;
+    background-color: #c9302c;
+}
+
+.actions .view {
+    background-color: #d9c0a6;
+    color: #3e2b1f;
+}
+
+.actions .view:hover {
+    background-color: #c9b093;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-card {
+  background: #fff;
+  width: 90%;
+  max-width: 640px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+.modal-content {
+  padding: 16px 20px 24px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+.modal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed #f0f0f0;
+}
+.modal-row:last-child {
+  border-bottom: none;
+}
+.modal-label {
+  font-weight: 600;
+  color: #333;
+}
+.modal-value {
+  color: #555;
 }

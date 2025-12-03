@@ -44,9 +44,11 @@ export const submitPropertyEvaluation = async (payload) => {
  */
 export const apiRequest = async (endpoint, options = {}) => {
   try {
+    const token = localStorage.getItem('auth_token');
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       headers: {
         'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...options.headers,
       },
       ...options

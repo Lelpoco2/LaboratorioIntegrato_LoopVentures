@@ -35,6 +35,10 @@ const LoginPage = () => {
             });
             // If backend returns success, show success message
             if (data) {
+                // Store JWT token for authenticated requests
+                if (data.token) {
+                    localStorage.setItem('auth_token', data.token);
+                }
                 setSuccess(true);
                 navigate("/dashboard");
             }
