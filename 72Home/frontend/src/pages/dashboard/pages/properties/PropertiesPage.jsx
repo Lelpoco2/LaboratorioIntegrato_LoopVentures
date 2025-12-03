@@ -4,6 +4,7 @@ import { TrashIcon, PencilIcon, EyeIcon } from '@phosphor-icons/react';
 import './PropertiesPage.css';
 import { apiRequest } from '../../../../services/api';
 import PropertyDetailModal from './PropertyDetailModal';
+import ConfirmTakePropertyModal from './ConfirmTakePropertyModal';
 
 export default function PropertiesPage() {
     const [properties, setProperties] = useState([]);
@@ -11,6 +12,8 @@ export default function PropertiesPage() {
     const [error, setError] = useState('');
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedProperty, setSelectedProperty] = useState(null);
+    const [confirmModalOpen, setConfirmModalOpen] = useState(false);
+    const [propertyToTake, setPropertyToTake] = useState(null);
 
     useEffect(() => {
         const load = async () => {
@@ -156,28 +159,42 @@ export default function PropertiesPage() {
         setProperties((prevProperties) => prevProperties.filter((property) => property.id !== id));
     };
 
-    const handleTakeProperty = async (id) => {
+    const openTakePropertyModal = (property) => {
+        setPropertyToTake(property);
+        setConfirmModalOpen(true);
+    };
+
+    const handleTakeProperty = async () => {
+        if (!propertyToTake) return;
+
         try {
-            const response = await apiRequest(`/api/admin/take-property/${id}`, { method: 'POST' });
+            const response = await apiRequest(`/api/admin/take-property/${propertyToTake.id}`, { method: 'POST' });
             
             // Update the properties list to reflect the change
             setProperties((prevProperties) =>
                 prevProperties.map((property) =>
-                    property.id === id
+                    property.id === propertyToTake.id
                         ? { 
                             ...property, 
-                            taken: true, 
+                            taken: true,
+                            disponibilita: 'Non disponibile',
                             assignedAdministrator: response.assignedTo 
                           }
                         : property
                 )
             );
             
-            alert('Proprietà presa in carico con successo!');
+            setConfirmModalOpen(false);
+            setPropertyToTake(null);
         } catch (err) {
             console.error('Failed to take property:', err);
             alert(err.message || 'Errore nel prendere in carico la proprietà');
         }
+    };
+
+    const cancelTakeProperty = () => {
+        setConfirmModalOpen(false);
+        setPropertyToTake(null);
     };
 
     const openDetailModal = (property) => {
@@ -234,7 +251,7 @@ export default function PropertiesPage() {
                                     {!property.taken && (
                                         <button 
                                             className="take-property"
-                                            onClick={() => handleTakeProperty(property.id)}
+                                            onClick={() => openTakePropertyModal(property)}
                                             title="Prendi in carico"
                                         >
                                             Prendi in carico
@@ -253,6 +270,13 @@ export default function PropertiesPage() {
                 <PropertyDetailModal
                     data={selectedProperty}
                     onClose={() => setModalOpen(false)}
+                />
+            )}
+            {confirmModalOpen && propertyToTake && (
+                <ConfirmTakePropertyModal
+                    property={propertyToTake}
+                    onConfirm={handleTakeProperty}
+                    onCancel={cancelTakeProperty}
                 />
             )}
         </DashboardLayout>
