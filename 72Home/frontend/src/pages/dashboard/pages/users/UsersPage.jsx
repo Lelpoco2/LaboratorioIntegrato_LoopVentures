@@ -125,8 +125,8 @@ export default function UsersPage() {
                                 <td>{user.email}</td>
                                 <td>{user.phone}</td>
                                 <td className="actions">
-                                    {/* <button className="edit"><PencilIcon /></button>
-                                    <button className="delete" onClick={() => handleDelete(user.id)}><TrashIcon /></button> */}
+                                    {/* <button className="edit"><PencilIcon /></button> */}
+                                    <button className="delete" onClick={() => handleDelete(user.id)}><TrashIcon /></button>
                                     <button className="view light-brown" onClick={() => openUserModal(user)}><EyeIcon /></button>
                                 </td>
                             </tr>
