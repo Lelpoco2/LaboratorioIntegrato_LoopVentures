@@ -8,13 +8,15 @@ const Banner = () => {
                 <div className="banner-overlay"></div>
                 
                 <div className="banner-content-wrapper"> 
-                    <h1 className="title-banner">
-                        E tu conosci già <br />
-                        il valore della tua casa?
-                    </h1>
-                    
-                    <div className="banner-btn">
-                        <BottoneCTA/>
+                    <div className="banner-content-box">
+                        <h1 className="title-banner">
+                            E tu conosci già <br />
+                            il valore della tua casa?
+                        </h1>
+                        
+                        <div className="banner-btn">
+                            <BottoneCTA/>
+                        </div>
                     </div>
                 </div>
 

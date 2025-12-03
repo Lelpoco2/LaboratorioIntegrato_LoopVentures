@@ -63,14 +63,15 @@
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
   padding: 1.2rem;
-  max-width: 300px;
   text-align: left;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   flex: 0 0 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 95%;
+  max-width: 300px;
+  /* width: auto; */
+  height: auto;
 }
 
 .agent-card:hover {
@@ -115,6 +116,7 @@
   font-size: 0.9rem;
   margin-bottom: 1.2rem;
   color: #5c4b46;
+  flex: 1;
 }
 
 .agent-info span {

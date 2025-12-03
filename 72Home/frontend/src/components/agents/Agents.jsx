@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Agents.css";
-import { HouseLineIcon } from "@phosphor-icons/react";
+import { HouseLineIcon, CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 import agent1Img from "../../assets/agents/agente_uomo1.jpg";
 import agent2Img from "../../assets/agents/agente_donna1.jpg";
 import agent3Img from "../../assets/agents/agente_donna2.jpg";
@@ -84,7 +84,9 @@ const Agents = () => {
             <h2>Agenti</h2>
             <p>Vendi in fretta e senza preoccupazioni con l'aiuto dei nostri professionisti!</p>
             <div className="carousel-container">
-                <button className="carousel-button prev" onClick={handlePrev}>&lt;</button>
+                <button className="carousel-button prev" onClick={handlePrev}>
+                    <CaretLeftIcon size={40} weight="bold" />
+                </button>
                 <div className="agents-container">
                     {visibleAgents.map((agent, index) => (
                         <div key={index} className="agent-card">
@@ -101,7 +103,9 @@ const Agents = () => {
                         </div>
                     ))}
                 </div>
-                <button className="carousel-button next" onClick={handleNext}>&gt;</button>
+                <button className="carousel-button next" onClick={handleNext}>
+                    <CaretRightIcon size={40} weight="bold" />
+                </button>
             </div>
             <div className="carousel-dots">
                 {Array.from({ length: Math.ceil(agentsData.length / agentsPerPage) }).map((_, pageIndex) => (
