@@ -21,9 +21,8 @@ const Newsletter = ({
                 <div className="news-container">
 
                     <div className="new-box">
-                        {/* Le icone si trovano ora all'interno di .new-box */}
-                        <EnvelopeIcon weight="thin" className='envelope-icon left' color='#333' />
-                        <EnvelopeIcon className="envelope-icon right" weight="thin" color='#333' />
+                        <EnvelopeIcon size={300} weight="thin" className='envelope-icon left' color='#333' />
+                        <EnvelopeIcon size={200} className="envelope-icon right" weight="thin" color='#333' />
 
                         <h2 className="news-title">{title}</h2>
                         <p className="news-subtitle">{subtitle}</p>
