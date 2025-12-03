@@ -9,7 +9,7 @@ export default function PropertyList() {
 
   return (
     <div className="property-list">
-      <h2 className="property-list-title">Proprietà</h2>
+      <h2 className="property-list-title">Immobili presi in carico</h2>
       <table className="property-table">
         <thead>
           <tr>
