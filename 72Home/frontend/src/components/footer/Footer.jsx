@@ -21,10 +21,12 @@ const Footer = () => {
     <footer id="footer" className="footer container" role="contentinfo">
       <div className="footer-up">
         <div className="footer-logo-section">
-          <Link to="/#home">
-            <img src={EstimoraLogo} alt="Logo di Estimora" className="footer-logo" />
-          </Link>
-          <BottoneCTA />
+          <div className="footer-logo-cta">
+            <Link to="/#home">
+              <img src={EstimoraLogo} alt="Logo di Estimora" className="footer-logo" />
+            </Link>
+            <BottoneCTA />
+          </div>
         </div>
 
         <div className="footer-links-group">
@@ -48,39 +50,33 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="footer-contact-and-social">
-          <div className="footer-contact-section">
-            <h4>Contatti</h4>
-            <div className="contact-details">
-              <ContactItem Icon={WhatsappLogoIcon} title="WhatsApp:" value="+39 342 768 9154" />
-              <ContactItem Icon={PhoneCallIcon} title="Telefono:" value="+39 011 764 2385" />
-              <ContactItem Icon={EnvelopeSimpleIcon} title="Email:" value="estimora.info@gmail.com" />
-              <ContactItem Icon={MapPinIcon} title="Sede:" value="Via Jacopo Durandi 33, TO" />
-            </div>
-          </div>
-
-          <div className="footer-social-section-top">
-            <h4>Seguici</h4>
-            <div className="social-icons" aria-label="Social media">
-              <a href="#" target="_blank" rel="noreferrer" aria-label="TikTok">
-                <TiktokLogoIcon size={20} />
-              </a>
-              <a href="#" target="_blank" rel="noreferrer" aria-label="Facebook">
-                <FacebookLogoIcon size={20} />
-              </a>
-              <a href="#" target="_blank" rel="noreferrer" aria-label="Instagram">
-                <InstagramLogoIcon size={20} />
-              </a>
-            </div>
+        <div className="footer-contact-section">
+          <h4>Contatti</h4>
+          <div className="contact-details">
+            <ContactItem Icon={WhatsappLogoIcon} title="WhatsApp:" value="+39 342 768 9154" />
+            <ContactItem Icon={PhoneCallIcon} title="Telefono:" value="+39 011 764 2385" />
+            <ContactItem Icon={EnvelopeSimpleIcon} title="Email:" value="estimora.info@gmail.com" />
+            <ContactItem Icon={MapPinIcon} title="Sede:" value="Via Jacopo Durandi 33, TO" />
           </div>
         </div>
       </div>
 
-      <div>
-        <div className="footer-down">
-          <p>
-            Copyright © {new Date().getFullYear()} Estimora. Tutti i diritti riservati.
-          </p>
+      <div className="footer-down">
+        <p>
+          Copyright © {new Date().getFullYear()} Estimora. Tutti i diritti riservati.
+        </p>
+        <div className="footer-social-section">
+          <div className="social-icons" aria-label="Social media">
+            <a href="#" target="_blank" rel="noreferrer" aria-label="TikTok">
+              <TiktokLogoIcon size={20} />
+            </a>
+            <a href="#" target="_blank" rel="noreferrer" aria-label="Facebook">
+              <FacebookLogoIcon size={20} />
+            </a>
+            <a href="#" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <InstagramLogoIcon size={20} />
+            </a>
+          </div>
         </div>
       </div>
     </footer >
