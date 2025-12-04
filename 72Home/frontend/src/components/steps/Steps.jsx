@@ -31,7 +31,7 @@ const Steps = () => {
                             </div>
                             <div className="card-text">
                                 <h4 className="card-title">Ricevi il report</h4>
-                                <p className="card-description">Ti invieremo tramite email o WhatsApp un report personalizzato con la stima del tuo immobile, basata sui dati reali del mercato. </p>
+                                <p className="card-description">Ti invieremo tramite email un report personalizzato con la stima del tuo immobile, basata sui dati reali del mercato. </p>
                             </div>
                             <MailboxIcon size={100} weight="regular" className="card-icon" />
                         </div>

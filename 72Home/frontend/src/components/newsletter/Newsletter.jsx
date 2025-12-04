@@ -33,52 +33,40 @@ const Newsletter = ({
 
 
     return (
-        <div className="news-section-container">
-            <section id="newsletter">
-            <div className="news-container">
-
-                    <EnvelopeIcon size={300} weight="thin" className='envelope-icon left' color='black' />
-
-
-                    <div className="new-box">
-
-                        <h2 className="news-title">{title}</h2>
-
-                        <p className="news-subtitle">{subtitle}</p>
-
-                        <form className="news-form" onSubmit={handleSubmit}>
-
-                            <input type="email"
-
-                                placeholder='Inserisci il tuo indirizzo email...'
-
-                                value={email}
-
-                                onChange={(e) => setEmail(e.target.value)}
-
-                                required className='news-input'
-
-                            />
-
-                            <button type='submit' className="news-button">
-
-                                Iscriviti
-
-                            </button>
-
-                        </form>
-
+        <section className="news-section-container" id="newsletter">
+            <div className="news-wrapper">
+                <EnvelopeIcon size={300} weight="thin" className='envelope-icon left' color='#74584bff' />
+                
+                <div className="news-content">
+                    <div className="news-icon-wrapper">
+                        <EnvelopeIcon size={100} weight="duotone" className='news-envelope-icon' color='#612916' />
                     </div>
+                    
+                    <h2 className="news-title">{title}</h2>
+                    <p className="news-subtitle">{subtitle}</p>
+                    
+                    <form className="news-form" onSubmit={handleSubmit}>
+                        <input 
+                            type="email"
+                            placeholder='tua-email@esempio.com'
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required 
+                            className='news-input'
+                        />
+                        <button type='submit' className="news-button">
+                            Iscriviti
+                        </button>
+                    </form>
 
-
-
-                    <EnvelopeIcon size={200} className="envelope-icon right" weight="thin" color='black' />
-
+                    <p className="news-privacy">
+                        Puoi disiscriverti in qualsiasi momento.
+                    </p>
                 </div>
-            </section>
-        </div>
 
-
+                <EnvelopeIcon size={200} className="envelope-icon right" weight="thin" color='#74584bff' />
+            </div>
+        </section>
     );
 
 };
