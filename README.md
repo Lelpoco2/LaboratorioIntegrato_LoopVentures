@@ -199,13 +199,13 @@ Nel recente update della repo è stato aggiunto il supporto a Swagger, consultab
 Questi link sono da utilizzare una volta avviato l'ambiente corrispondente al paragrafo.
 
 ### 9.1 Link per ambiente DEV:
-- [README.dev.md](README.dev.md) - Documentazione completa per l'ambiente di sviluppo (DEV)
+- [README.dev.md](docs/README.dev.md) - Documentazione completa per l'ambiente di sviluppo (DEV)
 - `localhost:5173` - URL per accedere al frontend React in ambiente DEV
 ### 9.2 Link per ambiente PROD:
-- [README.prod.md](README.prod.md) - Documentazione completa per l'ambiente di produzione (PROD)
+- [README.prod.md](docs/README.prod.md) - Documentazione completa per l'ambiente di produzione (PROD)
 > NON COMPLETO
 ### 9.3 Link per ambiente DEVTUNNEL:
-- [README.devtunnel.md](README.devtunnel.md) - Documentazione completa per l'ambiente di sviluppo con tunnel (DEVTUNNEL)
+- [README.devtunnel.md](docs/README.devtunnel.md) - Documentazione completa per l'ambiente di sviluppo con tunnel (DEVTUNNEL)
 - localhost:5173 - URL per accedere al frontend React in ambiente DEVTUNNEL
 
 ## 10. Contribuzione alla documentazione
