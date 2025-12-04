@@ -1,0 +1,13 @@
+package com._Home.backend.services.interfaces;
+
+import com._Home.backend.models.User;
+import java.util.List;
+
+public interface UserService {
+	List<User> getAllUsers();
+	User insertUser(User user);
+	User getUserById(Integer id);
+	User getUserByPropertyId(Integer propertyId);
+	User updateUser(User user);
+	void deleteUser(Integer id);
+}

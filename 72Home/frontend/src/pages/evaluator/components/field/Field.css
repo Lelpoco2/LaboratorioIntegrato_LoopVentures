@@ -1,0 +1,94 @@
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.field-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-input-wrapper input,
+.field-input-wrapper select {
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  padding: 8px 35px 8px 10px; /* spazio per l'icona */
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.field-input-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.field-input-wrapper select option {
+  padding: 10px;
+  font-size: 15px;
+}
+
+.valid-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  color: #1e6e53;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.field-input-wrapper .field-caret,
+.field-input-wrapper .caret-down-icon {
+  position: absolute;
+  right: 12px;
+  top: 30%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #555;
+  margin-top: 13px;
+}
+
+.form-group.valid .caret-down-icon {
+  display: none;
+}
+.form-group.valid .field-caret {
+  display: none;
+}
+
+.form-group.untouched input,
+.form-group.untouched select {
+  border-color: #cfcfcf;
+}
+
+.form-group.touched input,
+.form-group.touched select {
+  border-color: #6aa3e8;
+}
+
+.form-group.error input,
+.form-group.error select {
+  border-color: #c40000;
+  background: #ffe9e9;
+}
+
+.form-group.valid input,
+.form-group.valid select {
+  border-color: #1e6e53;
+}
+
+.error-message {
+  color: #c40000;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  line-height: 20px;
+}
+
+.garage-size-group .error-message {
+  margin-top: 6px;
+  font-size: 13.5px;
+  line-height: 20px;
+}

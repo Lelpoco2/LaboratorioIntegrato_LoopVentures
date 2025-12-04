@@ -1,0 +1,55 @@
+.evaluator-card h2 {
+  margin: 0;
+}
+.step-subtitle {
+  font-size: 0.9rem;
+  color: #6b6b6b;
+  margin-top: -10px;
+}
+.addons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 40px;
+}
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px 8px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+.checkbox-row:hover {
+  background-color: #f7f2ec;
+}
+.checkbox-row input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.garage-size-group {
+  margin-top: 25px;
+  max-width: 220px;
+}
+.garage-size-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.garage-size-group input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+.garage-size-group input:focus {
+  border-color: #777;
+}
+@media (max-width: 768px) {
+  .addons-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}

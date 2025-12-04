@@ -1,0 +1,76 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: app_database_MySQL_devtunnel
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - ./db-init:/docker-entrypoint-initdb.d
+      - db_data_dev:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u${MYSQL_USER} -p${MYSQL_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  
+  backend:
+    build:
+      context: ./72Home/backend
+      dockerfile: Dockerfile.dev
+    container_name: app_backend_Spring_devtunnel
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
+      SPRING_MAIL_HOST: ${SPRING_MAIL_HOST}
+      SPRING_MAIL_PORT: ${SPRING_MAIL_PORT}
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS}
+      SPRING_DEVTOOLS_RESTART_ENABLED: "true"
+      SPRING_DEVTOOLS_LIVERELOAD_ENABLED: "true"
+    ports:
+      - "8080:8080"
+      - "35729:35729"  # LiveReload port
+      - "5005:5005"    # Debug port
+    volumes:
+      # Mount del codice sorgente per hot reload (senza ro per permettere la compilazione)
+      - ./72Home/backend/src:/app/src
+      - ./72Home/backend/pom.xml:/app/pom.xml
+      - ./72Home/backend/target:/app/target  # Necessario per Spring DevTools
+      # Volume per le dipendenze Maven (evita di riscaricarle)
+      - maven_cache:/root/.m2
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./72Home/frontend
+      dockerfile: Dockerfile.dev
+    container_name: app_frontend_React_devtunnel
+    ports:
+      - "5173:5173"  # Vite dev server
+    volumes:
+      # Mount del codice sorgente per hot reload
+      - ./72Home/frontend/src:/app/src
+      - ./72Home/frontend/public:/app/public
+      - ./72Home/frontend/index.html:/app/index.html
+      - ./72Home/frontend/vite.config.js:/app/vite.config.js
+      # Volume per node_modules (evita conflitti con il sistema host)
+      - /app/node_modules
+    environment:
+      # DevTunnel URL - Aggiorna con il tuo URL DevTunnel del backend
+      - VITE_API_URL=https://2szqn6js-8080.euw.devtunnels.ms
+    depends_on:
+      - backend
+
+volumes:
+  db_data_dev:
+  maven_cache:

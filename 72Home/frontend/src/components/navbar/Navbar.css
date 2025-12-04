@@ -1,0 +1,243 @@
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+/* LOGO */
+.navbar-logo {
+  color: #0c3c7c;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo {
+  position: relative;
+  height: 50px;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.05);
+}
+
+/* LINK PRINCIPALI */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: static;
+  left: auto;
+  transform: none;
+}
+
+.navbar-links a,
+.navbar-button {
+  position: relative;
+  color: #612916;
+  text-decoration: none;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.4rem;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Hover link */
+.navbar-links a:hover,
+.navbar-button:hover {
+  color: #9d8062;
+}
+
+/* Linea sotto link */
+.navbar-links a::after,
+.navbar-button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #9d8062;
+  transition: width 0..3s ease;
+}
+
+.navbar-links a:hover::after,
+.navbar-button:hover::after {
+  width: 100%;
+}
+
+/* ELEMENTI CON SOTTOMENU */
+.navbar-item {
+  position: relative;
+}
+
+/* ICONA CARET */
+.navbar-icon {
+  transition: transform 0.2s ease, color 0.3s ease;
+  bottom:2px;
+}
+
+.navbar-item:hover .navbar-icon {
+  transform: rotate(180deg);
+}
+
+.navbar-icon:hover {
+  color: #9d8062;
+  top: 1.5px;
+}
+
+/* SOTTOMENU */
+.submenu {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  background: white;
+  color: #9d8062;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.3s ease;
+  min-width: 150px;
+  transition: all 0.5s ease;
+}
+
+.submenu a {
+  padding: 0.6rem 1rem;
+  color: #9d8062;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.submenu a:hover {
+  background: #ffffff;
+  text-decoration: none;
+}
+
+/* BOTTONE CTA */
+.navbar-cta {
+  flex-shrink: 0;
+}
+
+/* ANIMAZIONE */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HAMBURGER ICON */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  width: 25px;
+  height: 20px;
+  gap: 4px;
+}
+
+.hamburger span {
+  height: 3px;
+  background: #612916;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: row;
+    height: 70px;
+    padding: 1rem;
+    justify-content: space-between;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    background: white;
+    padding: 1rem 0;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-links.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .navbar-links a,
+  .navbar-button {
+    color: #9d8062;
+    justify-content: center;
+    padding: 0.8rem;
+    align-items: center;
+  }
+
+  .navbar-item {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .submenu {
+    width: 90%;
+    position: static;
+    margin: 0.5rem auto;
+    box-shadow: none;
+    background: white;
+    color: #9d8062;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .submenu a {
+    color: #9d8062;
+    padding: 0.8rem 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar-cta {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

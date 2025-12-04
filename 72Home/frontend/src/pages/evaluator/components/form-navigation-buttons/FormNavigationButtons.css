@@ -1,0 +1,46 @@
+.navigation-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 50px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.btn {
+  padding: 20px 0;
+  width: 130px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+.btn.back {
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #612916;
+}
+.btn.back:hover {
+  background-color: #f1f1f1;
+}
+.btn.next {
+  background-color: #612916;
+  color: white;
+}
+.btn.next:hover:enabled {
+  background-color: #8e3b1f;
+}
+.navigation-buttons button:disabled {
+  background-color: #612916;
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.btn.submit {
+  background-color: #612916;
+  color: white;
+}
+.btn.submit:hover {
+  background-color: #136d29;
+}
